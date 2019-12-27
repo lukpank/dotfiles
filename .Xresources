@@ -1,0 +1,12 @@
+#if HEIGHT == 2160
+Xft.dpi: 160
+#define EM_FONT FantasqueSansMono:pixelsize=30:antialias=true:autohint=true
+#else
+#define EM_FONT FantasqueSansMono:pixelsize=22:antialias=true:autohint=true
+#endif
+
+emacs.font: EM_FONT
+emacs.cursorBlink: false
+emacs.scrollBarWidth: 20
+emacs.background: #424242
+emacs.foreground: #E0E0E0
