@@ -71,6 +71,8 @@
   (dolist (head (screen-heads scr))
     (enable-mode-line scr head t)))
 
+(require :asdf) ; needed to find swank in ~/common-lisp if not using
+		; quicklisp
 (require :swank)
 
 (defcommand swank () ()
