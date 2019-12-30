@@ -1,0 +1,80 @@
+;; -*- lisp -*-
+
+(in-package :stumpwm)
+
+(set-prefix-key (kbd "s-;"))
+(set-font "terminus-32")
+(set-focus-color "gray50")
+(setf *screen-mode-line-format* "[^B%n^b] %W^>%d")
+(setf *mode-line-timeout* 5)
+(setf *message-window-gravity* :center)
+(setf *input-window-gravity* :center)
+(setf *mouse-focus-policy* :click)
+
+(define-key *root-map* (kbd ";") "colon")
+(define-key *root-map* (kbd "c") "exec st -e /usr/bin/fish")
+(define-key *root-map* (kbd "C-c") "exec st -e /usr/bin/fish")
+(define-key *root-map* (kbd "s-TAB") "gother")
+(define-key *root-map* (kbd "L") "exec slock-suspend")
+(define-key *root-map* (kbd "F") "exec firefox")
+
+(define-key *top-map* (kbd "s-1") "gselect 1")
+(define-key *top-map* (kbd "s-2") "gselect 2")
+(define-key *top-map* (kbd "s-3") "gselect 3")
+(define-key *top-map* (kbd "s-4") "gselect 4")
+(define-key *top-map* (kbd "s-5") "gselect 5")
+(define-key *top-map* (kbd "s-6") "gselect 6")
+(define-key *top-map* (kbd "s-7") "gselect 7")
+(define-key *top-map* (kbd "s-8") "gselect 8")
+(define-key *top-map* (kbd "s-9") "gselect 9")
+(define-key *top-map* (kbd "s-0") "gselect 0")
+(define-key *top-map* (kbd "s-!") "gmove 1")
+(define-key *top-map* (kbd "s-@") "gmove 2")
+(define-key *top-map* (kbd "s-#") "gmove 3")
+(define-key *top-map* (kbd "s-$") "gmove 4")
+(define-key *top-map* (kbd "s-%") "gmove 5")
+(define-key *top-map* (kbd "s-^") "gmove 6")
+(define-key *top-map* (kbd "s-&") "gmove 7")
+(define-key *top-map* (kbd "s-*") "gmove 8")
+(define-key *top-map* (kbd "s-(") "gmove 9")
+(define-key *top-map* (kbd "s-)") "gmove 0")
+
+(define-key *top-map* (kbd "s-e") "exec emacsclient -c")
+(define-key *top-map* (kbd "s-p") "run-shell-command")
+(define-key *top-map* (kbd "s-S-RET") "exec emacsclient -c -e '(vterm)'")
+
+(define-key *top-map* (kbd "s-TAB") "gother")
+(define-key *top-map* (kbd "s-h") "move-focus left")
+(define-key *top-map* (kbd "s-j") "move-focus down")
+(define-key *top-map* (kbd "s-k") "move-focus up")
+(define-key *top-map* (kbd "s-l") "move-focus right")
+(define-key *top-map* (kbd "s-H") "move-window left")
+(define-key *top-map* (kbd "s-J") "move-window down")
+(define-key *top-map* (kbd "s-K") "move-window up")
+(define-key *top-map* (kbd "s-L") "move-window right")
+
+(define-key *top-map* (kbd "XF86AudioMute") "exec amixer set Master toggle")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "exec amixer set Master 5-")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec amixer set Master 5+")
+
+(when (and (= 1 (group-number (current-group)))
+	   (string= "Default" (group-name (current-group))))
+  (grename "1")
+  (dolist (name '("2" "3" "4" "5" "6" "7" "8" "9"))
+    (gnewbg name))
+  (let ((widths (mapcar #'head-width (screen-heads (current-screen)))))
+    (if (and (= (length widths) 2) (< (car widths) (cadr widths)))
+	(mapc #'focus-next-frame (screen-groups (current-screen)))))
+  (gnewbg-float "Float"))
+
+(let ((scr (current-screen)))
+  (dolist (head (screen-heads scr))
+    (enable-mode-line scr head t)))
+
+(require :swank)
+
+(defcommand swank () ()
+  "Start swank server"
+  (swank:create-server :port 4004
+                       :style swank:*communication-style*
+                       :dont-close t))

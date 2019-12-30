@@ -11,8 +11,14 @@ xmodmap ~/.xmodmaprc
 xsetroot -cursor_name left_ptr
 export EDITOR=emacsclient
 export VISUAL=emacsclient
-export MY_USE_EXWM=t
-exec emacs
+
+if which stumpwm > /dev/null; then
+    emacsclient --eval nil || emacs --daemon
+    exec stumpwm
+fi
+
+#export MY_USE_EXWM=t
+#exec emacs
 
 dwm-clock &
 exec /usr/local/bin/dwm
