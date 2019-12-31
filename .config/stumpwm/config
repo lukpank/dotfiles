@@ -67,6 +67,14 @@
 	(mapc #'focus-next-frame (screen-groups (current-screen)))))
   (gnewbg-float "Float"))
 
+(setq *mode-line-background-color* "#455a64")
+(setq *mode-line-foreground-color* "#b0bec5")
+(set-border-color "#212121")
+(set-bg-color "#455a64")
+(set-fg-color "#b0bec5")
+(setq *colors* '("#212121" "#e57373" "#a5d6a7" "#fff59d" "#90caf9" "#e1bee7" "#80deea" "#fafafa"))
+(update-color-map (current-screen))
+
 (let ((scr (current-screen)))
   (dolist (head (screen-heads scr))
     (enable-mode-line scr head t)))
