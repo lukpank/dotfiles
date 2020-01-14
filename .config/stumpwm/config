@@ -10,6 +10,7 @@
 (setf *message-window-gravity* :center)
 (setf *input-window-gravity* :center)
 (setf *mouse-focus-policy* :click)
+(setf *time-modeline-string* "%k:%M")
 
 (define-key *root-map* (kbd ";") "colon")
 (define-key *root-map* (kbd "c") "exec st -e /usr/bin/fish")
