@@ -17,7 +17,8 @@
 (define-key *root-map* (kbd "c") "exec st -e /usr/bin/fish")
 (define-key *root-map* (kbd "C-c") "exec st -e /usr/bin/fish")
 (define-key *root-map* (kbd "s-TAB") "gother")
-(define-key *root-map* (kbd "L") "exec slock-suspend")
+(define-key *root-map* (kbd "H") "exec slock systemctl hibernate")
+(define-key *root-map* (kbd "L") "exec slock systemctl suspend")
 (define-key *root-map* (kbd "F") "exec firefox")
 
 (define-key *top-map* (kbd "s-1") "gselect 1")
