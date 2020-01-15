@@ -1,9 +1,10 @@
-;; -*- lisp -*-
+;; -*- common-lisp -*-
 
 (in-package :stumpwm)
 
 (set-prefix-key (kbd "s-;"))
-(set-font "terminus-32")
+(or (set-font "terminus-32")
+    (set-font "-xos4-terminus-medium-r-normal--32-320-72-72-c-160-iso10646-1"))
 (set-focus-color "gray50")
 (setf *screen-mode-line-format* "[^B%n^b] %W^>%d")
 (setf *mode-line-timeout* 5)
