@@ -3,7 +3,7 @@
 . ~/.profile
 
 xrandr --auto
-xrandr --output HDMI-1 --right-of DP-1
+xrandr --output HDMI1 --right-of DP1
 xsetroot -solid '#424242'
 xrdb -merge ~/.Xresources
 setxkbmap pl -option ctrl:nocaps
