@@ -1,6 +1,8 @@
 #!/bin/sh
 
-. ~/.profile
+if [ -z "$EDITOR" ]; then
+    . ~/.profile
+fi
 
 xrandr --auto
 xrandr --output HDMI1 --right-of DP1

@@ -8,6 +8,9 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+export EDITOR=emacsclient
+export VISUAL=emacsclient
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -29,3 +32,6 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 export PATH
+
+# start X at login
+[[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && which /bin/sx > /dev/null && exec sx ~/.xsession
