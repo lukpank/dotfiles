@@ -6,7 +6,7 @@ xrandr --auto
 xrandr --output HDMI-1 --right-of DP-1
 xsetroot -solid '#424242'
 xrdb -merge ~/.Xresources
-xmodmap ~/.xmodmaprc
+setxkbmap pl -option ctrl:nocaps
 
 xsetroot -cursor_name left_ptr
 export EDITOR=emacsclient
