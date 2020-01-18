@@ -10,7 +10,8 @@ xsetroot -solid '#424242'
 xrdb -merge ~/.Xresources
 setxkbmap pl -option ctrl:nocaps
 
-emacsclient --eval nil || emacs --daemon
+# run emacs daemon if not running
+emacsclient --eval nil -a '' &
 
 exec /usr/bin/i3
 dwm-clock &
