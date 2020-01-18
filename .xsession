@@ -8,19 +8,9 @@ xsetroot -solid '#424242'
 xrdb -merge ~/.Xresources
 setxkbmap pl -option ctrl:nocaps
 
-xsetroot -cursor_name left_ptr
-export EDITOR=emacsclient
-export VISUAL=emacsclient
+emacsclient --eval nil || emacs --daemon
 
-if which stumpwm > /dev/null; then
-    emacsclient --eval nil || emacs --daemon
-    exec stumpwm
-fi
-
-#export MY_USE_EXWM=t
-#exec emacs
-
+exec /usr/bin/i3
 dwm-clock &
 exec /usr/local/bin/dwm
-exec /usr/bin/i3
 exec xterm
