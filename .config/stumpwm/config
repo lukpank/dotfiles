@@ -14,8 +14,8 @@
 (setf *time-modeline-string* "%k:%M")
 
 (define-key *root-map* (kbd ";") "colon")
-(define-key *root-map* (kbd "c") "exec st -e /usr/bin/fish")
-(define-key *root-map* (kbd "C-c") "exec st -e /usr/bin/fish")
+(define-key *root-map* (kbd "c") "exec st")
+(define-key *root-map* (kbd "C-c") "exec st")
 (define-key *root-map* (kbd "s-TAB") "gother")
 (define-key *root-map* (kbd "H") "exec systemctl hibernate")
 (define-key *root-map* (kbd "L") "exec systemctl suspend")
