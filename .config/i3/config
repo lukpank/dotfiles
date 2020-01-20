@@ -161,8 +161,8 @@ set $mode_cmd [c st] [F firefox] [H hibernate] [L suspend]
 mode "$mode_cmd" {
      bindsym c exec st -e /usr/bin/fish; mode "default"
      bindsym Shift+f exec "firefox"; mode "default"
-     bindsym --release Shift+h exec "slock systemctl hibernate"; mode "default"
-     bindsym --release Shift+l exec "slock systemctl suspend"; mode "default"
+     bindsym --release Shift+h exec "systemctl hibernate"; mode "default"
+     bindsym --release Shift+l exec "systemctl suspend"; mode "default"
      bindsym Escape mode "default"
      bindsym Ctrl+g mode "default"
 }

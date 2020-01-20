@@ -10,6 +10,13 @@ xsetroot -solid '#424242'
 xrdb -merge ~/.Xresources
 setxkbmap pl -option ctrl:nocaps
 
+# lock screen on suspend/hibernate
+if which xss-lock slock >/dev/null; then
+    xss-lock slock &
+else
+    ( echo "Missing command(s):"; which xss-lock slock 2>&1 ) | xmessage -file -
+fi
+
 # run emacs daemon if not running
 emacsclient --eval nil -a '' &
 
