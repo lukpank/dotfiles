@@ -14,7 +14,7 @@ HIST_STAMPS="yyyy-mm-dd"
 HISTFILE="$ZDOTDIR/.zsh_history"
 
 # Styles.
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,underline"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5,underline"
 
 # Plugins to load.
 plugins=(git scd zsh-syntax-highlighting zsh-autosuggestions)
@@ -39,4 +39,6 @@ function vterm_printf(){
 vterm_prompt_end() {
     vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
 }
-PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+if [ "$TERM" != "dumb" ]; then
+    PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+fi
