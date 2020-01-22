@@ -2,7 +2,7 @@
 export ZSH="/home/lupan/.config/zsh/oh-my-zsh"
 
 # Set name of the theme to load.
-ZSH_THEME="gentoo"
+ZSH_THEME="lukerandall"
 
 # Disable auto-update checks.
 DISABLE_AUTO_UPDATE="true"
@@ -42,3 +42,6 @@ vterm_prompt_end() {
 if [ "$TERM" != "dumb" ]; then
     PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 fi
+
+# Aliases.
+alias e='emacsclient -n'
