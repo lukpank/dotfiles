@@ -1,0 +1,63 @@
+--- config.def.h	2020-01-22 00:08:57.811290066 +0100
++++ config.h	2020-01-22 00:08:50.174623312 +0100
+@@ -5,7 +5,7 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
++static char *font = "FantasqueSansMono:pixelsize=30:antialias=true:autohint=true";
+ static int borderpx = 2;
+ 
+ /*
+@@ -86,22 +86,22 @@
+ static const char *colorname[] = {
+ 	/* 8 normal colors */
+ 	"black",
+-	"red3",
+-	"green3",
+-	"yellow3",
+-	"blue2",
+-	"magenta3",
+-	"cyan3",
++	"#ef6a6c", // "red3",
++	"#59c19f", // "green3",
++	"#e9dc88", // "yellow3",
++	"#25bcf6", // "blue2",
++	"#dc88e9", // "magenta3",
++	"#62dafb", // "cyan3",
+ 	"gray90",
+ 
+ 	/* 8 bright colors */
+ 	"gray50",
+-	"red",
+-	"green",
+-	"yellow",
+-	"#5c5cff",
+-	"magenta",
+-	"cyan",
++	"#ef9a9a", // "red",
++	"#a5d6a7", // "green",
++	"#fff59d", // "yellow",
++	"#90caf9", // "#5c5cff",
++	"#ce93d8", // "magenta",
++	"#80deea", // "cyan",
+ 	"white",
+ 
+ 	[255] = 0,
+@@ -109,6 +109,7 @@
+ 	/* more colors can be added after 255 to use with DefaultXX */
+ 	"#cccccc",
+ 	"#555555",
++	"#424242",
+ };
+ 
+ 
+@@ -117,7 +118,7 @@
+  * foreground, background, cursor, reverse cursor
+  */
+ unsigned int defaultfg = 7;
+-unsigned int defaultbg = 0;
++unsigned int defaultbg = 258;
+ static unsigned int defaultcs = 256;
+ static unsigned int defaultrcs = 257;
+ 
