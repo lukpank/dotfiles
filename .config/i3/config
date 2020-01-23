@@ -156,13 +156,14 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $mode_cmd [c st] [F firefox] [H hibernate] [L suspend] 
+set $mode_cmd [c st] [F firefox] [s-h hibernate] [s-l lock] [s-s suspend]
 
 mode "$mode_cmd" {
      bindsym c exec st; mode "default"
      bindsym Shift+f exec "firefox"; mode "default"
-     bindsym --release Shift+h exec "systemctl hibernate"; mode "default"
-     bindsym --release Shift+l exec "systemctl suspend"; mode "default"
+     bindsym --release $mod+h exec "systemctl hibernate"; mode "default"
+     bindsym --release $mod+l exec "slock"; mode "default"
+     bindsym --release $mod+s exec "systemctl suspend"; mode "default"
      bindsym Escape mode "default"
      bindsym Ctrl+g mode "default"
 }
