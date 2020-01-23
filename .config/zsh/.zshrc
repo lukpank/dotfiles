@@ -12,6 +12,7 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Change path to history file.
 HISTFILE="$ZDOTDIR/.zsh_history"
+SCD_HISTFILE="$ZDOTDIR/.scdhistory"
 
 # Styles.
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5,underline"
