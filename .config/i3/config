@@ -22,7 +22,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 3
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Shift+Return exec "emacsclient -n -c --eval '(vterm)'"
+bindsym $mod+Shift+Return exec alacritty
 
 # start new Emacs frame
 bindsym $mod+e exec "emacsclient -n -c"
