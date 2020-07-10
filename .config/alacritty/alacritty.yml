@@ -5,8 +5,8 @@ env:
 
 colors:
   primary:
-    background: '#424242'
-    foreground: '#eeeeee'
+    background: '#1a3a34'
+    foreground: '#e2f6e1'
 
 font:
   size: 13.5
