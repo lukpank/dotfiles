@@ -11,7 +11,7 @@ colors:
 font:
   size: 13.5
   normal:
-    family: Fantasque Sans Mono
+    family: Iosevka
 
 key_bindings:
    - key: F6

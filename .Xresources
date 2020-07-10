@@ -1,8 +1,9 @@
 #if HEIGHT == 2160
 Xft.dpi: 160
-#define EM_FONT FantasqueSansMono:pixelsize=30:antialias=true:autohint=true
+Xcursor.size: 48
+#define EM_FONT Iosevka:pixelsize=30:antialias=true:autohint=true
 #else
-#define EM_FONT FantasqueSansMono:pixelsize=22:antialias=true:autohint=true
+#define EM_FONT Iosevka:pixelsize=22:antialias=true:autohint=true
 #endif
 
 emacs.font: EM_FONT
