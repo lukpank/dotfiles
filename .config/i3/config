@@ -8,6 +8,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:Iosevka 30px
 set $dmenu_font "Iosevka:pixelsize=30"
+set $dmenu_colors -nb '#1a343a' -nf '#a0a0a0' -sb '#3585ce' -sf '#e0e0e0'
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -31,7 +32,7 @@ bindsym $mod+e exec "emacsclient -n -c"
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+p exec dmenu_run -fn $dmenu_font -sb '#3585ce'
+bindsym $mod+p exec dmenu_run -fn $dmenu_font $dmenu_colors
 
 # change focus
 bindsym $mod+h focus left
