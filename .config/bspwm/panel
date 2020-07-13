@@ -1,15 +1,15 @@
 #!/bin/sh
 
 BAR_BG='#1a343a'
-BAR_FG='#e2f6e1'
+BAR_FG='#f2f6e1'
 ACTIVE_BG='#3585ce'
-URGENT_BG='#ff0000'
+URGENT_BG='#9b0640'
 FREE_FG='#808080'
 
 PANEL_FIFO=~/.panel-fifo
 
 [ -e "$PANEL_FIFO" ] && rm -f "$PANEL_FIFO"
-mkfifo "$PANEL_FIFO"
+mkfifo -m 600 "$PANEL_FIFO"
 
 bspc subscribe > "$PANEL_FIFO" &
 
