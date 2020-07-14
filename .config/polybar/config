@@ -1,0 +1,45 @@
+[colors]
+background = #1a343a
+foreground = #f2f6e1
+underline = #1a343a
+active = #3585ce
+urgent = #9b0640
+empty = #808080
+
+[bar/panel]
+monitor = ${env:MONITOR:}
+modules-left = bspwm xwindow
+modules-right = date
+font-0 = Iosevka:pixelsize=23:antialias=true:autohint=true
+height = 45
+background = ${colors.background}
+foreground = ${colors.foreground}
+padding-left = 2
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 1
+line-size = 5
+
+[module/bspwm]
+type = internal/bspwm
+label-focused = %name%
+label-occupied = %name%
+label-urgent = %name%
+label-empty = %name%
+label-focused-padding = 1
+label-occupied-padding = 1
+label-urgent-padding = 1
+label-empty-padding = 1
+label-focused-background = ${colors.active}
+label-focused-underline = ${colors.underline}
+label-urgent-background = ${colors.urgent}
+label-empty-foreground = ${colors.empty}
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+
+[module/date]
+type = internal/date
+time = %H:%M
+label = %time%
