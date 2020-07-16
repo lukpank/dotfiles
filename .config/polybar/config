@@ -10,15 +10,15 @@ empty = #808080
 monitor = ${env:MONITOR:}
 modules-left = bspwm xwindow
 modules-right = date
-font-0 = Iosevka:pixelsize=23:antialias=true:autohint=true
-height = 45
+font-0 = Iosevka:pixelsize=23:antialias=true:autohint=true;5
+height = 40
 background = ${colors.background}
 foreground = ${colors.foreground}
 padding-left = 2
 padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
-line-size = 5
+line-size = 0
 
 [module/bspwm]
 type = internal/bspwm
