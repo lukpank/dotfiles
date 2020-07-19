@@ -3,10 +3,53 @@
 env:
   TERM: xterm-256color
 
-colors:
-  primary:
-    background: '#1a3a34'
-    foreground: '#f2f6e1'
+schemas:
+  lupan_light: &dark
+    primary:
+      background: '#1a3a34'
+      foreground: '#f2f6e1'
+    normal:
+      black:   '#000000'
+      red:     '#e6436d'
+      green:   '#59c19f'
+      yellow:  '#f6bc25'
+      blue:    '#55b3fd'
+      magenta: '#dc88e9'
+      cyan:    '#77adc4'
+      white:   '#f2f6e1'
+    bright:
+      black:   '#888888'
+      red:     '#e694a9'
+      green:   '#94e6a9'
+      yellow:  '#fbda62'
+      blue:    '#1081ff'
+      magenta: '#b056b5'
+      cyan:    '#169191'
+      white:   '#ffffff'
+  lupan_light: &light
+    primary:
+      background: '#f2f6e1'
+      foreground: '#1a3a34'
+    normal:
+      black:   '#000000'
+      red:     '#e6436d'
+      green:   '#1ebf33'
+      yellow:  '#d6a708'
+      blue:    '#1155e8'
+      magenta: '#a708d6'
+      cyan:    '#77adc4'
+      white:   '#f2f6e1'
+    bright:
+      black:   '#888888'
+      red:     '#e694a9'
+      green:   '#94e6a9'
+      yellow:  '#fbda62'
+      blue:    '#1081ff'
+      magenta: '#b056b5'
+      cyan:    '#169191'
+      white:   '#ffffff'
+
+colors:  *dark
 
 font:
   size: 13.5
