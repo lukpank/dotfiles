@@ -1,48 +1,82 @@
-# Path to oh-my-zsh installation.
-export ZSH="/home/lupan/.config/zsh/oh-my-zsh"
+# History.
 
-# Set name of the theme to load.
-ZSH_THEME="lukerandall"
-
-# Disable auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-
-# Change the command execution time stamp shown in the history command output.
-HIST_STAMPS="yyyy-mm-dd"
-
-# Change path to history file.
 HISTFILE="$ZDOTDIR/.zsh_history"
 SCD_HISTFILE="$ZDOTDIR/.scdhistory"
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt inc_append_history
+setopt share_history
 
-# Styles.
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5,underline"
+# Prompt.
 
-# Plugins to load.
-plugins=(git scd zsh-syntax-highlighting zsh-autosuggestions)
+autoload -Uz vcs_info
+precmd () { vcs_info }
+setopt prompt_subst
+zstyle ':vcs_info:git:*' formats '%F{yellow}(%b)%r%f '
+zstyle ':vcs_info:*' enable git
+PS1='%B%F{green}%n@%m%f %F{blue}%~%f%b ${vcs_info_msg_0_}%B%#%f%b '
+RPROMPT='%(?..%B%F{red}%?%f%b)'
 
-source $ZSH/oh-my-zsh.sh
+# Completion.
 
-# Directory tracking in Emacs vterm.
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
 
-function vterm_printf(){
-    if [ -n "$TMUX" ]; then
-        # tell tmux to pass the escape sequences through
-        # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
-        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-    elif [ "${TERM%%-*}" = "screen" ]; then
-        # GNU screen (screen, screen-256color, screen-256color-bce)
-        printf "\eP\e]%s\007\e\\" "$1"
-    else
-        printf "\e]%s\e\\" "$1"
-    fi
+# Options.
+
+setopt auto_cd
+setopt extended_glob
+setopt glob_complete
+setopt interactive_comments
+setopt no_flow_control
+WORDCHARS=
+
+# Terminal title.
+
+autoload -Uz add-zsh-hook
+
+function xterm_title_precmd () {
+	print -Pn -- '\e]2;%n@%m %~\a'
 }
 
-vterm_prompt_end() {
-    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
+function xterm_title_preexec () {
+	print -Pn -- '\e]2;%n@%m %~ %# ' && print -n -- "${(q)1}\a"
 }
-if [ "$TERM" != "dumb" ]; then
-    PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+
+if [[ "$TERM" == (alacritty*|gnome*|konsole*|putty*|rxvt*|screen*|tmux*|xterm*) ]]; then
+	add-zsh-hook -Uz precmd xterm_title_precmd
+	add-zsh-hook -Uz preexec xterm_title_preexec
 fi
 
+# Plugins.
+
+source_if_exists() {
+    [ -e "$1" ] && source "$1"
+}
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5,underline"
+source_if_exists ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+
+if source_if_exists ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; then
+    ZSH_HIGHLIGHT_STYLES[comment]=fg=cyan,bold
+fi
+
+# Directory stack.
+
+DIRSTACKSIZE=10
+setopt auto_pushd pushd_minus pushd_silent pushd_to_home pushd_ignore_dups
+
 # Aliases.
+
+alias dh='dirs -v'
 alias e='emacsclient -n'
+alias history='history -i'
+alias ls='ls --color=tty'
