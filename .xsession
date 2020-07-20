@@ -20,7 +20,11 @@ fi
 # run emacs daemon if not running
 emacsclient --eval nil -a '' &
 
-exec /usr/bin/bspwm
+if which bspwm > /dev/null; then
+    sxhkd &
+    xsetroot -cursor_name left_ptr
+    exec bspwm
+fi
 exec /usr/bin/i3
 dwm-clock &
 exec /usr/local/bin/dwm

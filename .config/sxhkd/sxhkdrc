@@ -8,7 +8,7 @@ super + shift + Return
 
 # program launcher
 super + p
-	dmenu_run -nb '#1a343a' -nf '#a0a0a0' -sb '#3585ce' -sf '#e0e0e0' -fn Iosevka:pixelsize=30
+	sh ~/.config/bspwm/commands.sh dmenu_run
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -18,10 +18,13 @@ super + e
 	emacsclient -n -c
 
 super + ctrl + p
-	bspc node -f $(xtitle -f '%u  %s\n' $(bspc query -N -n .window) | dmenu -i -l 20 -nb '#1a343a' -nf '#a0a0a0' -sb '#3585ce' -sf '#e0e0e0' -fn Iosevka:pixelsize=30 | cut -f 1 -d ' ')
+	bspc node -f $(xtitle -f '%u  %s\n' $(bspc query -N -n .window) | sh ~/.config/bspwm/commands.sh dmenu | cut -f 1 -d ' ')
 
 super + semicolon
-	echo -e 'slock\nsystemctl suspend\nsystemctl hibernate\n' | dmenu -l 20 -nb '#1a343a' -nf '#a0a0a0' -sb '#3585ce' -sf '#e0e0e0' -fn Iosevka:pixelsize=30 | sh
+	echo -e 'slock\nsystemctl suspend\nsystemctl hibernate\n' | sh ~/.config/bspwm/commands.sh dmenu -l 20 | sh
+
+super + F6
+	sh ~/.config/bspwm/commands.sh switch-colors
 
 #
 # bspwm hotkeys
