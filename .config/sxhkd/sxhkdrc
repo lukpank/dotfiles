@@ -26,6 +26,15 @@ super + semicolon
 super + F6
 	sh ~/.config/bspwm/commands.sh switch-colors
 
+XF86AudioPlay
+	mpc toggle
+
+{XF86AudioLowerVolume,XF86AudioRaiseVolume}
+	pamixer -{d,i} 5
+
+XF86AudioMute
+	pamixer -t
+
 #
 # bspwm hotkeys
 #

@@ -8,7 +8,7 @@ empty = ${xrdb:polybar.empty:#808080}
 [bar/panel]
 monitor = ${env:MONITOR:}
 modules-left = bspwm xwindow
-modules-right = date
+modules-right = mpd date
 wm-restack = bspwm
 enable-ipc = true
 font-0 = ${xrdb:polybar.font:Iosevka:pixelsize=23:antialias=true:autohint=true;5}
@@ -38,6 +38,12 @@ label-empty-foreground = ${colors.empty}
 [module/xwindow]
 type = internal/xwindow
 label = %title%
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>
+label-song-maxlen = 70
+label-song-ellipsis = true
 
 [module/date]
 type = internal/date
