@@ -37,7 +37,7 @@ schemas:
       yellow:  '#d6a708'
       blue:    '#1155e8'
       magenta: '#a708d6'
-      cyan:    '#77adc4'
+      cyan:    '#2081a0'
       white:   '#f2f6e1'
     bright:
       black:   '#888888'

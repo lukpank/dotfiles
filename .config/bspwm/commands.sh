@@ -22,6 +22,9 @@ else
 fi
 
 FONT=Iosevka:pixelsize=30
+BAR_FONT='Iosevka:pixelsize=23:antialias=true:autohint=true;5'
+BAR_HEIGHT=40
+
 if [ "$SCHEME" = light ]; then
     ROOT_BG=#c1e6c2
     BAR_BG=#e1e6d2
@@ -41,7 +44,7 @@ else
     BAR_EMPTY=#808080
     NORMAL_BORDER=#808080
     FOCUS_BORDER=#3585ce
-    EMACS_THEME=lupan-dark-blue
+    EMACS_THEME=lupan-dark
 fi
 
 switch_colors() {
@@ -51,14 +54,16 @@ polybar.foreground: ${BAR_FG}
 polybar.active: ${BAR_ACTIVE}
 polybar.urgent: ${BAR_URGENT}
 polybar.empty: ${BAR_EMPTY}
+polybar.font: ${BAR_FONT}
+polybar.height: ${BAR_HEIGHT}
 EOF
-	polybar-msg cmd restart
-	xsetroot -solid "${ROOT_BG}"
-	bspc config normal_border_color "${NORMAL_BORDER}"
-	bspc config focused_border_color "${FOCUS_BORDER}"
-	bspc config presel_feedback_color "${FOCUS_BORDER}"
-	python ~/.config/alacritty/switch_bg.py "$SCHEME"
-	emacsclient --eval "(my-select-theme '${EMACS_THEME})"
+    polybar-msg cmd restart
+    xsetroot -solid "${ROOT_BG}"
+    bspc config normal_border_color "${NORMAL_BORDER}"
+    bspc config focused_border_color "${FOCUS_BORDER}"
+    bspc config presel_feedback_color "${FOCUS_BORDER}"
+    python ~/.config/alacritty/switch_bg.py "$SCHEME"
+    emacsclient --eval "(my-select-theme '${EMACS_THEME})"
 }
 
 case "$CMD" in
