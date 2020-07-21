@@ -17,7 +17,7 @@ super + Escape
 super + e
 	emacsclient -n -c
 
-super + r ; {e,f,t}
+super + semicolon ; {e,f,t}
 	{emacsclient -n -c,firefox,thunderbird}
 
 super + semicolon ; shift + {h,l,s}
@@ -144,3 +144,23 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#
+# balance, equlize, rotate, and splitting ratio
+#
+
+# balance whole desktop or selected subtree
+super + shift + b
+	if bspc query -N -n 'focused.leaf'; then bspc node @/ -B; else bspc node -B; fi
+
+# equlize whole desktop or selected subtree
+super + shift + e
+	if bspc query -N -n 'focused.leaf'; then bspc node @/ -E; else bspc node -E; fi
+
+# rotate whole desktop or selected subtree
+super + {_, ctrl + , shift + }r
+	A={90,180,270}; if bspc query -N -n 'focused.leaf'; then bspc node @/ -R $A; else bspc node -R $A; fi
+
+# splitting ratio
+super + alt + {1-9}
+	R={1-9}; if bspc query -N -n 'focused.leaf'; then bspc node @/ -r 0.$R; else bspc node -r 0.$R; fi
