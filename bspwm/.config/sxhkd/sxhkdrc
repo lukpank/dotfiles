@@ -20,9 +20,6 @@ super + e
 super + r ; {e,f,t}
 	{emacsclient -n -c,firefox,thunderbird}
 
-super + shift + @space
-	bspc node -f $(xtitle -f '%u  %s\n' $(bspc query -N -n .window) | sh ~/.config/bspwm/commands.sh dmenu -l 20 -i | cut -f 1 -d ' ')
-
 super + semicolon ; shift + {h,l,s}
 	{systemctl hibernate,slock,systemctl suspend}
 
@@ -107,6 +104,10 @@ super + {o,i}
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# focus window by title
+super + shift + @space
+	sh ~/.config/bspwm/commands.sh dmenu_window
 
 #
 # preselect

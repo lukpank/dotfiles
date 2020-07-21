@@ -36,7 +36,7 @@ if [ "$SCHEME" = light ]; then
     FOCUS_BORDER=#068c70
     EMACS_THEME=lupan-light
 else
-    ROOT_BG=#343a1a
+    ROOT_BG=#404040
     BAR_BG=#1a343a
     BAR_FG=#f2f6e1
     BAR_ACTIVE=#3585ce
@@ -46,6 +46,7 @@ else
     FOCUS_BORDER=#3585ce
     EMACS_THEME=lupan-dark
 fi
+DMENU_ARGS="-nb ${BAR_BG} -nf ${BAR_FG} -sb ${BAR_ACTIVE} -sf ${BAR_FG} -fn $FONT"
 
 switch_colors() {
     xrdb -merge <<EOF
@@ -71,6 +72,9 @@ case "$CMD" in
 	switch_colors
 	;;
     dmenu|dmenu_run)
-	exec "$CMD" -nb "${BAR_BG}" -nf "${BAR_FG}" -sb "${BAR_ACTIVE}" -sf "${BAR_FG}" -fn "$FONT" "$@"
+	exec "$CMD" ${DMENU_ARGS} "$@"
 	;;
+    dmenu_window)
+	bspc node -f $(xtitle -f '%u  %s\n' $(bspc query -N -n .window) \
+			   | dmenu ${DMENU_ARGS} "$@" -l 20 -i | cut -f 1 -d ' ')
 esac
