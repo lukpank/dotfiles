@@ -8,7 +8,7 @@ empty = ${xrdb:polybar.empty:#808080}
 [bar/panel]
 monitor = ${env:MONITOR:}
 modules-left = bspwm xwindow
-modules-right = mpd date
+modules-right = mpd battery date
 wm-restack = bspwm
 enable-ipc = true
 font-0 = ${xrdb:polybar.font:Iosevka:pixelsize=23:antialias=true:autohint=true;5}
@@ -44,6 +44,14 @@ type = internal/mpd
 format-online = <label-song>
 label-song-maxlen = 70
 label-song-ellipsis = true
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ACAD
+full-at = 98
+format-charging-foreground = ${colors.empty}
+format-full-foreground = ${colors.empty}
 
 [module/date]
 type = internal/date
