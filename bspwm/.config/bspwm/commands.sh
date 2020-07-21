@@ -3,21 +3,20 @@
 CMD="$1"
 shift
 
-if [ "$CMD" = theme ]; then
+if [ "$CMD" = theme -a "$1" = next ]; then
+    case $(bspc config focused_border_color) in
+	'#23aba4')
+	    THEME=dark-blue
+	    ;;
+	'#3585ce')
+	    THEME=light
+	    ;;
+	*)
+	    THEME=dark
+	    ;;
+    esac
+elif [ "$CMD" = theme ] && [ "$1" = dark -o "$1" = dark-blue -o "$1" = light ]; then
     THEME="$1"
-    if [ "$THEME" = next ]; then
-	case $(bspc config focused_border_color) in
-	    '#23aba4')
-		THEME=dark-blue
-		;;
-	    '#3585ce')
-		THEME=light
-		;;
-	    *)
-		THEME=dark
-		;;
-	esac
-    fi
 else
     case $(bspc config focused_border_color) in
 	'#068c70')

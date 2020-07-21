@@ -21,7 +21,8 @@ fi
 bspc config border_width         4
 bspc config window_gap           12
 
-sh ~/.config/bspwm/commands.sh dark-colors
+THEME=$(grep colors: ~/.config/alacritty/alacritty.yml | cut -d '*' -f 2)
+sh ~/.config/bspwm/commands.sh theme "$THEME"
 
 bspc config split_ratio          0.50
 bspc config single_monocle       true
