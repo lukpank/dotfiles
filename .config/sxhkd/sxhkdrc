@@ -3,11 +3,11 @@
 #
 
 # terminal emulator
-super + shift + Return
+super + Return
 	alacritty
 
 # program launcher
-super + p
+super + @space
 	sh ~/.config/bspwm/commands.sh dmenu_run
 
 # make sxhkd reload its configuration files:
@@ -17,11 +17,14 @@ super + Escape
 super + e
 	emacsclient -n -c
 
-super + ctrl + p
-	bspc node -f $(xtitle -f '%u  %s\n' $(bspc query -N -n .window) | sh ~/.config/bspwm/commands.sh dmenu | cut -f 1 -d ' ')
+super + r ; {e,f,t}
+	{emacsclient -n -c,firefox,thunderbird}
 
-super + semicolon
-	echo -e 'slock\nsystemctl suspend\nsystemctl hibernate\n' | sh ~/.config/bspwm/commands.sh dmenu -l 20 | sh
+super + shift + @space
+	bspc node -f $(xtitle -f '%u  %s\n' $(bspc query -N -n .window) | sh ~/.config/bspwm/commands.sh dmenu -l 20 -i | cut -f 1 -d ' ')
+
+super + semicolon ; shift + {h,l,s}
+	{systemctl hibernate,slock,systemctl suspend}
 
 super + F6
 	sh ~/.config/bspwm/commands.sh switch-colors
@@ -29,7 +32,7 @@ super + F6
 XF86AudioPlay
 	mpc toggle
 
-{XF86AudioLowerVolume,XF86AudioRaiseVolume}
+XF86Audio{Lower,Raise}Volume
 	pamixer -{d,i} 5
 
 XF86AudioMute
@@ -80,7 +83,7 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {shift + p,b,comma,period}
+super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
