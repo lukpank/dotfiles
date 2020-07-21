@@ -32,7 +32,7 @@ else
 fi
 
 FONT=Iosevka:pixelsize=30
-BAR_FONT='Iosevka:pixelsize=23:antialias=true:autohint=true;5'
+BAR_FONT='Iosevka:size=22:antialias=true:autohint=true;5'
 BAR_HEIGHT=40
 
 if [ "$THEME" = light ]; then

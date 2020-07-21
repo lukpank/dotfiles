@@ -11,7 +11,7 @@ modules-left = bspwm xwindow
 modules-right = mpd battery date
 wm-restack = bspwm
 enable-ipc = true
-font-0 = ${xrdb:polybar.font:Iosevka:pixelsize=23:antialias=true:autohint=true;5}
+font-0 = ${xrdb:polybar.font:Iosevka:pixelsize=22:antialias=true:autohint=true;5}
 height = ${xrdb:polybar.height:40}
 background = ${colors.background}
 foreground = ${colors.foreground}
