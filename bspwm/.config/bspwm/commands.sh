@@ -3,29 +3,40 @@
 CMD="$1"
 shift
 
-is_light() {
-    bspc config focused_border_color | grep '#068c70' > /dev/null
-}
-
-if [ "$CMD" = switch-colors ]; then
-    if is_light; then
-	CMD=dark-colors
-	SCHEME=dark
-    else
-	CMD=light-colors
-	SCHEME=light
+if [ "$CMD" = theme ]; then
+    THEME="$1"
+    if [ "$THEME" = next ]; then
+	case $(bspc config focused_border_color) in
+	    '#23aba4')
+		THEME=dark-blue
+		;;
+	    '#3585ce')
+		THEME=light
+		;;
+	    *)
+		THEME=dark
+		;;
+	esac
     fi
-elif is_light; then
-    SCHEME=light
 else
-    SCHEME=dark
+    case $(bspc config focused_border_color) in
+	'#068c70')
+	    THEME=light
+	    ;;
+	'#3585ce')
+	    THEME=dark-blue
+	    ;;
+	*)
+	    THEME=dark
+	    ;;
+    esac
 fi
 
 FONT=Iosevka:pixelsize=30
 BAR_FONT='Iosevka:pixelsize=23:antialias=true:autohint=true;5'
 BAR_HEIGHT=40
 
-if [ "$SCHEME" = light ]; then
+if [ "$THEME" = light ]; then
     ROOT_BG=#c1e6c2
     BAR_BG=#e1e6d2
     BAR_FG=#1a343a
@@ -35,7 +46,7 @@ if [ "$SCHEME" = light ]; then
     NORMAL_BORDER=#b0b0b0
     FOCUS_BORDER=#068c70
     EMACS_THEME=lupan-light
-else
+elif [ "$THEME" = dark-blue ]; then
     ROOT_BG=#404040
     BAR_BG=#1a343a
     BAR_FG=#f2f6e1
@@ -44,11 +55,21 @@ else
     BAR_EMPTY=#808080
     NORMAL_BORDER=#808080
     FOCUS_BORDER=#3585ce
+    EMACS_THEME=lupan-dark-blue
+else
+    ROOT_BG=#404040
+    BAR_BG=#1a343a
+    BAR_FG=#f2f6e1
+    BAR_ACTIVE=#23aba4
+    BAR_URGENT=#9b0640
+    BAR_EMPTY=#808080
+    NORMAL_BORDER=#808080
+    FOCUS_BORDER=#23aba4
     EMACS_THEME=lupan-dark
 fi
 DMENU_ARGS="-nb ${BAR_BG} -nf ${BAR_FG} -sb ${BAR_ACTIVE} -sf ${BAR_FG} -fn $FONT"
 
-switch_colors() {
+set_theme() {
     xrdb -merge <<EOF
 polybar.background: ${BAR_BG}
 polybar.foreground: ${BAR_FG}
@@ -63,13 +84,13 @@ EOF
     bspc config normal_border_color "${NORMAL_BORDER}"
     bspc config focused_border_color "${FOCUS_BORDER}"
     bspc config presel_feedback_color "${FOCUS_BORDER}"
-    python ~/.config/alacritty/switch_bg.py "$SCHEME"
+    sed -i "s/^colors: [*].*/colors: *$THEME/" ~/.config/alacritty/alacritty.yml
     emacsclient --eval "(my-select-theme '${EMACS_THEME})"
 }
 
 case "$CMD" in
-    light-colors|dark-colors)
-	switch_colors
+    theme)
+	set_theme
 	;;
     dmenu|dmenu_run)
 	exec "$CMD" ${DMENU_ARGS} "$@"
