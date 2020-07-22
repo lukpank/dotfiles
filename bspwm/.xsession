@@ -23,6 +23,7 @@ emacsclient --eval nil -a '' &
 
 if which bspwm > /dev/null; then
     sxhkd &
+    xsettingsd &
     xsetroot -cursor_name left_ptr
     exec bspwm
 fi

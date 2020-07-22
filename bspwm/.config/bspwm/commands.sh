@@ -37,6 +37,7 @@ if [ "$THEME" = light ]; then
     NORMAL_BORDER=#b0b0b0
     FOCUS_BORDER=#068c70
     EMACS_THEME=lupan-light
+    GTK_THEME=Materia-light
 elif [ "$THEME" = material-light ]; then
     ROOT_BG=#f0f4c3
     BAR_BG=#f9fbe7
@@ -47,6 +48,7 @@ elif [ "$THEME" = material-light ]; then
     NORMAL_BORDER=#bdbdbd
     FOCUS_BORDER=#827717
     EMACS_THEME=lupan-material-light
+    GTK_THEME=Materia-light
 elif [ "$THEME" = dark-blue ]; then
     ROOT_BG=#404040
     BAR_BG=#1a343a
@@ -57,6 +59,7 @@ elif [ "$THEME" = dark-blue ]; then
     NORMAL_BORDER=#808080
     FOCUS_BORDER=#3585ce
     EMACS_THEME=lupan-dark-blue
+    GTK_THEME=Materia-dark
 elif [ "$THEME" = material-dark ]; then
     ROOT_BG=#37474f
     BAR_BG=#263238
@@ -67,6 +70,7 @@ elif [ "$THEME" = material-dark ]; then
     NORMAL_BORDER=#9e9e9e
     FOCUS_BORDER=#78909c
     EMACS_THEME=lupan-material-dark
+    GTK_THEME=Materia-dark
 else
     ROOT_BG=#404040
     BAR_BG=#1a343a
@@ -77,6 +81,7 @@ else
     NORMAL_BORDER=#808080
     FOCUS_BORDER=#23aba4
     EMACS_THEME=lupan-dark
+    GTK_THEME=Materia-dark
 fi
 DMENU_ARGS="-nb ${BAR_BG} -nf ${BAR_FG} -sb ${BAR_ACTIVE} -sf ${BAR_FG} -fn $FONT"
 
@@ -97,6 +102,8 @@ EOF
     bspc config presel_feedback_color "${FOCUS_BORDER}"
     sed -i "s/^colors: [*].*/colors: *$THEME/" ~/.config/alacritty/alacritty.yml
     emacsclient --eval "(my-select-theme '${EMACS_THEME})"
+    sed -i -E "s#(Net/ThemeName) .*#\1 \"${GTK_THEME}\"#" ~/.config/xsettingsd/xsettingsd.conf
+    pkill -HUP -x xsettingsd
 }
 
 case "$CMD" in
