@@ -8,7 +8,7 @@ schemas:
     primary:
       background: '#1a3a34'
       foreground: '#f2f6e1'
-    normal:
+    normal: &dark-normal-colors
       black:   '#000000'
       red:     '#e6436d'
       green:   '#59c19f'
@@ -17,7 +17,7 @@ schemas:
       magenta: '#dc88e9'
       cyan:    '#77adc4'
       white:   '#f2f6e1'
-    bright:
+    bright: &bright-colors
       black:   '#888888'
       red:     '#e694a9'
       green:   '#94e6a9'
@@ -30,24 +30,8 @@ schemas:
     primary:
       background: '#092e50'
       foreground: '#c0c0c0'
-    normal:
-      black:   '#000000'
-      red:     '#e6436d'
-      green:   '#59c19f'
-      yellow:  '#f6bc25'
-      blue:    '#55b3fd'
-      magenta: '#dc88e9'
-      cyan:    '#77adc4'
-      white:   '#f2f6e1'
-    bright:
-      black:   '#888888'
-      red:     '#e694a9'
-      green:   '#94e6a9'
-      yellow:  '#fbda62'
-      blue:    '#1081ff'
-      magenta: '#b056b5'
-      cyan:    '#169191'
-      white:   '#ffffff'
+    normal: *dark-normal-colors
+    bright: *bright-colors
   lupan_light: &light
     primary:
       background: '#f2f6e1'
@@ -61,15 +45,7 @@ schemas:
       magenta: '#a708d6'
       cyan:    '#2081a0'
       white:   '#f2f6e1'
-    bright:
-      black:   '#888888'
-      red:     '#e694a9'
-      green:   '#94e6a9'
-      yellow:  '#fbda62'
-      blue:    '#1081ff'
-      magenta: '#b056b5'
-      cyan:    '#169191'
-      white:   '#ffffff'
+    bright: *bright-colors
 
 colors: *dark
 
