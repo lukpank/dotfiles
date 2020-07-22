@@ -32,6 +32,20 @@ schemas:
       foreground: '#c0c0c0'
     normal: *dark-normal-colors
     bright: *bright-colors
+  lupan_material_dark: &material-dark
+    primary:
+      background: '#424242'
+      foreground: '#eeeeee'
+    normal: &material-dark-normal
+      black:   '#212121'
+      red:     '#ef9a9a'
+      green:   '#a5d6a7'
+      yellow:  '#fff59d'
+      blue:    '#90caf9'
+      magenta: '#ce93d8'
+      cyan:    '#80deea'
+      white:   '#fafafa'
+    bright: *bright-colors
   lupan_light: &light
     primary:
       background: '#f2f6e1'
@@ -45,6 +59,20 @@ schemas:
       magenta: '#a708d6'
       cyan:    '#2081a0'
       white:   '#f2f6e1'
+    bright: *material-dark-normal
+  lupan_material_light: &material-light
+    primary:
+      background: '#fafafa'
+      foreground: '#424242'
+    normal:
+      black:   '#212121'
+      red:     '#e53935'
+      green:   '#43a047'
+      yellow:  '#f9a825'
+      blue:    '#1e88e5'
+      magenta: '#8e24aa'
+      cyan:    '#00acc1'
+      white:   '#fafafa'
     bright: *bright-colors
 
 colors: *dark

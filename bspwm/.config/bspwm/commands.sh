@@ -5,29 +5,21 @@ shift
 
 if [ "$CMD" = theme -a "$1" = next ]; then
     case $(bspc config focused_border_color) in
-	'#23aba4')
-	    THEME=dark-blue
-	    ;;
-	'#3585ce')
-	    THEME=light
-	    ;;
-	*)
-	    THEME=dark
-	    ;;
+	'#23aba4') THEME=dark-blue ;;
+	'#3585ce') THEME=light ;;
+	'#068c70') THEME=material-dark ;;
+	'#78909c') THEME=material-light ;;
+	*) THEME=dark ;;
     esac
-elif [ "$CMD" = theme ] && [ "$1" = dark -o "$1" = dark-blue -o "$1" = light ]; then
+elif [ "$CMD" = theme ] && [ "$1" = dark -o "$1" = dark-blue -o "$1" = light -o "$1" = material-light -o "$1" = material-dark ]; then
     THEME="$1"
 else
     case $(bspc config focused_border_color) in
-	'#068c70')
-	    THEME=light
-	    ;;
-	'#3585ce')
-	    THEME=dark-blue
-	    ;;
-	*)
-	    THEME=dark
-	    ;;
+	'#3585ce') THEME=dark-blue ;;
+	'#068c70') THEME=light ;;
+	'#78909c') THEME=material-dark ;;
+	'#827717') THEME=material-light ;;
+	*) THEME=dark ;;
     esac
 fi
 
@@ -45,6 +37,16 @@ if [ "$THEME" = light ]; then
     NORMAL_BORDER=#b0b0b0
     FOCUS_BORDER=#068c70
     EMACS_THEME=lupan-light
+elif [ "$THEME" = material-light ]; then
+    ROOT_BG=#f0f4c3
+    BAR_BG=#f9fbe7
+    BAR_FG=#424242
+    BAR_ACTIVE=#dce775
+    BAR_URGENT=#9b0640
+    BAR_EMPTY=#bdbdbd
+    NORMAL_BORDER=#bdbdbd
+    FOCUS_BORDER=#827717
+    EMACS_THEME=lupan-material-light
 elif [ "$THEME" = dark-blue ]; then
     ROOT_BG=#404040
     BAR_BG=#1a343a
@@ -55,6 +57,16 @@ elif [ "$THEME" = dark-blue ]; then
     NORMAL_BORDER=#808080
     FOCUS_BORDER=#3585ce
     EMACS_THEME=lupan-dark-blue
+elif [ "$THEME" = material-dark ]; then
+    ROOT_BG=#37474f
+    BAR_BG=#263238
+    BAR_FG=#f2f6e1
+    BAR_ACTIVE=#78909c
+    BAR_URGENT=#9b0640
+    BAR_EMPTY=#9e9e9e
+    NORMAL_BORDER=#9e9e9e
+    FOCUS_BORDER=#78909c
+    EMACS_THEME=lupan-material-dark
 else
     ROOT_BG=#404040
     BAR_BG=#1a343a
@@ -96,5 +108,9 @@ case "$CMD" in
 	;;
     dmenu_window)
 	bspc node -f $(xtitle -f '%u  %s\n' $(bspc query -N -n .window) \
-			   | dmenu ${DMENU_ARGS} "$@" -l 20 -i | cut -f 1 -d ' ')
+			   | dmenu ${DMENU_ARGS} "$@" -l 20 -i -p Window: | cut -f 1 -d ' ')
+	;;
+    dmenu_theme)
+	sh "$0" theme $(echo -n 'dark\ndark-blue\nlight\nmaterial-light\nmaterial-dark\n' \
+	     	    |dmenu ${DMENU_ARGS} "$@" -l 20 -p Theme:)
 esac
