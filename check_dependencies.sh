@@ -35,7 +35,8 @@ for CMD in \
 	mpd \
 	pamixer \
 	sx \
-	thunderbird; do
+	thunderbird \
+	xbacklight; do
     which "$CMD"
 done
 

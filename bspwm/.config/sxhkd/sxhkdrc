@@ -35,6 +35,9 @@ XF86Audio{Lower,Raise}Volume
 XF86AudioMute
 	pamixer -t
 
+XF86MonBrightness{Down,Up}
+	xbacklight -{dec,inc} 3
+
 #
 # bspwm hotkeys
 #
