@@ -9,6 +9,7 @@ xrandr --output HDMI1 --right-of DP1
 xsetroot -solid '#224242'
 xrdb -merge ~/.Xresources
 setxkbmap pl -option ctrl:nocaps
+xmodmap ~/.xmodmaprc
 
 # lock screen on suspend/hibernate
 if which xss-lock slock >/dev/null; then
