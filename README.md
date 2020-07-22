@@ -1,7 +1,14 @@
 Lupan's config files
 ====================
 
-To reproduce my environment clone this repo into `~/dotfiles` and run
+To reproduce my environment clone this repo into `~/dotfiles` check
+that you have required programs in your PATH with
+
+```
+$ sh check_dependencies.sh
+```
+
+and run
 
 ```
 $ stow -v alacritty bspwm music shell tmux
