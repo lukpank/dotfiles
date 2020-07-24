@@ -12,6 +12,8 @@ if [ "$CMD" = theme -a "$1" = next ]; then
 	'#78909c') THEME=material-light ;;
 	*) THEME=dark ;;
     esac
+elif [ "$CMD" = theme -a "$1" = "" ]; then
+    exit
 elif [ "$CMD" = theme ] && [ "$1" = dark -o "$1" = dark-blue -o "$1" = dark-gray -o "$1" = light -o "$1" = material-dark -o "$1" = material-light ]; then
     THEME="$1"
 else
