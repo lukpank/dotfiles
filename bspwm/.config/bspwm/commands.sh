@@ -5,10 +5,10 @@ shift
 
 if [ "$CMD" = theme -a "$1" = next ]; then
     case $(bspc config focused_border_color) in
-	'#23aba4') THEME=dark-blue ;;
-	'#3585ce') THEME=dark-gray ;;
-	'#a59fc6') THEME=light ;;
-	'#068c70') THEME=material-dark ;;
+	'#9fc5be') THEME=dark-blue ;;
+	'#9fb3c5') THEME=dark-gray ;;
+	'#4c657f') THEME=light ;;
+	'#97a559') THEME=material-dark ;;
 	'#78909c') THEME=material-light ;;
 	*) THEME=dark ;;
     esac
@@ -18,11 +18,11 @@ elif [ "$CMD" = theme ] && [ "$1" = dark -o "$1" = dark-blue -o "$1" = dark-gray
     THEME="$1"
 else
     case $(bspc config focused_border_color) in
-	'#3585ce') THEME=dark-blue ;;
-	'#a59fc6') THEME=dark-gray ;;
-	'#068c70') THEME=light ;;
+	'#9fb3c5') THEME=dark-blue ;;
+	'#4c657f') THEME=dark-gray ;;
+	'#97a559') THEME=light ;;
 	'#78909c') THEME=material-dark ;;
-	'#827717') THEME=material-light ;;
+	'#b0bec5') THEME=material-light ;;
 	*) THEME=dark ;;
     esac
 fi
@@ -32,69 +32,69 @@ BAR_FONT='Iosevka:size=22:antialias=true:autohint=true;5'
 BAR_HEIGHT=40
 
 if [ "$THEME" = light ]; then
-    ROOT_BG=#c1e6c2
-    BAR_BG=#e1e6d2
-    BAR_FG=#1a343a
-    BAR_ACTIVE=#b0decc
-    BAR_URGENT=#9b0640
-    BAR_EMPTY=#b0b0b0
-    NORMAL_BORDER=#b0b0b0
-    FOCUS_BORDER=#068c70
+    ROOT_BG=#e5e5e5
+    BAR_BG=#d8e0b7
+    BAR_FG=#97a559
+    BAR_ACTIVE=#ebefdb
+    BAR_URGENT=#e0b7b7
+    BAR_EMPTY=#7f7f7f
+    NORMAL_BORDER=#7f7f7f
+    FOCUS_BORDER=#97a559
     EMACS_THEME=lupan-light
     GTK_THEME=Materia-light
 elif [ "$THEME" = material-light ]; then
-    ROOT_BG=#f0f4c3
-    BAR_BG=#f9fbe7
+    ROOT_BG=#fafafa
+    BAR_BG=#cfd8dc
     BAR_FG=#424242
-    BAR_ACTIVE=#dce775
-    BAR_URGENT=#9b0640
+    BAR_ACTIVE=#eceff1
+    BAR_URGENT=#ef5350
     BAR_EMPTY=#bdbdbd
     NORMAL_BORDER=#bdbdbd
-    FOCUS_BORDER=#827717
+    FOCUS_BORDER=#b0bec5
     EMACS_THEME=lupan-material-light
     GTK_THEME=Materia-light
 elif [ "$THEME" = dark-blue ]; then
-    ROOT_BG=#404040
-    BAR_BG=#1a343a
-    BAR_FG=#f2f6e1
-    BAR_ACTIVE=#3585ce
-    BAR_URGENT=#9b0640
-    BAR_EMPTY=#808080
-    NORMAL_BORDER=#808080
-    FOCUS_BORDER=#3585ce
+    ROOT_BG=#4c4c4c
+    BAR_BG=#394d5f
+    BAR_FG=#9fb3c5
+    BAR_ACTIVE=#4c677f
+    BAR_URGENT=#7f4c4c
+    BAR_EMPTY=#767f88
+    NORMAL_BORDER=#767f88
+    FOCUS_BORDER=#9fb3c5
     EMACS_THEME=lupan-dark-blue
     GTK_THEME=Materia-dark
 elif [ "$THEME" = dark-gray ]; then
-    ROOT_BG=#404040
-    BAR_BG=#494752
-    BAR_FG=#e3e6e8
-    BAR_ACTIVE=#736e91
-    BAR_URGENT=#9b0640
-    BAR_EMPTY=#808080
-    NORMAL_BORDER=#808080
-    FOCUS_BORDER=#a59fc6
+    ROOT_BG=#4c4c4c
+    BAR_BG=#394c5f
+    BAR_FG=#9fb2c5
+    BAR_ACTIVE=#4c657f
+    BAR_URGENT=#7f4c4c
+    BAR_EMPTY=#767f88
+    NORMAL_BORDER=#767f88
+    FOCUS_BORDER=#4c657f
     EMACS_THEME=lupan-dark-gray
     GTK_THEME=Materia-dark
 elif [ "$THEME" = material-dark ]; then
-    ROOT_BG=#37474f
-    BAR_BG=#263238
+    ROOT_BG=#212121
+    BAR_BG=#455a64
     BAR_FG=#f2f6e1
     BAR_ACTIVE=#78909c
-    BAR_URGENT=#9b0640
-    BAR_EMPTY=#9e9e9e
-    NORMAL_BORDER=#9e9e9e
+    BAR_URGENT=#ef5350
+    BAR_EMPTY=#757575
+    NORMAL_BORDER=#757575
     FOCUS_BORDER=#78909c
     EMACS_THEME=lupan-material-dark
     GTK_THEME=Materia-dark
 else
-    ROOT_BG=#404040
-    BAR_BG=#1a343a
-    BAR_FG=#f2f6e1
-    BAR_ACTIVE=#23aba4
-    BAR_URGENT=#9b0640
-    BAR_EMPTY=#808080
-    NORMAL_BORDER=#808080
-    FOCUS_BORDER=#23aba4
+    ROOT_BG=#4c4c4c
+    BAR_BG=#395f58
+    BAR_FG=#9fc5be
+    BAR_ACTIVE=#4c7f75
+    BAR_URGENT=#7f4c4c
+    BAR_EMPTY=#768885
+    NORMAL_BORDER=#768885
+    FOCUS_BORDER=#9fc5be
     EMACS_THEME=lupan-dark
     GTK_THEME=Materia-dark
 fi
@@ -134,5 +134,5 @@ case "$CMD" in
 	;;
     dmenu_theme)
 	sh "$0" theme $(echo -n 'dark\ndark-blue\ndark-gray\nlight\nmaterial-dark\nmaterial-light\n' \
-	     	    |dmenu ${DMENU_ARGS} "$@" -l 20 -p Theme:)
+			    | dmenu ${DMENU_ARGS} "$@" -p Theme:)
 esac

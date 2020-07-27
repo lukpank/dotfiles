@@ -7,16 +7,16 @@ schemas:
   lupan_dark: &dark
     primary:
       background: '#1a3a34'
-      foreground: '#f2f6e1'
-    normal: &dark-normal-colors
+      foreground: '#c8cfce'
+    normal:
       black:   '#000000'
-      red:     '#d19494'
-      green:   '#95d194'
-      yellow:  '#d0d194'
-      blue:    '#94b4d1'
-      magenta: '#d094d1'
-      cyan:    '#94d1d1'
-      white:   '#f2f6e1'
+      red:     '#c59f9f'
+      green:   '#9fc59f'
+      yellow:  '#c5c59f'
+      blue:    '#9f9fc5'
+      magenta: '#c59fc5'
+      cyan:    '#9fc5c5'
+      white:   '#c8cfce'
     bright: &bright-colors
       black:   '#a0a0a0'
       red:     '#e5b2b2'
@@ -29,22 +29,22 @@ schemas:
   lupan_dark_blue: &dark-blue
     primary:
       background: '#092e50'
-      foreground: '#c0c0c0'
-    normal: *dark-normal-colors
+      foreground: '#c8cccf'
+    normal: &dark-normal-colors
+      black:   '#000000'
+      red:     '#c59f9f'
+      green:   '#9fc59f'
+      yellow:  '#c5c59f'
+      blue:    '#9f9fc5'
+      magenta: '#c59fc5'
+      cyan:    '#9fc5c5'
+      white:   '#c8cccf'
     bright: *bright-colors
   lupan_dark_gray: &dark-gray
     primary:
-      background: '#474d52'
-      foreground: '#e3e6e8'
-    normal: &dark-normal-colors
-      black:   '#000000'
-      red:     '#c69f9f'
-      green:   '#a0c69f'
-      yellow:  '#c5c69f'
-      blue:    '#9fb3c6'
-      magenta: '#c59fc6'
-      cyan:    '#9fc6c6'
-      white:   '#e3e6e8'
+      background: '#474c51'
+      foreground: '#c8cccf'
+    normal: *dark-normal-colors
     bright: *bright-colors
   lupan_material_dark: &material-dark
     primary:
