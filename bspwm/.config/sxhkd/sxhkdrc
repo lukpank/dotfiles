@@ -24,7 +24,7 @@ super + semicolon ; shift + {h,l,s}
 	{systemctl hibernate,slock,systemctl suspend}
 
 super + {_,shift + }F6
-	sh ~/.config/bspwm/commands.sh {theme next,dmenu_theme}
+	sh ~/.config/bspwm/commands.sh {theme --next,dmenu_theme}
 
 XF86AudioPlay
 	mpc toggle

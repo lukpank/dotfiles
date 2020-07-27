@@ -4,7 +4,7 @@ env:
   TERM: xterm-256color
 
 schemas:
-  lupan_dark: &dark
+  lupan_dark: &lupan-dark
     primary:
       background: '#1a3a34'
       foreground: '#c8cfce'
@@ -26,7 +26,7 @@ schemas:
       magenta: '#e4b2e5'
       cyan:    '#b2e5e5'
       white:   '#ffffff'
-  lupan_dark_blue: &dark-blue
+  lupan_dark_blue: &lupan-dark-blue
     primary:
       background: '#092e50'
       foreground: '#c8cccf'
@@ -40,13 +40,13 @@ schemas:
       cyan:    '#9fc5c5'
       white:   '#c8cccf'
     bright: *bright-colors
-  lupan_dark_gray: &dark-gray
+  lupan_dark_gray: &lupan-dark-gray
     primary:
       background: '#474c51'
       foreground: '#c8cccf'
     normal: *dark-normal-colors
     bright: *bright-colors
-  lupan_material_dark: &material-dark
+  lupan_material_dark: &lupan-material-dark
     primary:
       background: '#424242'
       foreground: '#eeeeee'
@@ -60,7 +60,7 @@ schemas:
       cyan:    '#80deea'
       white:   '#fafafa'
     bright: *bright-colors
-  lupan_light: &light
+  lupan_light: &lupan-light
     primary:
       background: '#f2f6e1'
       foreground: '#1a3a34'
@@ -74,7 +74,7 @@ schemas:
       cyan:    '#59a6a6'
       white:   '#f2f6e1'
     bright: *material-dark-normal
-  lupan_material_light: &material-light
+  lupan_material_light: &lupan-material-light
     primary:
       background: '#fafafa'
       foreground: '#424242'
@@ -89,7 +89,7 @@ schemas:
       white:   '#fafafa'
     bright: *bright-colors
 
-colors: *dark
+colors: *lupan-dark
 
 font:
   size: 13.5

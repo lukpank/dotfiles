@@ -1,0 +1,11 @@
+ROOT_BG=#fafafa
+BAR_BG=#cfd8dc
+BAR_FG=#424242
+BAR_ACTIVE=#eceff1
+BAR_URGENT=#ef5350
+BAR_EMPTY=#bdbdbd
+NORMAL_BORDER=#bdbdbd
+FOCUS_BORDER=#b0bec5
+ALACRITTY_THEME=lupan-material-light
+EMACS_THEME=lupan-material-light
+GTK_THEME=Materia-light
