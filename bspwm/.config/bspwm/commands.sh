@@ -11,11 +11,12 @@ BAR_HEIGHT=40
 CMD="$1"
 shift
 
+# Determine current theme
+THEME=
 if [ -e "${CURRENT_THEME_PATH}" ]; then
     . "${CURRENT_THEME_PATH}"
-else
-    THEME="${DEFAULT_THEME}"
 fi
+THEME="${THEME:-$DEFAULT_THEME}"
 
 list_themes() {
     ( cd "$THEMES_PATH" && ls *-theme.sh | sed 's/-theme.sh$//' | sort )
@@ -31,7 +32,7 @@ if [ "$CMD" = theme -a "$1" = --next ]; then
     else
 	THEME="$NEXT"
     fi
-elif [ "$CMD" = theme ]; then
+elif [ "$CMD" = theme -a "$1" != --set ]; then
     if [ "$1" = "" ]; then
 	exit
     elif [ -e "${THEMES_PATH}/$1-theme.sh" ]; then
@@ -46,7 +47,7 @@ THEME_PATH="${THEMES_PATH}/${THEME}-theme.sh"
 if [ -e "${THEME_PATH}" ]; then
     . "${THEME_PATH}"
 else
-    . "${THEME_PATH}/${DEFAULT_THEME}-theme.sh"
+    . "${THEMES_PATH}/${DEFAULT_THEME}-theme.sh"
 fi
 
 DMENU_ARGS="-nb ${BAR_BG} -nf ${BAR_FG} -sb ${BAR_ACTIVE} -sf ${BAR_FG} -fn ${DMENU_FONT}"
