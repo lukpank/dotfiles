@@ -31,7 +31,6 @@ if [ "$CMD" = theme -a "$1" = --next ]; then
     else
 	THEME="$NEXT"
     fi
-    echo "THEME=${THEME}" > "${CURRENT_THEME_PATH}"
 elif [ "$CMD" = theme ]; then
     if [ "$1" = "" ]; then
 	exit
@@ -40,7 +39,6 @@ elif [ "$CMD" = theme ]; then
     else
 	THEME="${DEFAULT_THEME}"
     fi
-    echo "THEME=${THEME}" > "${CURRENT_THEME_PATH}"
 fi
 
 # Load theme
@@ -54,6 +52,7 @@ fi
 DMENU_ARGS="-nb ${BAR_BG} -nf ${BAR_FG} -sb ${BAR_ACTIVE} -sf ${BAR_FG} -fn ${DMENU_FONT}"
 
 set_theme() {
+    echo "THEME=${THEME}" > "${CURRENT_THEME_PATH}"
     xrdb -merge <<EOF
 polybar.background: ${BAR_BG}
 polybar.foreground: ${BAR_FG}
