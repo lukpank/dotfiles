@@ -1,12 +1,11 @@
 #if HEIGHT == 2160
 Xft.dpi: 160
 Xcursor.size: 48
-#define EM_FONT Iosevka:pixelsize=30:antialias=true:autohint=true
 #else
-#define EM_FONT Iosevka:pixelsize=22:antialias=true:autohint=true
+Xft.dpi: 107
 #endif
 
-emacs.font: EM_FONT
+emacs.font: Iosevka-13.5
 emacs.cursorBlink: false
 emacs.scrollBarWidth: 20
 emacs.background: #424242

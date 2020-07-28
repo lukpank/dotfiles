@@ -4,9 +4,9 @@ THEMES_PATH=~/.config/bspwm/themes
 CURRENT_THEME_PATH="${THEMES_PATH}/theme.sh"
 DEFAULT_THEME=lupan-dark
 
-DMENU_FONT=Iosevka:pixelsize=30
-BAR_FONT='Iosevka:size=22:antialias=true:autohint=true;5'
-BAR_HEIGHT=40
+FONT=Iosevka-13.5
+BAR_FONT="${FONT};5"
+BAR_HEIGHT=35
 
 CMD="$1"
 shift
@@ -50,7 +50,7 @@ else
     . "${THEMES_PATH}/${DEFAULT_THEME}-theme.sh"
 fi
 
-DMENU_ARGS="-nb ${BAR_BG} -nf ${BAR_FG} -sb ${BAR_ACTIVE} -sf ${BAR_FG} -fn ${DMENU_FONT}"
+DMENU_ARGS="-nb ${BAR_BG} -nf ${BAR_FG} -sb ${BAR_ACTIVE} -sf ${BAR_FG} -fn ${FONT}"
 
 set_theme() {
     echo "THEME=${THEME}" > "${CURRENT_THEME_PATH}"
