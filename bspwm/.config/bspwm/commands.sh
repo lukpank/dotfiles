@@ -33,7 +33,9 @@ if [ "$CMD" = theme -a "$1" = --next ]; then
     fi
     echo "THEME=${THEME}" > "${CURRENT_THEME_PATH}"
 elif [ "$CMD" = theme ]; then
-    if [ -e "${THEMES_PATH}/$1-theme.sh" ]; then
+    if [ "$1" = "" ]; then
+	exit
+    elif [ -e "${THEMES_PATH}/$1-theme.sh" ]; then
 	THEME="$1"
     else
 	THEME="${DEFAULT_THEME}"
