@@ -99,4 +99,4 @@ font:
 key_bindings:
    - key: F6
      mods: Control|Shift
-     command: { program: "/bin/sh", args: ["-c", "~/.config/alacritty/set_theme.sh next"] }
+     command: { program: "/bin/sh", args: ["-c", "~/.config/alacritty/set_theme.sh --next"] }
