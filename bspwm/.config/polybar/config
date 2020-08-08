@@ -35,6 +35,11 @@ label-empty-padding = 1
 label-focused-background = ${colors.active}
 label-urgent-background = ${colors.urgent}
 label-empty-foreground = ${colors.empty}
+format = <label-state> <label-mode>
+label-locked = l
+label-marked = m
+label-private = p
+label-sticky = s
 
 [module/xwindow]
 type = internal/xwindow
