@@ -5,7 +5,7 @@ Xcursor.size: 48
 Xft.dpi: 107
 #endif
 
-emacs.font: Iosevka-13.5
+emacs.font: Iosevka Light-13.5
 emacs.cursorBlink: false
 emacs.scrollBarWidth: 20
 emacs.background: #424242

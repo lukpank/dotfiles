@@ -4,7 +4,7 @@ THEMES_PATH=~/.config/bspwm/themes
 CURRENT_THEME_PATH="${THEMES_PATH}/theme.sh"
 DEFAULT_THEME=lupan-dark
 
-FONT=Iosevka-13.5
+FONT='Iosevka Light-13.5'
 BAR_FONT="${FONT};5"
 BAR_HEIGHT=35
 
@@ -50,7 +50,13 @@ else
     . "${THEMES_PATH}/${DEFAULT_THEME}-theme.sh"
 fi
 
-DMENU_ARGS="-nb ${BAR_BG} -nf ${BAR_FG} -sb ${BAR_ACTIVE} -sf ${BAR_FG} -fn ${FONT}"
+dmenu() {
+    command dmenu -nb ${BAR_BG} -nf ${BAR_FG} -sb ${BAR_ACTIVE} -sf ${BAR_FG} -fn "${FONT}" $@
+}
+
+dmenu_run() {
+    command dmenu_run -nb ${BAR_BG} -nf ${BAR_FG} -sb ${BAR_ACTIVE} -sf ${BAR_FG} -fn "${FONT}" $@
+}
 
 set_theme() {
     echo "THEME=${THEME}" > "${CURRENT_THEME_PATH}"
@@ -79,12 +85,12 @@ case "$CMD" in
 	set_theme
 	;;
     dmenu|dmenu_run)
-	exec "$CMD" ${DMENU_ARGS} "$@"
+	"$CMD" "$@"
 	;;
     dmenu_window)
 	bspc node -f $(xtitle -f '%u  %s\n' $(bspc query -N -n .window) \
-			   | dmenu ${DMENU_ARGS} "$@" -l 20 -i -p Window: | cut -f 1 -d ' ')
+			   | dmenu -l 20 -i -p Window: "$@" | cut -f 1 -d ' ')
 	;;
     dmenu_theme)
-	sh "$0" theme $(list_themes | dmenu ${DMENU_ARGS} "$@" -p Theme:)
+	sh "$0" theme $(list_themes | dmenu -p Theme: "$@")
 esac

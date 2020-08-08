@@ -94,6 +94,8 @@ colors: *lupan-dark
 font:
   size: 13.5
   normal:
+    family: Iosevka Light
+  bold:
     family: Iosevka
 
 key_bindings:
