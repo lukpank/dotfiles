@@ -1,8 +1,10 @@
 #if HEIGHT == 2160
 Xft.dpi: 160
 Xcursor.size: 48
+polybar.height: 40
 #else
 Xft.dpi: 107
+polybar.height: 30
 #endif
 
 emacs.font: Iosevka Light-13.5

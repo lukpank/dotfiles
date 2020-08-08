@@ -6,7 +6,6 @@ DEFAULT_THEME=lupan-dark
 
 FONT='Iosevka Light-13.5'
 BAR_FONT="${FONT};5"
-BAR_HEIGHT=35
 
 CMD="$1"
 shift
@@ -67,7 +66,6 @@ polybar.active: ${BAR_ACTIVE}
 polybar.urgent: ${BAR_URGENT}
 polybar.empty: ${BAR_EMPTY}
 polybar.font: ${BAR_FONT}
-polybar.height: ${BAR_HEIGHT}
 EOF
     polybar-msg cmd restart
     xsetroot -solid "${ROOT_BG}"
