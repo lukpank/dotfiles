@@ -68,10 +68,14 @@ if source_if_exists ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
     ZSH_HIGHLIGHT_STYLES[comment]=fg=cyan,bold
 fi
 
-# Directory stack.
+
+
+# Directory stack and ls colors.
 
 DIRSTACKSIZE=10
 setopt auto_pushd pushd_minus pushd_silent pushd_to_home pushd_ignore_dups
+
+eval $(dircolors)
 
 # Aliases.
 
