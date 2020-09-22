@@ -4,7 +4,7 @@ THEMES_PATH=~/.config/bspwm/themes
 CURRENT_THEME_PATH="${THEMES_PATH}/theme.sh"
 DEFAULT_THEME=lupan-dark
 
-FONT='Iosevka Light-13.5'
+FONT='Fira Code Light-12.0'
 BAR_FONT="${FONT};5"
 
 CMD="$1"
