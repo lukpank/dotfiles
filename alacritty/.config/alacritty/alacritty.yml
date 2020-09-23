@@ -96,7 +96,7 @@ font:
   normal:
     family: Fira Code Light
   bold:
-    family: Fira Code SemiBold
+    family: Fira Code
 
 key_bindings:
    - key: F6
