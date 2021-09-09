@@ -7,7 +7,7 @@ Xft.dpi: 107
 polybar.height: 30
 #endif
 
-emacs.font: Fira Code Light-11.5
+emacs.font: Iosevka Slab Light-12
 emacs.cursorBlink: false
 emacs.scrollBarWidth: 20
 emacs.background: #424242

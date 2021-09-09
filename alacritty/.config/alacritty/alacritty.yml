@@ -92,11 +92,11 @@ schemas:
 colors: *lupan-dark
 
 font:
-  size: 11.5
+  size: 12
   normal:
-    family: Fira Code Light
+    family: Iosevka Slab Light
   bold:
-    family: Fira Code
+    family: Iosevka Slab
 
 key_bindings:
    - key: F6
