@@ -5,6 +5,7 @@
 # Copyright (c) 2012 Craig Barnes
 # Copyright (c) 2013 horsik
 # Copyright (c) 2013 Tao Sauvage
+# Copyright (c) 2021 Łukasz Pankowski (adapted default config to my needs)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -26,13 +27,17 @@
 
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile import bar, layout, qtile, widget
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+from themes import theme, init_theme, toggle_theme
+
 mod = "mod4"
 terminal = guess_terminal()
+
+init_theme(qtile)
 
 keys = [
     # Switch between windows
@@ -40,8 +45,8 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(),
-        desc="Move window focus to other window"),
+    # Key([mod], "space", lazy.layout.next(),
+    #     desc="Move window focus to other window"),
 
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
@@ -73,16 +78,28 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "m", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
 
+    Key([mod], "Tab", lazy.screen.toggle_group(), desc="Toggle between groups"),
+
+    Key([mod], "e", lazy.spawn("emacsclient -n -c")),
+    Key([mod], "s", lazy.window.toggle_floating()),
+
+    KeyChord([mod], "semicolon", [
+        Key([], "h", lazy.spawn("systemctl hibernate")),
+        Key([], "l", lazy.spawn("slock")),
+        Key([], "s", lazy.spawn("systemctl suspend")),
+    ]),
+
+    Key([mod, "shift"], "F6", lazy.function(toggle_theme), lazy.restart()),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(),
+    Key([mod], "space", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
 ]
 
-groups = [Group(i) for i in "123456789"]
+groups = [Group(i) for i in "1234567890"]
 
 for i in groups:
     keys.extend([
@@ -91,16 +108,19 @@ for i in groups:
             desc="Switch to group {}".format(i.name)),
 
         # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
-            desc="Switch to & move focused window to group {}".format(i.name)),
+        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
+        #     desc="Switch to & move focused window to group {}".format(i.name)),
         # Or, use below if you prefer not to switch to that group.
         # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-        #     desc="move focused window to group {}".format(i.name)),
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
+            desc="move focused window to group {}".format(i.name)),
     ])
 
 layouts = [
-    layout.Columns(border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=4),
+    layout.Columns(border_focus_stack=['#d75f5f', '#8f3d3d'],
+                   border_focus=theme["border_focus"],
+                   border_normal=theme["border_normal"],
+                   border_width=4, margin=2),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -116,19 +136,31 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='sans',
-    fontsize=12,
+    font="Iosevka Slab Light",
+    fontsize=28,
     padding=3,
+    foreground = theme["widget_foreground"],
 )
 extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
+                widget.Spacer(10),
+                widget.CurrentLayout(120, foreground=theme["inactive"]),
+                widget.Spacer(10),
+                widget.GroupBox(
+                    borderwidth=2,
+                    margin_x=1,
+                    padding_x=7,
+                    active=widget_defaults["foreground"],
+                    inactive=theme["inactive"],
+                    highlight_method="block",
+                    this_current_screen_border=theme["this_current_screen_border"]),
+                widget.Spacer(10),
+                widget.Prompt(cursor_color=theme["widget_foreground"]),
+                widget.Spacer(10),
                 widget.WindowName(),
                 widget.Chord(
                     chords_colors={
@@ -136,13 +168,12 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.QuickExit(),
+                widget.Clock(format=f"<span foreground=\"{theme['inactive']}\">%Y-%m-%d %a</span> %H:%M"),
+                widget.Spacer(10),
             ],
-            24,
+            42,
+            background=theme["bar_background"],
         ),
     ),
 ]
@@ -161,16 +192,21 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    *layout.Floating.default_float_rules,
-    Match(wm_class='confirmreset'),  # gitk
-    Match(wm_class='makebranch'),  # gitk
-    Match(wm_class='maketag'),  # gitk
-    Match(wm_class='ssh-askpass'),  # ssh-askpass
-    Match(title='branchdialog'),  # gitk
-    Match(title='pinentry'),  # GPG key password entry
-])
+floating_layout = layout.Floating(
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class='confirmreset'),  # gitk
+        Match(wm_class='makebranch'),  # gitk
+        Match(wm_class='maketag'),  # gitk
+        Match(wm_class='ssh-askpass'),  # ssh-askpass
+        Match(title='branchdialog'),  # gitk
+        Match(title='pinentry'),  # GPG key password entry
+    ],
+    border_focus=theme["border_focus"],
+    border_normal=theme["border_normal"],
+    border_width=4)
+
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True

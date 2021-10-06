@@ -6,7 +6,7 @@ fi
 
 xrandr --auto
 xrandr --output HDMI1 --right-of DP1
-xsetroot -solid '#224242'
+xsetroot -solid '#94a3b8'
 xrdb -merge ~/.Xresources
 setxkbmap pl -option ctrl:nocaps
 xmodmap ~/.xmodmaprc
@@ -21,9 +21,12 @@ fi
 # run emacs daemon if not running
 emacsclient --eval nil -a '' &
 
+xsettingsd &
+
+exec qtile start
+
 if which bspwm > /dev/null; then
     sxhkd &
-    xsettingsd &
     xsetroot -cursor_name left_ptr
     exec bspwm
 fi
