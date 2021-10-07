@@ -1,3 +1,5 @@
+# Selected colors from https://windicss.org/utilities/colors.html
+
 colors = {
     "indigo": {
         50: "#eef2ff",

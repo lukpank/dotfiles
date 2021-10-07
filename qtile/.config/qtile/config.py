@@ -1,6 +1,8 @@
-from libqtile import bar, widget
-from libqtile.config import Group, Key, Screen
+from libqtile import bar, layout, qtile, widget
+from libqtile.config import Group, Key, KeyChord, Screen
 from libqtile.lazy import lazy
+
+from themes import apply_theme, subtheme, theme, toggle_theme
 
 mod = "mod4"
 terminal = "alacritty"
@@ -8,6 +10,8 @@ terminal = "alacritty"
 widget_defaults = dict(
     font="Iosevka Slab Light",
     fontsize=26,
+    padding=5,
+    foreground=theme["foreground"],
 )
 
 keys = []
@@ -17,19 +21,33 @@ groups = [Group(name) for name in group_names]
 keys.extend([Key([mod], name, lazy.group[name].toscreen(toggle=False), desc=f"Switch to group {name}") for name in group_names])
 keys.extend([Key([mod, "shift"], name, lazy.window.togroup(name), desc=f"Move window to group {name}") for name in group_names])
 
+layouts = [
+    layout.Max(),
+    layout.Columns(border_width=4, margin=4, **subtheme("border_focus", "border_normal")),
+]
+
 screens = [
     Screen(top=bar.Bar([
-        widget.GroupBox(),
+        widget.Spacer(10),
+        widget.CurrentLayout(fmt="[{:3.3}]"),
+        widget.Spacer(10),
+        widget.GroupBox(highlight_method='block',
+                        padding_y=10,
+                        active=theme["foreground"],
+                        **subtheme("inactive", "this_current_screen_border")),
+        widget.Spacer(15),
         widget.WindowName(),
         widget.Spacer(),
         widget.Clock(),
-    ], 48)),
+        widget.Spacer(10),
+    ], 48, background=theme["background"])),
 ]
 
 keys.extend([
     Key([mod], "Return", lazy.spawn(terminal), desc="Run terminal "),
     Key([mod], "e", lazy.spawn("emacsclient -n -c"), desc="Open new Emacs frame"),
-    Key([mod], "space", lazy.spawn(["rofi", "-theme", "Arc", "-kb-row-select", "Tab", "-kb-row-tab", "", "-show", "run"]), desc="Run command"),
+    Key([mod], "space", lazy.spawn(["rofi", "-theme", theme["rofi_theme"], "-kb-row-select", "Tab", "-kb-row-tab", "", "-show", "run"]),
+        desc="Run command"),
 
     Key([mod], "Tab", lazy.screen.toggle_group(), desc="Toggle between current and previous group"),
     Key([mod], "h", lazy.layout.left(), desc="Focus window on the left of current one"),
@@ -46,7 +64,20 @@ keys.extend([
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow current window on its right"),
 
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod], "s", lazy.window.toggle_floating(), desc="Toggle window floating"),
+    Key([mod], "m", lazy.next_layout(), desc="Next layout"),
+    Key([mod, "shift"], "F6", lazy.function(toggle_theme), lazy.restart(), desc="Kill focused window"),
+
+    KeyChord([mod], "semicolon", [
+        Key(["shift"], "h", lazy.spawn("systemctl hibernate")),
+        Key(["shift"], "l", lazy.spawn("slock")),
+        Key(["shift"], "s", lazy.spawn("systemctl suspend")),
+    ]),
 
     Key([mod, "control"], "q", lazy.shutdown(), desc="Quit qtile"),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
 ])
+
+cursor_warp = True
+
+apply_theme(qtile)

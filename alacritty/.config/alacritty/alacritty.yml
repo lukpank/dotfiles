@@ -48,7 +48,7 @@ schemas:
     bright: *bright-colors
   lupan_material_dark: &lupan-material-dark
     primary:
-      background: '#424242'
+      background: '#263238'
       foreground: '#eeeeee'
     normal: &material-dark-normal
       black:   '#212121'
