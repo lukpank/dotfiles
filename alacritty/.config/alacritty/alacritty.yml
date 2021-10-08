@@ -89,7 +89,7 @@ schemas:
       white:   '#fafafa'
     bright: *bright-colors
 
-colors: *lupan-dark
+colors: *lupan-material-dark
 
 font:
   size: 12

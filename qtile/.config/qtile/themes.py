@@ -23,14 +23,19 @@ def light_dark(light, dark):
 def toggle_theme(qtile):
     write_theme(light_dark("dark", "light"))
 
+background = light_dark([colors["blue-gray"][200], colors["blue-gray"][300]],
+                        [colors["blue-gray"][700], colors["blue-gray"][800]])
 theme = dict(
     root_background=light_dark(colors["blue-gray"][300], colors["blue-gray"][700]),
-    background=light_dark([colors["blue-gray"][200], colors["blue-gray"][300]],
-                          [colors["blue-gray"][700], colors["blue-gray"][800]]),
+    background=background,
     foreground=light_dark(colors["blue-gray"][600], colors["blue-gray"][400]),
     inactive=light_dark(colors["blue-gray"][400], colors["blue-gray"][500]),
-    this_current_screen_border=light_dark([colors["blue-gray"][50], colors["blue-gray"][200]],
-                                          [colors["blue-gray"][600], colors["blue-gray"][700]]),
+    this_current_screen_border=light_dark([colors["light-blue"][200], colors["light-blue"][300]],
+                                          [colors["light-blue"][800], colors["light-blue"][900]]),
+    this_screen_border=light_dark([colors["blue-gray"][300], colors["blue-gray"][400]],
+                                           [colors["blue-gray"][600], colors["blue-gray"][700]]),
+    other_current_screen_border=background,
+    other_screen_border=background,
     border_focus=light_dark(colors["indigo"][400], colors["blue-gray"][500]),
     border_normal=light_dark(colors["indigo"][900], colors["blue-gray"][800]),
     alacritty_theme=light_dark("lupan-material-light", "lupan-material-dark"),
