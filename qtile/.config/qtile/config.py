@@ -26,8 +26,8 @@ layouts = [
     layout.Columns(border_width=4, margin=4, **subtheme("border_focus", "border_normal")),
 ]
 
-screens = [
-    Screen(top=bar.Bar([
+def createBar():
+    return bar.Bar([
         widget.Spacer(10),
         widget.CurrentLayout(fmt="[{:3.3}]"),
         widget.Spacer(10),
@@ -40,8 +40,11 @@ screens = [
         widget.Spacer(),
         widget.Clock(),
         widget.Spacer(10),
-    ], 48, background=theme["background"])),
-]
+    ], 48, background=theme["background"])
+
+screens = [Screen(top=createBar()) for i in range(4)]
+
+#fake_screens = [Screen(top=createBar(), x=x, y=y, width=1920, height=1080) for x, y in [(0, 0), (1920, 0), (0, 1080), (1920, 1080)]]
 
 keys.extend([
     Key([mod], "Return", lazy.spawn(terminal), desc="Run terminal "),
@@ -77,6 +80,8 @@ keys.extend([
     Key([mod, "control"], "q", lazy.shutdown(), desc="Quit qtile"),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
 ])
+
+keys.extend([Key([mod, "control"], str(i + 1), lazy.to_screen(i), desc=f"Switch to screen {i}") for i in range(len(screens))])
 
 cursor_warp = True
 
