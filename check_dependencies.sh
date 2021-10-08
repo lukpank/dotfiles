@@ -1,6 +1,22 @@
 #!/bin/sh
 
-echo '# bspwm:'
+echo '# qtile:'
+for CMD in \
+    alacritty \
+	qtile \
+	emacsclient \
+	slock \
+	setxkbmap \
+	systemctl \
+	xmodmap \
+	xrdb \
+	xsetroot \
+	xsettingsd \
+	rofi; do
+    which "$CMD"
+done
+
+echo -e '\n# bspwm:'
 for CMD in \
     alacritty \
 	bspc \
@@ -28,7 +44,7 @@ for CMD in \
     which "$CMD"
 done
 
-echo '\n# bspwm (optional):'
+echo -e '\n# bspwm (optional):'
 for CMD in \
     firefox \
 	mpc \
@@ -40,7 +56,7 @@ for CMD in \
     which "$CMD"
 done
 
-echo '\n# shell:'
+echo -e '\n# shell:'
 for CMD in emacsclient zsh; do
     which "$CMD"
 done

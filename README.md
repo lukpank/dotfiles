@@ -34,18 +34,21 @@ that you have required programs in your `PATH` with
 $ sh check_dependencies.sh
 ```
 
-Then run
+For [qtile](http://www.qtile.org/) configuration run
 
 ```
-$ stow -v alacritty bspwm music shell tmux
+$ stow -v alacritty xsession qtile music shell tmux
 ```
 
-but if you want *i3* config (left as a fallback) instead of *bspwm*
-then *also* run
+For [bspwm](https://github.com/baskerville/bspwm) configuration run
+
+```
+$ stow -v alacritty xsession bspwm music shell tmux
+```
+
+but if you want [i3](https://i3wm.org/) config (left as a fallback)
+instead of *qtile* or *bspwm* then *also* run
 
 ```
 $ stow -v i3
 ```
-
-Watch this video for a demo of using `stow` to manage dotfiles:
-https://www.youtube.com/watch?v=TG_R7lpR2zU
