@@ -2,14 +2,22 @@ from libqtile import bar, layout, qtile, widget
 from libqtile.config import Group, Key, KeyChord, Screen
 from libqtile.lazy import lazy
 
+from monitors import list_monitors
 from themes import apply_theme, subtheme, theme, toggle_theme
 
 mod = "mod4"
 terminal = "alacritty"
 
+hdpi_sizes = dict(size=46, fontsize=26)
+hd_sizes = dict(size=32, fontsize=18)
+
+def sizes(monitor):
+    hdpi = monitor is None or max(monitor.width, monitor.height) > 2000
+    return hdpi_sizes if hdpi else hd_sizes
+
 widget_defaults = dict(
     font="Iosevka Slab Light",
-    fontsize=26,
+    fontsize=hdpi_sizes["fontsize"],
     padding=5,
     foreground=theme["foreground"],
 )
@@ -26,24 +34,28 @@ layouts = [
     layout.Columns(border_width=4, margin=4, **subtheme("border_focus", "border_normal")),
 ]
 
-def createBar():
+monitors = {i: m for i, m in enumerate(list_monitors())}
+
+def createBar(monitor=None):
+    s = sizes(monitor)
     return bar.Bar([
         widget.Spacer(10),
-        widget.CurrentLayout(fmt="[{:3.3}]"),
+        widget.CurrentLayout(fmt="[{:3.3}]", fontsize=s["fontsize"]),
         widget.Spacer(10),
         widget.GroupBox(highlight_method='block',
+                        fontsize=s["fontsize"],
                         padding_y=10,
                         active=theme["foreground"],
                         **subtheme("inactive", "this_current_screen_border", "this_screen_border",
                                    "other_current_screen_border", "other_screen_border")),
         widget.Spacer(15),
-        widget.WindowName(),
+        widget.WindowName(fontsize=s["fontsize"]),
         widget.Spacer(),
-        widget.Clock(),
+        widget.Clock(fontsize=s["fontsize"]),
         widget.Spacer(10),
-    ], 48, background=theme["background"])
+    ], s["size"], background=theme["background"])
 
-screens = [Screen(top=createBar()) for i in range(4)]
+screens = [Screen(top=createBar(monitors.get(i))) for i in range(4)]
 
 #fake_screens = [Screen(top=createBar(), x=x, y=y, width=1920, height=1080) for x, y in [(0, 0), (1920, 0), (0, 1080), (1920, 1080)]]
 
