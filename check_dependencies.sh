@@ -5,10 +5,11 @@ for CMD in \
     alacritty \
 	qtile \
 	emacsclient \
-	slock \
 	setxkbmap \
+	slock \
 	systemctl \
 	xmodmap \
+	xrandr \
 	xrdb \
 	xsetroot \
 	xsettingsd \
