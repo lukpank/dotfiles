@@ -6,7 +6,6 @@ fi
 
 xrandr --auto
 xrandr --output HDMI1 --right-of DP1
-xsetroot -solid '#94a3b8'
 xrdb -merge ~/.Xresources
 setxkbmap pl -option ctrl:nocaps
 xmodmap ~/.xmodmaprc
@@ -23,14 +22,32 @@ emacsclient --eval nil -a '' &
 
 xsettingsd &
 
-exec qtile start
+if which lupan-wm > /dev/null; then
+    xsetroot -solid '#0ea5e9'
+    lupan-clock &
+    xsetroot -cursor_name left_ptr
+    exec lupan-wm -s 20
+fi
+
+xsetroot -solid '#94a3b8'
+
+if which qtile > /dev/null; then
+    exec qtile start
+fi
 
 if which bspwm > /dev/null; then
     sxhkd &
     xsetroot -cursor_name left_ptr
     exec bspwm
 fi
-exec /usr/bin/i3
-dwm-clock &
-exec /usr/local/bin/dwm
+
+if which i3 > /dev/null; then
+    exec i3
+fi
+
+if which dwm > /dev/null; then
+    lupan-clock &
+    exec dwm
+fi
+
 exec xterm

@@ -2,5 +2,7 @@ bspwm/.config/bspwm/themes/theme.sh
 shell/.config/zsh/plugins/zsh-autosuggestions
 shell/.config/zsh/plugins/zsh-syntax-highlighting
 qtile/.config/qtile/theme.txt
+lupan-clock/lupan-clock
+lupan-wm/target
 *~
 __pycache__

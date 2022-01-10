@@ -1,0 +1,9 @@
+[package]
+name = "lupan-wm"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+clap = { version = "3.0.5", features = ["derive"] }
+penrose = "0.2.1"
+simplelog = "0.8"
