@@ -1,0 +1,36 @@
+#!/bin/sh
+
+THEME="$1"
+
+if [ "$THEME" = dark ]; then
+    SIGNAL=USR1
+    BGCOLOR=#4a4a4a
+elif [ "$THEME" = light ]; then
+    SIGNAL=USR2
+    BGCOLOR=#dde1e3
+else
+    echo "error: unknown theme: should be either dark or light" >&2
+    exit 1
+fi
+
+# Background color
+xsetroot -solid "$BGCOLOR"
+
+# Alacritty
+if [ -f ~/.config/alacritty/alacritty.yml ]; then
+    sed -i "s/^colors: [*].*/colors: *lupan-$THEME/" ~/.config/alacritty/alacritty.yml
+fi
+
+# ST (patched)
+pkill -$SIGNAL -x st
+
+# GTK
+if [ -f ~/.config/xsettingsd/xsettingsd.conf ]; then
+    sed -i -E "s#(Net/ThemeName) .*#\\1 \"Materia-$THEME\"#" ~/.config/xsettingsd/xsettingsd.conf
+    pkill -HUP -x xsettingsd
+fi
+
+# Emacs
+if which emacsclient > /dev/null; then
+    emacsclient --eval "(my-select-theme '$THEME)"
+fi

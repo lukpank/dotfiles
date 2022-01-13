@@ -23,7 +23,7 @@ emacsclient --eval nil -a '' &
 xsettingsd &
 
 if which lupan-wm > /dev/null; then
-    xsetroot -solid '#0ea5e9'
+    xsetroot -solid '#4a4a4a'
     lupan-clock &
     xsetroot -cursor_name left_ptr
     exec lupan-wm -s 20

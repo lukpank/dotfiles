@@ -21,8 +21,9 @@ use std::convert::{TryFrom, TryInto};
 pub type Conn = XcbConnection;
 
 const EDITOR: &str = "emacsclient -c -n";
-const TERMINAL: &str = "alacritty";
+const TERMINAL: &str = "st";
 const SUSPEND: &str = "systemctl suspend";
+const SET_THEME: &str = "lupan-set-theme";
 
 const FONT: &str = "Iosevka Slab Light";
 const FONT_SIZE: i32 = 20;
@@ -45,12 +46,14 @@ struct Args {
     font_size: i32,
 }
 
+#[allow(unused_parens)]
 fn main() -> Result<()> {
     let n_main = 1;
     let ratio = 0.6;
     let args = Args::parse();
     let rofi_theme_str = format!("* {{ text-color: {}; background-color: {}; blue: {}; font: \"{} {}\"; }}",
                                  BAR_FG, BAR_BG, BAR_HIGHLIGHT, args.font, args.font_size);
+    let mut theme = "dark";
     let config = Config::default()
         .builder()
         .workspaces(vec!["1", "2", "3", "4", "5", "6", "7", "8", "9"])
@@ -72,6 +75,12 @@ fn main() -> Result<()> {
             "rofi", "-theme", "Pop-Dark", "-theme-str", &rofi_theme_str, "-kb-row-select", "Tab", "-kb-row-tab", "Alt-Tab", "-show", "run"));
         "M-Return" => run_external!(TERMINAL);
         "M-S-s" => run_external!(SUSPEND);
+
+        // Switch theme
+        "M-S-F6" => Box::new(move |_: &mut WindowManager<_>| {
+            theme = if theme == "dark" { "light" } else { "dark" };
+            spawn!(SET_THEME, theme)
+        });
 
         // Exit Penrose (important to remember this one!)
         "M-A-C-Escape" => run_internal!(exit);
