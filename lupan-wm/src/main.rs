@@ -20,8 +20,9 @@ use std::convert::{TryFrom, TryInto};
 
 pub type Conn = XcbConnection;
 
+const TERMINAL: &str = "st tmux";
+const TERMINAL2: &str = "st";
 const EDITOR: &str = "emacsclient -c -n";
-const TERMINAL: &str = "st";
 const SUSPEND: &str = "systemctl suspend";
 const SET_THEME: &str = "lupan-set-theme";
 
@@ -74,6 +75,7 @@ fn main() -> Result<()> {
         "M-space" => Box::new(move |_: &mut WindowManager<_>| spawn!(
             "rofi", "-theme", "Pop-Dark", "-theme-str", &rofi_theme_str, "-kb-row-select", "Tab", "-kb-row-tab", "Alt-Tab", "-show", "run"));
         "M-Return" => run_external!(TERMINAL);
+        "M-S-Return" => run_external!(TERMINAL2);
         "M-S-s" => run_external!(SUSPEND);
 
         // Switch theme
