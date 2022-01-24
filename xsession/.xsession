@@ -23,13 +23,12 @@ emacsclient --eval nil -a '' &
 xsettingsd &
 
 if which lupan-wm > /dev/null; then
-    xsetroot -solid '#4a4a4a'
+    xsetroot -solid '#4a4a4a' -cursor_name left_ptr
     lupan-clock &
-    xsetroot -cursor_name left_ptr
     exec lupan-wm -s 20
 fi
 
-xsetroot -solid '#94a3b8'
+xsetroot -solid '#94a3b8' -cursor_name left_ptr
 
 if which qtile > /dev/null; then
     exec qtile start
@@ -37,7 +36,6 @@ fi
 
 if which bspwm > /dev/null; then
     sxhkd &
-    xsetroot -cursor_name left_ptr
     exec bspwm
 fi
 
