@@ -23,7 +23,9 @@ pub type Conn = XcbConnection;
 const TERMINAL: &str = "st tmux";
 const TERMINAL2: &str = "st";
 const EDITOR: &str = "emacsclient -c -n";
+const MIXER: &str = "pavucontrol";
 const SUSPEND: &str = "systemctl suspend";
+const LOCK: &str = "slock";
 const SET_THEME: &str = "lupan-set-theme";
 
 const FONT: &str = "Iosevka Slab Light";
@@ -71,12 +73,14 @@ fn main() -> Result<()> {
 
     let key_bindings = gen_keybindings! {
         // Program launchers
-        "M-e" => run_external!(EDITOR);
-        "M-space" => Box::new(move |_: &mut WindowManager<_>| spawn!(
-            "rofi", "-theme", "Pop-Dark", "-theme-str", &rofi_theme_str, "-kb-row-select", "Tab", "-kb-row-tab", "Alt-Tab", "-show", "run"));
         "M-Return" => run_external!(TERMINAL);
         "M-S-Return" => run_external!(TERMINAL2);
+        "M-space" => Box::new(move |_: &mut WindowManager<_>| spawn!(
+            "rofi", "-theme", "Pop-Dark", "-theme-str", &rofi_theme_str, "-kb-row-select", "Tab", "-kb-row-tab", "Alt-Tab", "-show", "run"));
+        "M-e" => run_external!(EDITOR);
+        "M-p" => run_external!(MIXER);
         "M-S-s" => run_external!(SUSPEND);
+        "M-C-s" => run_external!(LOCK);
 
         // Switch theme
         "M-S-F6" => Box::new(move |_: &mut WindowManager<_>| {
@@ -101,6 +105,8 @@ fn main() -> Result<()> {
         "M-Tab" => run_internal!(toggle_workspace);
         "M-period" => run_internal!(cycle_screen, Forward);
         "M-comma" => run_internal!(cycle_screen, Backward);
+        "M-S-period" => run_internal!(drag_workspace, Forward);
+        "M-S-comma" => run_internal!(drag_workspace, Backward);
         "M-A-period" => run_internal!(cycle_workspace, Forward);
         "M-A-comma" => run_internal!(cycle_workspace, Backward);
 
