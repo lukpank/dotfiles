@@ -132,7 +132,7 @@ fn main() -> Result<()> {
         Press Right + [Meta] => |wm: &mut WindowManager<_>, _: &MouseEvent| wm.cycle_workspace(Forward),
         Press Left + [Meta] => |wm: &mut WindowManager<_>, _: &MouseEvent| wm.cycle_workspace(Backward),
         Press Middle + [Meta] => |wm: &mut WindowManager<_>, _: &MouseEvent| wm.toggle_workspace(),
-        Press Left + [Ctrl] => |_wm: &mut WindowManager<_>, _: &MouseEvent| penrose::core::helpers::spawn(TERMINAL)
+        Press Left + [Alt] => |_wm: &mut WindowManager<_>, _: &MouseEvent| penrose::core::helpers::spawn(TERMINAL)
     };
 
     let bar = dwm_bar(
