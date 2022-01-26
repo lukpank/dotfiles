@@ -6,7 +6,7 @@ use clap::Parser;
 use penrose::{
     contrib::{hooks::ManageExistingClients},
     core::{
-        bindings::MouseEvent, config::Config, helpers::index_selectors, manager::WindowManager,
+        bindings::{KeyEventHandler, MouseEvent}, config::Config, helpers::index_selectors, manager::WindowManager,
         hooks::Hooks,
         layout::{bottom_stack, side_stack, Layout, LayoutConf},
     },
@@ -49,6 +49,15 @@ struct Args {
     font_size: i32,
 }
 
+macro_rules! rofi {
+    ($theme_str:tt, $show:tt) => {
+        Box::new(move |_: &mut WindowManager<_>| {
+            spawn!("rofi", "-theme", "Pop-Dark", "-theme-str", $theme_str,
+                   "-kb-row-select", "Tab", "-kb-row-tab", "Alt-Tab", "-show", $show)
+        }) as KeyEventHandler<_>
+    }
+}
+
 #[allow(unused_parens)]
 fn main() -> Result<()> {
     let n_main = 1;
@@ -75,8 +84,9 @@ fn main() -> Result<()> {
         // Program launchers
         "M-Return" => run_external!(TERMINAL);
         "M-S-Return" => run_external!(TERMINAL2);
-        "M-space" => Box::new(move |_: &mut WindowManager<_>| spawn!(
-            "rofi", "-theme", "Pop-Dark", "-theme-str", &rofi_theme_str, "-kb-row-select", "Tab", "-kb-row-tab", "Alt-Tab", "-show", "run"));
+        "M-space" => { let s = rofi_theme_str.clone(); rofi!((&s), "run") };
+        "M-S-space" => { let s = rofi_theme_str.clone(); rofi!((&s), "window") };
+        "M-C-space" => { let s = rofi_theme_str.clone(); rofi!((&s), "ssh") };
         "M-e" => run_external!(EDITOR);
         "M-p" => run_external!(MIXER);
         "M-S-s" => run_external!(SUSPEND);
