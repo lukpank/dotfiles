@@ -4,6 +4,7 @@ if [ -z "$EDITOR" ]; then
     . ~/.profile
 fi
 
+xset b off
 xrandr --auto
 xrandr --output HDMI1 --right-of DP1
 xrdb -merge ~/.Xresources
@@ -21,6 +22,11 @@ fi
 emacsclient --eval nil -a '' &
 
 xsettingsd &
+
+if which spectrwm > /dev/null; then
+    xsetroot -solid '#4a4a4a'
+    exec spectrwm
+fi
 
 if which lupan-wm > /dev/null; then
     xsetroot -solid '#4a4a4a' -cursor_name left_ptr

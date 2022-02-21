@@ -46,6 +46,12 @@ schemas:
       foreground: '#c8cccf'
     normal: *dark-normal-colors
     bright: *bright-colors
+  dark: &dark
+    primary:
+      background: '#2c444d'
+      foreground: '#e7e7e7'
+    normal: *dark-normal-colors
+    bright: *bright-colors
   lupan_material_dark: &lupan-material-dark
     primary:
       background: '#263238'
@@ -64,7 +70,7 @@ schemas:
     primary:
       background: '#f2f6e1'
       foreground: '#1a3a34'
-    normal:
+    normal: &lupan-light-normal
       black:   '#000000'
       red:     '#a65959'
       green:   '#5ba659'
@@ -88,8 +94,14 @@ schemas:
       cyan:    '#00acc1'
       white:   '#fafafa'
     bright: *bright-colors
+  light: &light
+    primary:
+      background: '#f2f2f2'
+      foreground: '#454545'
+    normal: *lupan-light-normal
+    bright: *bright-colors
 
-colors: *lupan-material-dark
+colors: *dark
 
 font:
   size: 12

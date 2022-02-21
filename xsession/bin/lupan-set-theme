@@ -18,7 +18,7 @@ xsetroot -solid "$BGCOLOR"
 
 # Alacritty
 if [ -f ~/.config/alacritty/alacritty.yml ]; then
-    sed -i "s/^colors: [*].*/colors: *lupan-$THEME/" ~/.config/alacritty/alacritty.yml
+    sed -i "s/^colors: [*].*/colors: *$THEME/" ~/.config/alacritty/alacritty.yml
 fi
 
 # ST (patched)
