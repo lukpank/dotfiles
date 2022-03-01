@@ -11,6 +11,12 @@ xrdb -merge ~/.Xresources
 setxkbmap pl -option ctrl:nocaps
 xmodmap ~/.xmodmaprc
 
+if [ -x  ~/.fehbg ]; then
+    ~/.fehbg &
+else
+    xsetroot -solid '#4a4a4a'
+fi
+
 # lock screen on suspend/hibernate
 if which xss-lock slock >/dev/null; then
     xss-lock slock &
@@ -24,12 +30,11 @@ emacsclient --eval nil -a '' &
 xsettingsd &
 
 if which spectrwm > /dev/null; then
-    xsetroot -solid '#4a4a4a'
     exec spectrwm
 fi
 
 if which lupan-wm > /dev/null; then
-    xsetroot -solid '#4a4a4a' -cursor_name left_ptr
+    xsetroot -cursor_name left_ptr
     lupan-clock &
     exec lupan-wm -s 20
 fi

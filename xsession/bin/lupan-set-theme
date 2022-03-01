@@ -14,7 +14,9 @@ else
 fi
 
 # Background color
-xsetroot -solid "$BGCOLOR"
+if [ ! -x ~/.fehbg ]; then
+    xsetroot -solid "$BGCOLOR"
+fi
 
 # Alacritty
 if [ -f ~/.config/alacritty/alacritty.yml ]; then
