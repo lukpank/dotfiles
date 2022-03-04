@@ -106,9 +106,9 @@ colors: *dark
 font:
   size: 12
   normal:
-    family: Iosevka Slab Light
+    family: Iosevka ss01
   bold:
-    family: Iosevka Slab
+    family: Iosevka ss01 extrabold
 
 key_bindings:
    - key: F6
