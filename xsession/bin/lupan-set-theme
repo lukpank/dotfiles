@@ -5,11 +5,17 @@ THEME="$1"
 if [ "$THEME" = dark ]; then
     SIGNAL=USR1
     BGCOLOR=#4a4a4a
+    GTK_THEME=Materia-dark
 elif [ "$THEME" = light ]; then
     SIGNAL=USR2
     BGCOLOR=#dde1e3
+    GTK_THEME=Materia-light
+elif [ "$THEME" = faff ]; then
+    SIGNAL=USR2
+    BGCOLOR=#4a4a4a
+    GTK_THEME=Materia-light
 else
-    echo "error: unknown theme: should be either dark or light" >&2
+    echo "error: unknown theme: should be either dark, light or faff" >&2
     exit 1
 fi
 
@@ -28,7 +34,7 @@ pkill -$SIGNAL -x st
 
 # GTK
 if [ -f ~/.config/xsettingsd/xsettingsd.conf ]; then
-    sed -i -E "s#(Net/ThemeName) .*#\\1 \"Materia-$THEME\"#" ~/.config/xsettingsd/xsettingsd.conf
+    sed -i -E "s#(Net/ThemeName) .*#\\1 \"${GTK_THEME}\"#" ~/.config/xsettingsd/xsettingsd.conf
     pkill -HUP -x xsettingsd
 fi
 

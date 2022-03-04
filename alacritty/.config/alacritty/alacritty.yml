@@ -100,6 +100,28 @@ schemas:
       foreground: '#454545'
     normal: *lupan-light-normal
     bright: *bright-colors
+  faff: &faff
+    primary:
+      background: '#cdc8b1'
+      foreground: '#000000'
+    normal:
+      black:   '#000000'
+      red:     '#cd0000'
+      green:   '#008b00'
+      yellow:  '#ffff00'
+      blue:    '#0000ee'
+      magenta: '#8b008b'
+      cyan:    '#008b8b'
+      white:   '#ffffff'
+    bright:
+      black:   '#666666'
+      red:     '#ec6261'
+      green:   '#008b00'
+      yellow:  '#f0c649'
+      blue:    '#63b4f6'
+      magenta: '#cb77f9'
+      cyan:    '#86d7db'
+      white:   '#d3d2d1'
 
 colors: *dark
 
