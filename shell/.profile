@@ -19,17 +19,11 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-if [ -d "$HOME/.cargo/bin" ] ; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-if [ -d "$HOME/go/bin" ] ; then
-    PATH="$HOME/go/bin:$PATH"
-fi
-
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+for dir in ~/.cargo/bin ~/go/bin ~/.local/bin ~/bin; do
+    if [ -d "$dir" ]; then
+	PATH="$dir:$PATH"
+    fi
+done
 
 export PATH
 

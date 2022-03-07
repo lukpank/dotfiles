@@ -18,9 +18,9 @@ setopt share_history
 autoload -Uz vcs_info
 precmd () { vcs_info }
 setopt prompt_subst
-zstyle ':vcs_info:git:*' formats '%F{yellow}(%b)%r%f '
+zstyle ':vcs_info:git:*' formats '%F{magenta}(%b)%r%f '
 zstyle ':vcs_info:*' enable git
-PS1='%B%F{green}%n@%m%f %F{blue}%~%f%b ${vcs_info_msg_0_}%B%#%f%b '
+PS1='%B%F{blue}%n@%m%f %F{green}%~%f%b ${vcs_info_msg_0_}%B%#%f%b '
 RPROMPT='%(?..%B%F{red}%?%f%b)'
 
 # Completion.
