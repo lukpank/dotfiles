@@ -48,9 +48,17 @@ schemas:
     bright: *bright-colors
   dark: &dark
     primary:
-      background: '#2c444d'
-      foreground: '#e7e7e7'
-    normal: *dark-normal-colors
+      background: '#3f3f3f'
+      foreground: '#dcdccc'
+    normal:
+      black:   '#3f3f3f'
+      red:     '#ac7373'
+      green:   '#7f9f7f'
+      yellow:  '#dfaf8f'
+      blue:    '#7cb8bb'
+      magenta: '#dc8cc3'
+      cyan:    '#93e0e3'
+      white:   '#dcdccc'
     bright: *bright-colors
   lupan_material_dark: &lupan-material-dark
     primary:
@@ -96,9 +104,17 @@ schemas:
     bright: *bright-colors
   light: &light
     primary:
-      background: '#f2f2f2'
-      foreground: '#454545'
-    normal: *lupan-light-normal
+      background: '#FAFAFA'
+      foreground: '#546E7A'
+    normal:
+      black:   '#546e7a'
+      red:     '#d50000'
+      green:   '#66bb6a'
+      yellow:  '#f57f17'
+      blue:    '#42a5f5'
+      magenta: '#7e57c2'
+      cyan:    '#0097a7'
+      white:   '#fafafa'
     bright: *bright-colors
   faff: &faff
     primary:
