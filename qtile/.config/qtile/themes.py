@@ -2,6 +2,8 @@ import os
 
 from colors import colors
 
+from libqtile.lazy import lazy
+
 theme_file = os.path.join(os.path.dirname(__file__), "theme.txt")
 
 def write_theme(name):
@@ -20,29 +22,38 @@ is_dark = read_theme(theme_file) == "dark"
 def light_dark(light, dark):
     return dark if is_dark else light
 
+@lazy.function
 def toggle_theme(qtile):
-    write_theme(light_dark("dark", "light"))
+    global is_dark, theme
+    name = light_dark("dark", "light")
+    write_theme(name)
+    is_dark = name == "dark"
+    theme = get_theme()
+    apply_theme(qtile)
 
-background = light_dark([colors["blue-gray"][200], colors["blue-gray"][300]],
-                        [colors["blue-gray"][700], colors["blue-gray"][800]])
-theme = dict(
-    root_background=light_dark(colors["blue-gray"][300], colors["blue-gray"][700]),
-    background=background,
-    foreground=light_dark(colors["blue-gray"][600], colors["blue-gray"][400]),
-    inactive=light_dark(colors["blue-gray"][400], colors["blue-gray"][500]),
-    this_current_screen_border=light_dark([colors["light-blue"][200], colors["light-blue"][300]],
-                                          [colors["light-blue"][800], colors["light-blue"][900]]),
-    this_screen_border=light_dark([colors["blue-gray"][300], colors["blue-gray"][400]],
-                                           [colors["blue-gray"][600], colors["blue-gray"][700]]),
-    other_current_screen_border=background,
-    other_screen_border=background,
-    border_focus=light_dark(colors["indigo"][400], colors["blue-gray"][500]),
-    border_normal=light_dark(colors["indigo"][900], colors["blue-gray"][800]),
-    alacritty_theme=light_dark("lupan-material-light", "lupan-material-dark"),
-    emacs_theme=light_dark("material-light", "material"),
-    gtk_theme=light_dark("Materia-light", "Materia-dark"),
-    rofi_theme=light_dark("Arc", "Arc-Dark"),
-)
+background = [colors["sky"][800], colors["sky"][900]]
+
+def get_theme():
+    return dict(
+        border_width=4,
+        margin=4,
+        root_background=light_dark(colors["blue-gray"][300], colors["blue-gray"][700]),
+        background=background,
+        foreground=colors["blue-gray"][400],
+        inactive=colors["blue-gray"][900],
+        this_current_screen_border=colors["sky"][700],
+        this_screen_border=colors["blue-gray"][600],
+        other_current_screen_border=background,
+        other_screen_border=background,
+        border_focus=colors["indigo"][500],
+        border_normal=colors["blue-gray"][800],
+        alacritty_theme=light_dark("light", "dark"),
+        emacs_theme=light_dark("solarized-light", "solarized-dark"),
+        gtk_theme=light_dark("Materia-light", "Materia-dark"),
+        rofi_theme=light_dark("Arc", "Arc-Dark"),
+    )
+
+theme = get_theme()
 
 def subtheme(*names):
     return {name: theme[name] for name in names}

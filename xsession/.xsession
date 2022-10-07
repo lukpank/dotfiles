@@ -29,7 +29,11 @@ emacsclient --eval nil -a '' &
 
 xsettingsd &
 
-if which spectrwm > /dev/null; then
+if which qtile > /dev/null && test -f ~/.config/qtile/config.py; then
+    exec qtile start
+fi
+
+if which spectrwm > /dev/null && test -f ~/.spectrwm.conf; then
     exec spectrwm
 fi
 
@@ -40,10 +44,6 @@ if which lupan-wm > /dev/null; then
 fi
 
 xsetroot -solid '#94a3b8' -cursor_name left_ptr
-
-if which qtile > /dev/null; then
-    exec qtile start
-fi
 
 if which bspwm > /dev/null; then
     sxhkd &

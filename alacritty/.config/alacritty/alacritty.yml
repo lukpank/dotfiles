@@ -48,8 +48,8 @@ schemas:
     bright: *bright-colors
   dark: &dark
     primary:
-      background: '#002b36' #3f3f3f'
-      foreground: '#839496' #dcdccc'
+      background: '#1E293B'
+      foreground: '#839496'
     normal:
       black:   '#3f3f3f'
       red:     '#ac7373'

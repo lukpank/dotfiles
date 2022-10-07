@@ -1,7 +1,7 @@
 # Selected colors from https://windicss.org/utilities/colors.html
 
 colors = {
-    "light-blue": {
+    "sky": {
         50: "#f0f9ff",
         100: "#e0f2fe",
         200: "#bae6fd",
