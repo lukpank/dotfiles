@@ -32,7 +32,7 @@ keys.extend([Key([mod, "shift"], name, lazy.window.togroup(name), desc=f"Move wi
 groups.append(
     ScratchPad("scratchpad", [
         DropDown("term", terminal),
-        DropDown("thunar", "thunar"),
+        DropDown("thunar", "thunar", on_focus_lost_hide=False),
     ])
 )
 
@@ -70,9 +70,21 @@ def createBar(monitor=None):
         widget.Spacer(15),
         widget.WindowName(fontsize=s["fontsize"]),
         widget.Spacer(),
-        widget.CPUGraph(border_color=theme["inactive"], graph_color=theme["inactive"]),
+        widget.WidgetBox(
+            text_open="▶",
+            text_closed="◀",
+            widgets=[
+            widget.Spacer(10),
+            widget.NetGraph(border_color=theme["inactive"], graph_color=theme["foreground"]),
+            widget.Spacer(10),
+            widget.HDDBusyGraph(border_color=theme["inactive"], graph_color=theme["foreground"]),
+            widget.Spacer(10),
+            widget.CPUGraph(border_color=theme["inactive"], graph_color=theme["foreground"]),
+            widget.Spacer(10),
+            widget.ThermalSensor(fontsize=s["fontsize"]),
+        ]),
         widget.Spacer(10),
-        widget.PulseVolume(),
+        widget.PulseVolume(fontsize=s["fontsize"]),
         widget.Spacer(10),
         widget.Clock(fontsize=s["fontsize"]),
         widget.Spacer(10),
@@ -134,6 +146,9 @@ keys.extend([
     Key([mod, "shift"], "F6", toggle_theme, desc="Kill focused window"),
 
     KeyChord([mod], "semicolon", [
+        Key([], "f", lazy.spawn("firefox"), desc="Open Firefox"),
+        Key([], "n", lazy.spawn("emacsclient -n -c"), desc="Open new Emacs frame"),
+        Key([], "t", lazy.spawn("thunderbird"), desc="Open Thunderbird"),
         Key(["shift"], "h", lazy.spawn("systemctl hibernate")),
         Key(["shift"], "l", lazy.spawn("slock")),
         Key(["shift"], "s", lazy.spawn("systemctl suspend")),
