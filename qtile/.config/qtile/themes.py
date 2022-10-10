@@ -47,7 +47,7 @@ def get_theme():
         other_screen_border=background,
         border_focus=colors["indigo"][500],
         border_normal=colors["blue-gray"][800],
-        alacritty_theme=light_dark("light", "dark"),
+        alacritty_theme=light_dark("gogh-nord-light", "gogh-tin"),
         emacs_theme=light_dark("solarized-light", "solarized-dark"),
         gtk_theme=light_dark("Materia-light", "Materia-dark"),
         rofi_theme=light_dark("Arc", "Arc-Dark"),

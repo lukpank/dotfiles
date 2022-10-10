@@ -139,7 +139,53 @@ schemas:
       cyan:    '#86d7db'
       white:   '#d3d2d1'
 
-colors: *dark
+  gogh-tin: &gogh-tin
+    primary:
+      background: '#2e2e35'
+      foreground: '#839496'
+    normal:
+      black:   '#000000'
+      red:     '#8d534e'
+      green:   '#4e8d53'
+      yellow:  '#888d4e'
+      blue:    '#534e8d'
+      magenta: '#8d4e88'
+      cyan:    '#4e888d'
+      white:   '#ffffff'
+    bright:
+      black:   '#000000'
+      red:     '#b57d78'
+      green:   '#78b57d'
+      yellow:  '#b0b578'
+      blue:    '#7d78b5'
+      magenta: '#b578b0'
+      cyan:    '#78b0b5'
+      white:   '#ffffff'
+
+  gogh-nord-light: &gogh-nord-light
+    primary:
+      background: '#ebeaf2'
+      foreground: '#657b83'
+    normal:
+      black:   '#003b4e'
+      red:     '#e64569'
+      green:   '#069f5f'
+      yellow:  '#dab752'
+      blue:    '#439ecf'
+      magenta: '#d961dc'
+      cyan:    '#00b1be'
+      white:   '#b3b3b3'
+    bright:
+      black:   '#3e89a1'
+      red:     '#e4859a'
+      green:   '#a2cca1'
+      yellow:  '#e1e387'
+      blue:    '#6fbbe2'
+      magenta: '#e586e7'
+      cyan:    '#96dcda'
+      white:   '#dedede'
+
+colors: *gogh-tin
 
 font:
   size: 12
