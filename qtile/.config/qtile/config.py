@@ -33,12 +33,14 @@ groups.append(
     ScratchPad("scratchpad", [
         DropDown("term", terminal),
         DropDown("thunar", "thunar", on_focus_lost_hide=False),
+        DropDown("qtile shell", [terminal, '-e', 'qtile', 'shell']),
     ])
 )
 
 keys.extend([
     Key([mod], "F1", lazy.group["scratchpad"].dropdown_toggle("term")),
     Key([mod], "F2", lazy.group["scratchpad"].dropdown_toggle("thunar")),
+    Key([mod], "F3", lazy.group["scratchpad"].dropdown_toggle("qtile shell")),
 ])
 
 floating_layout = layout.Floating(float_rules=[*layout.Floating.default_float_rules],
@@ -67,7 +69,9 @@ def createBar(monitor=None):
                         active=theme["foreground"],
                         **subtheme("inactive", "this_current_screen_border", "this_screen_border",
                                    "other_current_screen_border", "other_screen_border")),
-        widget.Spacer(15),
+        widget.Spacer(5),
+        widget.WindowCount(text_format="({num})", foreground=theme["inactive"]),
+        widget.Spacer(10),
         widget.WindowName(fontsize=s["fontsize"]),
         widget.Spacer(),
         widget.WidgetBox(
@@ -130,7 +134,7 @@ keys.extend([
     Key([mod], "g", lazy.layout.grow(), desc="Grow focused window in monad mode"),
     Key([mod], "s", lazy.layout.shrink(), desc="Shrink focused window in monad mode"),
     Key([mod], "r", lazy.layout.reset(), desc="Reset main area size"),
-    Key([mod], "f", lazy.layout.flip(), desc="Flip side of secondary windows"),
+    Key([mod], "u", lazy.layout.flip(), desc="Flip side of secondary windows"),
     Key([mod], "m", lazy.layout.maximize(), desc="Maximize/minimize focused window in monad mode"),
 
     Key([mod], "i", lazy.screen.prev_group(), desc="Switch to prev group"),
@@ -143,6 +147,7 @@ keys.extend([
     Key([mod], "e", lazy.window.toggle_maximize(), desc="Toggle window maximize"),
     Key([mod], "n", lazy.layout.normalize(), desc="Normalize layout"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle window fullscreen"),
+    Key([mod], "y", lazy.window.toggle_minimize(), desc="Minimize focused window in monad mode"),
     Key([mod, "shift"], "F6", toggle_theme, desc="Kill focused window"),
 
     KeyChord([mod], "semicolon", [
