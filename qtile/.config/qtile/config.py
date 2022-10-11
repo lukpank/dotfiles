@@ -63,14 +63,16 @@ def createBar(monitor=None):
         widget.Spacer(10),
         widget.CurrentLayout(fmt="[{:3.3}]", fontsize=s["fontsize"]),
         widget.Spacer(10),
-        widget.GroupBox(highlight_method='block',
+        widget.GroupBox(highlight_method='line',
                         fontsize=s["fontsize"],
-                        padding_y=10,
+                        margin_y=6,
+                        borderwidth=5,
                         active=theme["foreground"],
+                        highlight_color=theme["background"],
                         **subtheme("inactive", "this_current_screen_border", "this_screen_border",
                                    "other_current_screen_border", "other_screen_border")),
         widget.Spacer(5),
-        widget.WindowCount(text_format="({num})", foreground=theme["inactive"]),
+        widget.WindowCount(text_format="({num})", fontsize=s["fontsize"], foreground=theme["inactive"]),
         widget.Spacer(10),
         widget.WindowName(fontsize=s["fontsize"]),
         widget.Spacer(),
@@ -85,7 +87,7 @@ def createBar(monitor=None):
             widget.Spacer(10),
             widget.CPUGraph(border_color=theme["inactive"], graph_color=theme["foreground"]),
             widget.Spacer(10),
-            widget.ThermalSensor(fontsize=s["fontsize"]),
+            widget.ThermalSensor(foreground=theme["foreground"], fontsize=s["fontsize"]),
         ]),
         widget.Spacer(10),
         widget.PulseVolume(fontsize=s["fontsize"]),
@@ -160,11 +162,9 @@ keys.extend([
     ]),
 
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Quit qtile"),
-    Key([mod], "q", lazy.reload_config(), desc="Reload qtile config"),
+    Key([mod], "q", lazy.restart(), desc="Restart qtile"),
 ])
 
 keys.extend([Key([mod, "control"], str(i + 1), lazy.to_screen(i), desc=f"Switch to screen {i}") for i in range(len(screens))])
 
 cursor_warp = True
-
-apply_theme(qtile)
