@@ -152,9 +152,16 @@ keys.extend([
     Key([mod], "y", lazy.window.toggle_minimize(), desc="Minimize focused window in monad mode"),
     Key([mod, "shift"], "F6", toggle_theme, desc="Kill focused window"),
 
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 5%+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%")),
+    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+
     KeyChord([mod], "semicolon", [
         Key([], "f", lazy.spawn("firefox"), desc="Open Firefox"),
         Key([], "n", lazy.spawn("emacsclient -n -c"), desc="Open new Emacs frame"),
+        Key([], "p", lazy.spawn("pavucontrol"), desc="Open pavucontrol mixer"),
         Key([], "t", lazy.spawn("thunderbird"), desc="Open Thunderbird"),
         Key(["shift"], "h", lazy.spawn("systemctl hibernate")),
         Key(["shift"], "l", lazy.spawn("slock")),
