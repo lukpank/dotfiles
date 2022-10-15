@@ -26,7 +26,6 @@ def light_dark(light, dark):
 @lazy.function
 def toggle_theme(qtile):
     write_theme(light_dark("dark", "light"))
-    theme = get_theme()
     qtile.restart()
 
 background = light_dark([colors["sky"][600], colors["sky"][700]],
@@ -39,8 +38,8 @@ def get_theme():
         root_background=light_dark(colors["blue-gray"][300], colors["blue-gray"][800]),
         background=background,
         foreground=light_dark(colors["blue-gray"][100], colors["blue-gray"][400]),
-        inactive=light_dark(colors["blue-gray"][400], colors["blue-gray"][500]),
-        this_current_screen_border=light_dark(colors["blue-gray"][100], colors["blue-gray"][400]),
+        inactive=light_dark(colors["sky"][100], colors["blue-gray"][500]),
+        this_current_screen_border=light_dark(colors["sky"][400], colors["indigo"][400]),
         this_screen_border=light_dark(colors["blue-gray"][400], colors["blue-gray"][500]),
         other_current_screen_border=background,
         other_screen_border=background,

@@ -87,7 +87,7 @@ def createBar(monitor=None):
                 widget.Spacer(10),
                 widget.CPUGraph(border_color=theme["inactive"], graph_color=theme["foreground"]),
                 widget.Spacer(10),
-                widget.ThermalSensor(foreground=theme["foreground"], fontsize=s["fontsize"]),
+                widget.ThermalSensor(fontsize=s["fontsize"]),
             ]),
         widget.Spacer(10),
         widget.PulseVolume(fontsize=s["fontsize"]),
