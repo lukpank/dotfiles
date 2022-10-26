@@ -29,6 +29,12 @@ emacsclient --eval nil -a '' &
 
 xsettingsd &
 
+xsetroot -cursor_name left_ptr
+
+if which xmonad > /dev/null && test -f ~/.config/xmonad/xmonad.hs; then
+    exec xmonad
+fi
+
 if which qtile > /dev/null && test -f ~/.config/qtile/config.py; then
     exec qtile start
 fi
@@ -42,8 +48,6 @@ if which lupan-wm > /dev/null; then
     lupan-clock &
     exec lupan-wm -s 20
 fi
-
-xsetroot -solid '#94a3b8' -cursor_name left_ptr
 
 if which bspwm > /dev/null; then
     sxhkd &
