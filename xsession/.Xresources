@@ -1,4 +1,4 @@
-#if HEIGHT == 2160
+#if HEIGHT >= 2160
 Xft.dpi: 160
 Xcursor.size: 48
 polybar.height: 40
