@@ -190,9 +190,9 @@ colors: *gogh-tin
 font:
   size: 12
   normal:
-    family: Iosevka ss01
+    family: Iosevka Fixed Slab
   bold:
-    family: Iosevka ss01 extrabold
+    family: Iosevka Fixed Slab heavy
 
 key_bindings:
    - key: F6
