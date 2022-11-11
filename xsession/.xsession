@@ -14,7 +14,7 @@ xmodmap ~/.xmodmaprc
 if [ -x  ~/.fehbg ]; then
     ~/.fehbg &
 else
-    xsetroot -solid '#4a4a4a'
+    hsetroot -solid '#4a4a4a'
 fi
 
 # lock screen on suspend/hibernate
@@ -30,6 +30,13 @@ emacsclient --eval nil -a '' &
 xsettingsd &
 
 xsetroot -cursor_name left_ptr
+
+picom -b -I 1 -O 1 -i 1 -e 1 --no-fading-openclose || compton -b --no-fading-openclose
+
+if which xmonad > /dev/null && test -f ~/.stumpwm.d/init.lisp; then
+   export SBCL_HOME="$(dirname $(dirname $(readlink -f $(which sbcl))))/lib/sbcl/"
+   exec stumpwm
+fi
 
 if which xmonad > /dev/null && test -f ~/.config/xmonad/xmonad.hs; then
     exec xmonad
