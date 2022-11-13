@@ -3,189 +3,115 @@
 env:
   TERM: xterm-256color
 
-schemas:
-  lupan_dark: &lupan-dark
-    primary:
-      background: '#1a3a34'
-      foreground: '#c8cfce'
-    normal:
-      black:   '#000000'
-      red:     '#c59f9f'
-      green:   '#9fc59f'
-      yellow:  '#c5c59f'
-      blue:    '#9f9fc5'
-      magenta: '#c59fc5'
-      cyan:    '#9fc5c5'
-      white:   '#c8cfce'
-    bright: &bright-colors
-      black:   '#a0a0a0'
-      red:     '#e5b2b2'
-      green:   '#b4e5b2'
-      yellow:  '#e4e5b2'
-      blue:    '#b2cde5'
-      magenta: '#e4b2e5'
-      cyan:    '#b2e5e5'
-      white:   '#ffffff'
-  lupan_dark_blue: &lupan-dark-blue
-    primary:
-      background: '#092e50'
-      foreground: '#c8cccf'
-    normal: &dark-normal-colors
-      black:   '#000000'
-      red:     '#c59f9f'
-      green:   '#9fc59f'
-      yellow:  '#c5c59f'
-      blue:    '#9f9fc5'
-      magenta: '#c59fc5'
-      cyan:    '#9fc5c5'
-      white:   '#c8cccf'
-    bright: *bright-colors
-  lupan_dark_gray: &lupan-dark-gray
-    primary:
-      background: '#474c51'
-      foreground: '#c8cccf'
-    normal: *dark-normal-colors
-    bright: *bright-colors
-  dark: &dark
-    primary:
-      background: '#1E293B'
-      foreground: '#839496'
-    normal:
-      black:   '#3f3f3f'
-      red:     '#ac7373'
-      green:   '#7f9f7f'
-      yellow:  '#dfaf8f'
-      blue:    '#7cb8bb'
-      magenta: '#dc8cc3'
-      cyan:    '#93e0e3'
-      white:   '#dcdccc'
-    bright: *bright-colors
-  lupan_material_dark: &lupan-material-dark
-    primary:
-      background: '#263238'
-      foreground: '#eeeeee'
-    normal: &material-dark-normal
-      black:   '#212121'
-      red:     '#ef9a9a'
-      green:   '#a5d6a7'
-      yellow:  '#fff59d'
-      blue:    '#90caf9'
-      magenta: '#ce93d8'
-      cyan:    '#80deea'
-      white:   '#fafafa'
-    bright: *bright-colors
-  lupan_light: &lupan-light
-    primary:
-      background: '#f2f6e1'
-      foreground: '#1a3a34'
-    normal: &lupan-light-normal
-      black:   '#000000'
-      red:     '#a65959'
-      green:   '#5ba659'
-      yellow:  '#a4a659'
-      blue:    '#5981a6'
-      magenta: '#a459a6'
-      cyan:    '#59a6a6'
-      white:   '#f2f6e1'
-    bright: *material-dark-normal
-  lupan_material_light: &lupan-material-light
-    primary:
-      background: '#fafafa'
-      foreground: '#424242'
-    normal:
-      black:   '#212121'
-      red:     '#e53935'
-      green:   '#43a047'
-      yellow:  '#f9a825'
-      blue:    '#1e88e5'
-      magenta: '#8e24aa'
-      cyan:    '#00acc1'
-      white:   '#fafafa'
-    bright: *bright-colors
-  light: &light
-    primary:
-      background: '#FAFAFA'
-      foreground: '#546E7A'
-    normal:
-      black:   '#546e7a'
-      red:     '#d50000'
-      green:   '#66bb6a'
-      yellow:  '#f57f17'
-      blue:    '#42a5f5'
-      magenta: '#7e57c2'
-      cyan:    '#0097a7'
-      white:   '#fafafa'
-    bright: *bright-colors
-  faff: &faff
-    primary:
-      background: '#cdc8b1'
-      foreground: '#000000'
-    normal:
-      black:   '#000000'
-      red:     '#cd0000'
-      green:   '#008b00'
-      yellow:  '#ffff00'
-      blue:    '#0000ee'
-      magenta: '#8b008b'
-      cyan:    '#008b8b'
-      white:   '#ffffff'
-    bright:
-      black:   '#666666'
-      red:     '#ec6261'
-      green:   '#008b00'
-      yellow:  '#f0c649'
-      blue:    '#63b4f6'
-      magenta: '#cb77f9'
-      cyan:    '#86d7db'
-      white:   '#d3d2d1'
+# (format t "~A" (cl-base16:apply-scheme (merge-pathnames "schemes/mexico-light/mexico-light.yaml" cl-base16:*source-dir*) "alacritty" "default"))
+# (format t "~A" (cl-base16:apply-scheme (merge-pathnames "schemes/mexico-light/mexico-light.yaml" cl-base16:*source-dir*) "alacritty" "default"))
 
-  gogh-tin: &gogh-tin
-    primary:
-      background: '#2e2e35'
-      foreground: '#839496'
-    normal:
-      black:   '#000000'
-      red:     '#8d534e'
-      green:   '#4e8d53'
-      yellow:  '#888d4e'
-      blue:    '#534e8d'
-      magenta: '#8d4e88'
-      cyan:    '#4e888d'
-      white:   '#ffffff'
-    bright:
-      black:   '#000000'
-      red:     '#b57d78'
-      green:   '#78b57d'
-      yellow:  '#b0b578'
-      blue:    '#7d78b5'
-      magenta: '#b578b0'
-      cyan:    '#78b0b5'
-      white:   '#ffffff'
+# Base16 Espresso - alacritty color config
+# Unknown. Maintained by Alex Mirrington (https://github.com/alexmirrington)
+colors-dark: &dark
+  # Default colors
+  primary:
+    background: '0x2d2d2d'
+    foreground: '0xcccccc'
 
-  gogh-nord-light: &gogh-nord-light
-    primary:
-      background: '#ebeaf2'
-      foreground: '#657b83'
-    normal:
-      black:   '#003b4e'
-      red:     '#e64569'
-      green:   '#069f5f'
-      yellow:  '#dab752'
-      blue:    '#439ecf'
-      magenta: '#d961dc'
-      cyan:    '#00b1be'
-      white:   '#b3b3b3'
-    bright:
-      black:   '#3e89a1'
-      red:     '#e4859a'
-      green:   '#a2cca1'
-      yellow:  '#e1e387'
-      blue:    '#6fbbe2'
-      magenta: '#e586e7'
-      cyan:    '#96dcda'
-      white:   '#dedede'
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x2d2d2d'
+    cursor: '0xcccccc'
 
-colors: *gogh-tin
+  # Normal colors
+  normal:
+    black:   '0x2d2d2d'
+    red:     '0xd25252'
+    green:   '0xa5c261'
+    yellow:  '0xffc66d'
+    blue:    '0x6c99bb'
+    magenta: '0xd197d9'
+    cyan:    '0xbed6ff'
+    white:   '0xcccccc'
+
+  # Bright colors
+  bright:
+    black:   '0x777777'
+    red:     '0xf9a959'
+    green:   '0x393939'
+    yellow:  '0x515151'
+    blue:    '0xb4b7b4'
+    magenta: '0xe0e0e0'
+    cyan:    '0xf97394'
+    white:   '0xffffff'
+
+colors1:
+  # Default colors
+  primary:
+    background: '0x3C4C55'
+    foreground: '0xC5D4DD'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x3C4C55'
+    cursor: '0xC5D4DD'
+
+  # Normal colors
+  normal:
+    black:   '0x3C4C55'
+    red:     '0x83AFE5'
+    green:   '0x7FC1CA'
+    yellow:  '0xA8CE93'
+    blue:    '0x83AFE5'
+    magenta: '0x9A93E1'
+    cyan:    '0xF2C38F'
+    white:   '0xC5D4DD'
+
+  # Bright colors
+  bright:
+    black:   '0x899BA6'
+    red:     '0x7FC1CA'
+    green:   '0x556873'
+    yellow:  '0x6A7D89'
+    blue:    '0x899BA6'
+    magenta: '0x899BA6'
+    cyan:    '0xF2C38F'
+    white:   '0x556873'
+
+# Base16 Mexico Light - alacritty color config
+# Sheldon Johnson
+colors-light: &light
+  # Default colors
+  primary:
+    background: '0xf8f8f8'
+    foreground: '0x383838'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0xf8f8f8'
+    cursor: '0x383838'
+
+  # Normal colors
+  normal:
+    black:   '0xf8f8f8'
+    red:     '0xab4642'
+    green:   '0x538947'
+    yellow:  '0xf79a0e'
+    blue:    '0x7cafc2'
+    magenta: '0x96609e'
+    cyan:    '0x4b8093'
+    white:   '0x383838'
+
+  # Bright colors
+  bright:
+    black:   '0xb8b8b8'
+    red:     '0xdc9656'
+    green:   '0xe8e8e8'
+    yellow:  '0xd8d8d8'
+    blue:    '0x585858'
+    magenta: '0x282828'
+    cyan:    '0xa16946'
+    white:   '0x181818'
+
+draw_bold_text_with_bright_colors: false
+
+colors: *dark
 
 font:
   size: 12
