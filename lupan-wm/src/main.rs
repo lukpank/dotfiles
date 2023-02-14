@@ -1,41 +1,138 @@
-#[macro_use]
-extern crate penrose;
-
 use clap::Parser;
 
 use penrose::{
-    contrib::{hooks::ManageExistingClients},
-    core::{
-        bindings::{KeyEventHandler, MouseEvent}, config::Config, helpers::index_selectors, manager::WindowManager,
-        hooks::Hooks,
-        layout::{bottom_stack, side_stack, Layout, LayoutConf},
+    builtin::{
+        actions::{exit, log_current_state, modify_with, send_layout_message, spawn, key_handler},
+        layout::{
+            messages::{ExpandMain, IncMain, ShrinkMain},
+            transformers::{Gaps, ReserveTop},
+            MainAndStack, Monocle,
+        },
     },
-    draw::{bar::dwm_bar, Color, TextStyle},
-    logging_error_handler,
-    xcb::{new_xcb_backed_window_manager, XcbDraw, XcbConnection},
-    Backward, Forward, Less, More, Result, Selector
+    core::{
+        bindings::{parse_keybindings_with_xmodmap, KeyEventHandler},
+        layout::LayoutStack,
+        Config, WindowManager,
+    },
+    extensions::{hooks::add_ewmh_hooks, actions::focus_or_spawn},
+    extensions::actions::toggle_fullscreen,
+    map, stack,
+    x11rb::RustConn,
+    Result,
+    util
 };
-
-use std::convert::{TryFrom, TryInto};
-
-pub type Conn = XcbConnection;
-
-const TERMINAL: &str = "st tmux";
-const TERMINAL2: &str = "st";
-const EDITOR: &str = "emacsclient -c -n";
-const MIXER: &str = "pavucontrol";
-const SUSPEND: &str = "systemctl suspend";
-const LOCK: &str = "slock";
-const SET_THEME: &str = "lupan-set-theme";
+use penrose_ui::{bar::Position, core::TextStyle, status_bar};
+use std::collections::HashMap;
+use tracing_subscriber::{self, prelude::*};
 
 const FONT: &str = "Iosevka Slab Light";
 const FONT_SIZE: i32 = 20;
-const BAR_BG: &str = "#0c4a6e";
-const BAR_FG: &str = "#7dd3fc";
-const BAR_HIGHLIGHT: &str = "#0369a1";
-const BAR_EMPTY: &str = "#94a3b8";
-const FOCUSED_BORDER: &str = "#d97706";
-const UNFOCUSED_BORDER: &str = "#64748b";
+const BLACK: u32 = 0x282828ff;
+const WHITE: u32 = 0x7dd3fcff;
+const GREY: u32 = 0x94a3b8ff;
+const BLUE: u32 = 0x0c4a6eff;
+const FOCUSED_BORDER: u32 = 0xd97706ff;
+const NORMAL_BORDER: u32 = 0x64748ff;
+
+const MAX_MAIN: u32 = 1;
+const RATIO: f32 = 0.6;
+const RATIO_STEP: f32 = 0.05;
+const OUTER_PX: u32 = 5;
+const INNER_PX: u32 = 5;
+
+const TERMINAL: &str = "alacritty";
+const EDITOR: &str = "emacsclient -c -n";
+const SUSPEND: &str = "systemctl suspend";
+const LOCK: &str = "slock";
+const SET_THEME: &str = "lupan-set-theme";
+const DMENU_ARGS: &[&str] = &["-fn", "Iosevka Slab Light"];
+
+fn raw_key_bindings() -> HashMap<String, Box<dyn KeyEventHandler<RustConn>>> {
+    let mut theme = "dark";
+    let mut raw_bindings = map! {
+        map_keys: |k: &str| k.to_owned();
+
+        "M-j" => modify_with(|cs| cs.focus_down()),
+        "M-k" => modify_with(|cs| cs.focus_up()),
+        "M-S-j" => modify_with(|cs| cs.swap_down()),
+        "M-S-k" => modify_with(|cs| cs.swap_up()),
+        "M-S-c" => modify_with(|cs| cs.kill_focused()),
+        "M-a" => modify_with(|cs| cs.toggle_tag()),
+	"M-f" => toggle_fullscreen(),
+	"M-Return" => modify_with(|cs| cs.swap_focus_and_head()),
+	"M-m" => modify_with(|cs| cs.focus_head()),
+        "M-bracketright" => modify_with(|cs| cs.next_screen()),
+        "M-bracketleft" => modify_with(|cs| cs.previous_screen()),
+        "M-S-bracketright" => modify_with(|cs| {
+	    let current_tag = cs.current_tag().to_string();
+	    cs.next_screen();
+	    cs.pull_tag_to_screen(current_tag);
+	}),
+        "M-S-bracketleft" => modify_with(|cs| {
+	    let current_tag = cs.current_tag().to_string();
+	    cs.previous_screen();
+	    cs.pull_tag_to_screen(current_tag);
+	}),
+        "M-grave" => modify_with(|cs| cs.next_layout()),
+        "M-S-grave" => modify_with(|cs| cs.previous_layout()),
+        "M-comma" => send_layout_message(|| IncMain(1)),
+        "M-period" => send_layout_message(|| IncMain(-1)),
+        "M-l" => send_layout_message(|| ExpandMain),
+        "M-h" => send_layout_message(|| ShrinkMain),
+        "M-p" => key_handler(move |_, _| util::spawn_with_args("dmenu_run", DMENU_ARGS)),
+	"M-S-p" => spawn("rofi -theme Arc-Dark -show combi"),
+	"M-S-e" => spawn(EDITOR),
+        "M-S-s" => log_current_state(),
+        "M-S-Return" => spawn(TERMINAL),
+        "C-M-f" => focus_or_spawn("firefox", "firefox"),
+        "C-M-l" => spawn(LOCK),
+        "C-M-s" => spawn(SUSPEND),
+        "C-M-t" => focus_or_spawn("thunderbird", "thunderbird"),
+        "M-S-q" => exit(),
+
+	"M-i" => modify_with(|cs| cs.current_tag().parse::<i32>().map_or((), |i| cs.focus_tag((i - 1).to_string()))),
+	"M-o" => modify_with(|cs| cs.current_tag().parse::<i32>().map_or((), |i| cs.focus_tag((i + 1).to_string()))),
+	"M-S-i" => modify_with(|cs| cs.current_tag().parse::<i32>().map_or((), |i| cs.move_focused_to_tag((i - 1).to_string()))),
+	"M-S-o" => modify_with(|cs| cs.current_tag().parse::<i32>().map_or((), |i| cs.move_focused_to_tag((i + 1).to_string()))),
+	"M-C-i" => modify_with(|cs| cs.current_tag().parse::<i32>().map_or((), |i| cs.pull_tag_to_screen((i - 1).to_string()))),
+	"M-C-o" => modify_with(|cs| cs.current_tag().parse::<i32>().map_or((), |i| cs.pull_tag_to_screen((i + 1).to_string()))),
+
+        // Switch theme
+        "M-S-F6" => key_handler(move |_, _| {
+            theme = if theme == "dark" { "light" } else { "dark" };
+            util::spawn(format!("{} {}", SET_THEME, theme))
+        }),
+    };
+
+    for tag in &["1", "2", "3", "4", "5", "6", "7", "8", "9"] {
+        raw_bindings.extend([
+            (
+                format!("M-{tag}"),
+                modify_with(move |client_set| client_set.focus_tag(tag)),
+            ),
+            (
+                format!("M-S-{tag}"),
+                modify_with(move |client_set| client_set.move_focused_to_tag(tag)),
+            ),
+            (
+                format!("M-C-{tag}"),
+                modify_with(move |client_set| client_set.pull_tag_to_screen(tag)),
+            ),
+        ]);
+    }
+
+    raw_bindings
+}
+
+fn layouts(bar_height_px: u32) -> LayoutStack {
+    stack!(
+        MainAndStack::side(MAX_MAIN, RATIO, RATIO_STEP),
+        MainAndStack::side_mirrored(MAX_MAIN, RATIO, RATIO_STEP),
+        MainAndStack::bottom(MAX_MAIN, RATIO, RATIO_STEP),
+        Monocle::boxed()
+    )
+    .map(|layout| ReserveTop::wrap(Gaps::wrap(layout, OUTER_PX, INNER_PX), bar_height_px))
+}
 
 #[derive(Parser, Debug)]
 #[clap(about, version, author)]
@@ -49,124 +146,39 @@ struct Args {
     font_size: i32,
 }
 
-macro_rules! rofi {
-    ($theme_str:tt, $show:tt) => {
-        Box::new(move |_: &mut WindowManager<_>| {
-            spawn!("rofi", "-theme", "Pop-Dark", "-theme-str", $theme_str,
-                   "-kb-row-select", "Tab", "-kb-row-tab", "Alt-Tab", "-show", $show)
-        }) as KeyEventHandler<_>
-    }
-}
-
-#[allow(unused_parens)]
 fn main() -> Result<()> {
-    let n_main = 1;
-    let ratio = 0.6;
     let args = Args::parse();
-    let rofi_theme_str = format!("* {{ text-color: {}; background-color: {}; blue: {}; font: \"{} {}\"; }}",
-                                 BAR_FG, BAR_BG, BAR_HIGHLIGHT, args.font, args.font_size);
-    let mut theme = "dark";
-    let config = Config::default()
-        .builder()
-        .workspaces(vec!["1", "2", "3", "4", "5", "6", "7", "8", "9"])
-        .bar_height((2 * args.font_size).try_into().unwrap())
-        .border_px(4)
-        .focused_border(FOCUSED_BORDER)?
-        .unfocused_border(UNFOCUSED_BORDER)?
-        .layouts(vec![
-            Layout::new("[side]", LayoutConf::default(), side_stack, n_main, ratio),
-            Layout::new("[botm]", LayoutConf::default(), bottom_stack, n_main, ratio),
-        ])
-        .build()
-        .unwrap();
+    tracing_subscriber::fmt()
+        .with_env_filter("debug")
+        .finish()
+        .init();
+    let bar_height_px = 2 * args.font_size as u32;
 
-    let key_bindings = gen_keybindings! {
-        // Program launchers
-        "M-Return" => run_external!(TERMINAL);
-        "M-S-Return" => run_external!(TERMINAL2);
-        "M-space" => { let s = rofi_theme_str.clone(); rofi!((&s), "run") };
-        "M-S-space" => { let s = rofi_theme_str.clone(); rofi!((&s), "window") };
-        "M-C-space" => { let s = rofi_theme_str.clone(); rofi!((&s), "ssh") };
-        "M-e" => run_external!(EDITOR);
-        "M-p" => run_external!(MIXER);
-        "M-S-s" => run_external!(SUSPEND);
-        "M-C-s" => run_external!(LOCK);
+    let config = add_ewmh_hooks(Config {
+        default_layouts: layouts(bar_height_px),
+	normal_border: NORMAL_BORDER.into(),
+	focused_border: FOCUSED_BORDER.into(),
+        ..Config::default()
+    });
 
-        // Switch theme
-        "M-S-F6" => Box::new(move |_: &mut WindowManager<_>| {
-            theme = if theme == "dark" { "light" } else { "dark" };
-            spawn!(SET_THEME, theme)
-        });
-
-        // Exit Penrose (important to remember this one!)
-        "M-A-C-Escape" => run_internal!(exit);
-
-        // Client management
-        "M-j" => run_internal!(cycle_client, Forward);
-        "M-k" => run_internal!(cycle_client, Backward);
-        "M-S-j" => run_internal!(drag_client, Forward);
-        "M-A-j" => run_internal!(rotate_clients, Forward);
-        "M-A-k" => run_internal!(rotate_clients, Backward);
-        "M-S-k" => run_internal!(drag_client, Backward);
-        "M-S-f" => run_internal!(toggle_client_fullscreen, &Selector::Focused);
-        "M-S-q" => run_internal!(kill_client);
-
-        // Workspace management
-        "M-Tab" => run_internal!(toggle_workspace);
-        "M-period" => run_internal!(cycle_screen, Forward);
-        "M-comma" => run_internal!(cycle_screen, Backward);
-        "M-S-period" => run_internal!(drag_workspace, Forward);
-        "M-S-comma" => run_internal!(drag_workspace, Backward);
-        "M-A-period" => run_internal!(cycle_workspace, Forward);
-        "M-A-comma" => run_internal!(cycle_workspace, Backward);
-
-        // Layout management
-        "M-m" => run_internal!(cycle_layout, Forward);
-        "M-S-m" => run_internal!(cycle_layout, Backward);
-        "M-A-Up" => run_internal!(update_max_main, More);
-        "M-A-Down" => run_internal!(update_max_main, Less);
-        "M-A-Right" => run_internal!(update_main_ratio, More);
-        "M-A-Left" => run_internal!(update_main_ratio, Less);
-        "M-S-h" => run_internal!(update_max_main, More);
-        "M-S-l" => run_internal!(update_max_main, Less);
-        "M-l" => run_internal!(update_main_ratio, More);
-        "M-h" => run_internal!(update_main_ratio, Less);
-
-        map: { "1", "2", "3", "4", "5", "6", "7", "8", "9" } to index_selectors(9) => {
-            "M-{}" => focus_workspace (REF);
-            "M-S-{}" => client_to_workspace (REF);
-        };
+    let conn = RustConn::new()?;
+    let key_bindings = parse_keybindings_with_xmodmap(raw_key_bindings())?;
+    let style = TextStyle {
+        font: FONT.to_string(),
+        point_size: args.font_size,
+        fg: WHITE.into(),
+        bg: Some(BLACK.into()),
+        padding: (2.0, 2.0),
     };
 
-    let mouse_bindings = gen_mousebindings! {
-        Press Right + [Meta] => |wm: &mut WindowManager<_>, _: &MouseEvent| wm.cycle_workspace(Forward),
-        Press Left + [Meta] => |wm: &mut WindowManager<_>, _: &MouseEvent| wm.cycle_workspace(Backward),
-        Press Middle + [Meta] => |wm: &mut WindowManager<_>, _: &MouseEvent| wm.toggle_workspace(),
-        Press Left + [Alt] => |_wm: &mut WindowManager<_>, _: &MouseEvent| penrose::core::helpers::spawn(TERMINAL)
-    };
+    let bar = status_bar(bar_height_px, &style, BLUE, GREY, Position::Top).unwrap();
 
-    let bar = dwm_bar(
-        XcbDraw::new()?,
-        (2 * args.font_size).try_into().unwrap(),
-        &TextStyle {
-            font: args.font,
-            point_size: args.font_size,
-            fg: Color::try_from(BAR_FG)?,
-            bg: Some(Color::try_from(BAR_BG)?),
-            padding: (12.0, 12.0),
-        },
-        Color::try_from(BAR_HIGHLIGHT)?, // highlight
-        Color::try_from(BAR_EMPTY)?, // empty_ws
-        config.workspaces().clone(),
-    )?;
+    let wm = bar.add_to(WindowManager::new(
+        config,
+        key_bindings,
+        HashMap::new(),
+        conn,
+    )?);
 
-    let hooks: Hooks<Conn> = vec![
-        ManageExistingClients::new(),
-        Box::new(bar),
-    ];
-
-    let mut wm = new_xcb_backed_window_manager(config, hooks, logging_error_handler())?;
-    wm.grab_keys_and_run(key_bindings, mouse_bindings)?;
-
-    Ok(())
+    wm.run()
 }
