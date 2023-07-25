@@ -12,3 +12,44 @@ emacs.cursorBlink: false
 emacs.scrollBarWidth: 20
 emacs.background: #424242
 emacs.foreground: #E0E0E0
+
+XTerm.vt100.faceName: Iosevka NFM Light:size=12
+
+! Colors from rmehri01/onenord.nvim
+
+XTerm.vt100.foreground:     #E5E9F0
+XTerm.vt100.background:     #2E3440
+XTerm.vt100.highlightColor: #3F4758
+XTerm.vt100.cursorColor:    #81A1C1
+
+! black
+XTerm.vt100.color0:         #3B4252
+XTerm.vt100.color8:         #4C566A
+
+! red
+XTerm.vt100.color1:         #E06C75
+XTerm.vt100.color9:         #E06C75
+
+! green
+XTerm.vt100.color2:         #9EC183
+XTerm.vt100.color10:        #9EC183
+
+! yellow
+XTerm.vt100.color3:         #EBCB8B
+XTerm.vt100.color11:        #EBCB8B
+
+! blue
+XTerm.vt100.color4:         #81A1C1
+XTerm.vt100.color12:        #81A1C1
+
+! magenta
+XTerm.vt100.color5:         #B988B0
+XTerm.vt100.color13:        #B988B0
+
+! cyan
+XTerm.vt100.color6:         #88C0D0
+XTerm.vt100.color14:        #8FBCBB
+
+! white
+XTerm.vt100.color7:         #E5E9F0
+XTerm.vt100.color15:        #ECEFF4
