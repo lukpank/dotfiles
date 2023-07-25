@@ -90,6 +90,7 @@ if source_if_exists ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
     ZSH_HIGHLIGHT_STYLES[comment]=fg=cyan,bold
 fi
 
+source_if_exists ~/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 
 # Directory stack and ls colors.
