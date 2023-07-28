@@ -29,7 +29,7 @@ ifDark dark light = if isDark then dark else light
 myConfig =
   def
     { modMask = mod4Mask,
-      terminal = "xterm",
+      terminal = "st",
       borderWidth = 3,
       focusedBorderColor = ifDark "#a0522d" "#ff7f50",
       normalBorderColor = ifDark "#708090" "#bebebe",
@@ -59,9 +59,9 @@ myConfig =
                       ]
 
 scratchpads =
-  [ NS "terminal" "xterm -T terminal" (title =? "terminal") floating,
+  [ NS "terminal" "st -T terminal" (title =? "terminal") floating,
     NS "thunar" "thunar" (className =? "Thunar") floating,
-    NS "top" "xterm -T top -e top" (title =? "top") floating
+    NS "top" "st -T top -e top" (title =? "top") floating
   ]
   where
     floating = customFloating $ RationalRect (1 / 6) (1 / 6) (2 / 3) (2 / 3)
