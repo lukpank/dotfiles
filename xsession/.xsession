@@ -8,7 +8,7 @@ xset b off
 xrandr --auto
 xrandr --output HDMI1 --right-of DP1
 xrdb -merge ~/.Xresources
-setxkbmap pl -option ctrl:nocaps
+setxkbmap pl -option caps:escape
 xmodmap ~/.xmodmaprc
 
 if [ -x  ~/.fehbg ]; then
@@ -24,22 +24,24 @@ else
     ( echo "Missing command(s):"; which xss-lock slock 2>&1 ) | xmessage -file -
 fi
 
-# run emacs daemon if not running
-emacsclient --eval nil -a '' &
-
 xsettingsd &
 
 xsetroot -cursor_name left_ptr
 
 picom -b -I 1 -O 1 -i 1 -e 1 --no-fading-openclose || compton -b --no-fading-openclose
 
-if which xmonad > /dev/null && test -f ~/.stumpwm.d/init.lisp; then
-   export SBCL_HOME="$(dirname $(dirname $(readlink -f $(which sbcl))))/lib/sbcl/"
-   exec stumpwm
+if which dwm > /dev/null; then
+    lupan-clock &
+    exec dwm
 fi
 
 if which xmonad > /dev/null && test -f ~/.config/xmonad/xmonad.hs; then
     exec xmonad
+fi
+
+if which stumpwm > /dev/null && test -f ~/.stumpwm.d/init.lisp; then
+   export SBCL_HOME="$(dirname $(dirname $(readlink -f $(which sbcl))))/lib/sbcl/"
+   exec stumpwm
 fi
 
 if which qtile > /dev/null && test -f ~/.config/qtile/config.py; then
@@ -63,11 +65,6 @@ fi
 
 if which i3 > /dev/null; then
     exec i3
-fi
-
-if which dwm > /dev/null; then
-    lupan-clock &
-    exec dwm
 fi
 
 exec xterm
