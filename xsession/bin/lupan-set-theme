@@ -3,15 +3,12 @@
 THEME="$1"
 
 if [ "$THEME" = dark ]; then
-    SIGNAL=USR1
     BGCOLOR=#4a4a4a
     GTK_THEME=Materia-dark
 elif [ "$THEME" = light ]; then
-    SIGNAL=USR2
     BGCOLOR=#dde1e3
     GTK_THEME=Materia-light
 elif [ "$THEME" = faff ]; then
-    SIGNAL=USR2
     BGCOLOR=#4a4a4a
     GTK_THEME=Materia-light
 else
@@ -28,9 +25,6 @@ fi
 if [ -f ~/.config/alacritty/alacritty.yml ]; then
     sed -i "s/^colors: [*].*/colors: *$THEME/" ~/.config/alacritty/alacritty.yml
 fi
-
-# ST (patched)
-pkill -$SIGNAL -x st
 
 # GTK
 if [ -f ~/.config/xsettingsd/xsettingsd.conf ]; then
