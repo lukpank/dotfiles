@@ -88,10 +88,10 @@ require('lazy').setup({
   },
 
   {
-    "rmehri01/onenord.nvim",
+    "folke/tokyonight.nvim",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onenord'
+      vim.cmd.colorscheme 'tokyonight'
     end
   },
 
@@ -102,7 +102,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onenord',
+        theme = 'tokyonight',
         component_separators = '|',
         section_separators = '',
       },
