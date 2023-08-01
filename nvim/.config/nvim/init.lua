@@ -242,6 +242,7 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 vim.keymap.set("n", "<leader>tt", ":NvimTreeToggle<cr>", { desc = "[T]oggle Nvim [T]ree" })
+vim.keymap.set("n", "<leader>ct", ":ColorizerToggle<cr>", { desc = "[C]olorizer [T]oggle" })
 vim.keymap.set("n", "<A-h>", ":wincmd h<cr>", { desc = "move to left window" })
 vim.keymap.set("n", "<A-j>", ":wincmd j<cr>", { desc = "move to below window" })
 vim.keymap.set("n", "<A-k>", ":wincmd k<cr>", { desc = "move to above window" })
