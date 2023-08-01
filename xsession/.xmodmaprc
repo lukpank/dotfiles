@@ -1,5 +1,6 @@
 ! make right windows key and menu key a hyper key
 remove mod4 = Super_R
+keycode 133 = Escape NoSymbol Escape
 keycode 134 = Hyper_R NoSymbol Hyper_R
 keycode 135 = Hyper_R NoSymbol Hyper_R
 add mod3 = Hyper_R
