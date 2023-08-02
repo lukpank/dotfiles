@@ -165,6 +165,17 @@ require('lazy').setup({
 
   'norcalli/nvim-colorizer.lua',
 
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  }
+
   --  See: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
 }, {})
@@ -243,10 +254,6 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 vim.keymap.set("n", "<leader>tt", ":NvimTreeToggle<cr>", { desc = "[T]oggle Nvim [T]ree" })
 vim.keymap.set("n", "<leader>ct", ":ColorizerToggle<cr>", { desc = "[C]olorizer [T]oggle" })
-vim.keymap.set("n", "<A-h>", ":wincmd h<cr>", { desc = "move to left window" })
-vim.keymap.set("n", "<A-j>", ":wincmd j<cr>", { desc = "move to below window" })
-vim.keymap.set("n", "<A-k>", ":wincmd k<cr>", { desc = "move to above window" })
-vim.keymap.set("n", "<A-l>", ":wincmd l<cr>", { desc = "move to right window" })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
