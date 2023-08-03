@@ -174,6 +174,15 @@ require('lazy').setup({
         -- Configuration here, or leave empty to use defaults
       })
     end
+  },
+
+  {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    opts = {
+      direction = "float",
+      open_mapping = [[<C-\>]],
+    }
   }
 
   --  See: https://github.com/folke/lazy.nvim#-structuring-your-plugins
