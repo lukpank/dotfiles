@@ -2,23 +2,26 @@
 
 THEME="$1"
 
+if [ "$THEME" = "toggle" ] && grep Materia-dark ~/.config/xsettingsd/xsettingsd.conf > /dev/null; then
+    THEME=light
+else
+    THEME=dark
+fi
+
 if [ "$THEME" = dark ]; then
     BGCOLOR=#4a4a4a
     GTK_THEME=Materia-dark
 elif [ "$THEME" = light ]; then
-    BGCOLOR=#dde1e3
-    GTK_THEME=Materia-light
-elif [ "$THEME" = faff ]; then
-    BGCOLOR=#4a4a4a
+    BGCOLOR=#cacaca
     GTK_THEME=Materia-light
 else
-    echo "error: unknown theme: should be either dark, light or faff" >&2
+    echo "error: unknown theme: should be either dark, light or toggle" >&2
     exit 1
 fi
 
 # Background color
 if [ ! -x ~/.fehbg ]; then
-    xsetroot -solid "$BGCOLOR"
+    hsetroot -solid "$BGCOLOR"
 fi
 
 # Alacritty

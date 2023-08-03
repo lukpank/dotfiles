@@ -1,63 +1,37 @@
 #!/bin/sh
 
-echo '# qtile:'
+echo '# required:'
 for CMD in \
-    alacritty \
-	qtile \
-	emacsclient \
+	zsh \
+	git \
+	cc \
+	make \
 	setxkbmap \
 	slock \
 	systemctl \
 	xmodmap \
 	xrandr \
 	xrdb \
+	xset \
 	xsetroot \
+	hsetroot \
 	xsettingsd \
-	rofi; do
-    which "$CMD"
-done
-
-echo -e '\n# bspwm:'
-for CMD in \
-    alacritty \
-	bspc \
-	bspwm \
+	sed \
+	pkill \
 	dmenu \
 	dmenu_run \
-	emacsclient \
-	pkill \
-	polybar \
-	polybar-msg \
-	sed \
-	setxkbmap \
-	slock \
-	sxhkd \
-	systemctl \
-	xargs \
-	xdo \
-	xmodmap \
-	xrandr \
-	xrdb \
-	xsetroot \
-	xsettingsd \
-	xtitle \
-	xss-lock; do
+	xss-lock \
+	exa \
+	fzf \
+	; do
     which "$CMD"
 done
 
-echo -e '\n# bspwm (optional):'
+echo -e '\n# optional:'
 for CMD in \
-    firefox \
-	mpc \
-	mpd \
-	pamixer \
 	sx \
-	thunderbird \
+	picom \
+	compton \
 	xbacklight; do
-    which "$CMD"
-done
-
-echo -e '\n# shell:'
-for CMD in emacsclient zsh; do
     which "$CMD"
 done

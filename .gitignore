@@ -7,3 +7,5 @@ lupan-clock/lupan-clock
 lupan-wm/target
 *~
 __pycache__
+/dwm
+/st

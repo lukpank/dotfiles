@@ -1,29 +1,6 @@
 Lupan's config files
 ====================
 
-Screenshots
------------
-
-Short answer: [screenshots here](https://lupan.pl/lupan-themes/).
-
-My configuration allows to switch between my 6 themes using a shell
-script bound to a key stroke (`super + F6` for switching themes in a
-cycle and `super + shift + F6` for selecting one with `dmenu`).  The
-theme is applied to *bspwm*, *Polybar*, *Alacritty*, *Emacs*, and
-*Gtk3* (with support for reloading themes in active *Gtk3*
-applications, but I currently use only two *Gtk3* themes: one dark and
-one light).
-
-You can see the screenshots of my whole workspace with each of the
-themes applied on the page describing [my Emacs
-themes](https://lupan.pl/lupan-themes/).  For the Emacs theme
-reloading I use simple helper Emacs function `my-select-theme`
-available from [Toggle between dark and light themes with a
-key](https://lupan.pl/dotemacs/#toggle-between-dark-and-light-themes-with-a-key)
-section of my Emacs config (also available in corresponding [GitHub
-repo](https://github.com/lukpank/.emacs.d).
-
-
 Installation
 ------------
 
@@ -34,21 +11,16 @@ that you have required programs in your `PATH` with
 $ sh check_dependencies.sh
 ```
 
-For [qtile](http://www.qtile.org/) configuration run
+Install font `ttf-firacode-nerd` (https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip).
+
+Install `st`, `dwm`, `lupan-clock`, and config files with
 
 ```
-$ stow -v alacritty xsession qtile music shell tmux
+$ make clone build install
 ```
 
-For [bspwm](https://github.com/baskerville/bspwm) configuration run
+Change to `zsh` as your login shell with
 
 ```
-$ stow -v alacritty xsession bspwm music shell tmux
-```
-
-but if you want [i3](https://i3wm.org/) config (left as a fallback)
-instead of *qtile* or *bspwm* then *also* run
-
-```
-$ stow -v i3
+$ chsh -s /usr/bin/zsh
 ```

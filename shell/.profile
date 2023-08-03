@@ -8,8 +8,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-export EDITOR=emacsclient
-export VISUAL=emacsclient
+export EDITOR=nvim
+export VISUAL=nvim
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
