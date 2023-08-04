@@ -1,0 +1,5 @@
+require("lupan.remap")
+require("lupan.lazy")
+require("lupan.options")
+require("lupan.autocmd")
+require("lupan.plugins")
