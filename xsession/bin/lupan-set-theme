@@ -2,10 +2,12 @@
 
 THEME="$1"
 
-if [ "$THEME" = "toggle" ] && grep Materia-dark ~/.config/xsettingsd/xsettingsd.conf > /dev/null; then
-    THEME=light
-else
-    THEME=dark
+if [ "$THEME" = "toggle" ]; then
+    if  grep Materia-dark ~/.config/xsettingsd/xsettingsd.conf > /dev/null; then
+        THEME=light
+    else
+        THEME=dark
+    fi
 fi
 
 if [ "$THEME" = dark ]; then

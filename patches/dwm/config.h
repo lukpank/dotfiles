@@ -62,6 +62,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *suspendcmd[]  = { "systemctl", "suspend", NULL };
+static const char *toggletheme[] = { "lupan-set-theme", "toggle", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -69,6 +70,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ControlMask|ShiftMask, XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ControlMask|ShiftMask, XK_s,      spawn,          {.v = suspendcmd } },
+	{ MODKEY|ShiftMask,             XK_F6,     spawn,          {.v = toggletheme } }, 
 	{ MODKEY|ControlMask,           XK_b,      togglebar,      {0} },
 	{ MODKEY|ControlMask,           XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_k,      focusstack,     {.i = -1 } },
