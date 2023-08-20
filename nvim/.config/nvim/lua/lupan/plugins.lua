@@ -139,6 +139,8 @@ require('lazy').setup({
       direction = "float",
       open_mapping = [[<C-\>]],
     }
-  }
+  },
+
+  'ggandor/lightspeed.nvim',
 
 })
