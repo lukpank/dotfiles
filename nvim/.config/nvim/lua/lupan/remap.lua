@@ -46,3 +46,63 @@ key('v', '>', '>gv', opts)
 
 -- Keep old value of register
 key('v', 'P', '"_dP', opts)
+
+-- luasnip
+
+vim.keymap.set({ 'i', 's' }, "<c-k>", function()
+  local ls = require "luasnip"
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end, { silent = true })
+
+vim.keymap.set({ 'i', 's' }, "<c-j>", function()
+  local ls = require "luasnip"
+  if ls.jumpable(-1) then
+    ls.jump(-1)
+  end
+end, { silent = true })
+
+vim.keymap.set({ 'i', 's' }, "<c-l>", function()
+  local ls = require "luasnip"
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end, { silent = true })
+
+vim.keymap.set("n", "<leader>ss", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>",
+  { desc = "[S]nippets [s]ource" })
+
+-- terminal
+
+key('t', '<C-g>', '<C-\\><C-n>')
+
+-- harpoon
+
+key('n', '<leader>ha', function()
+  require("harpoon.mark").add_file()
+end, { desc = '[H]arpoon [a]dd' })
+
+key('n', '<leader>hm', function()
+  require("harpoon.ui").toggle_quick_menu()
+end, { desc = '[H]arpoon toggle quick [m]enu' })
+
+key('n', '<leader>hj', function()
+  require("harpoon.ui").nav_next()
+end, { desc = '[H]arpoon next (j)' })
+
+key('n', '<leader>hk', function()
+  require("harpoon.ui").nav_prev()
+end, { desc = '[H]arpoon prev (k)' })
+
+for i = 1, 9, 1 do
+  key('n', '<leader>h' .. i, function()
+    require("harpoon.ui").nav_file(i)
+  end, { desc = '[H]arpoon nav_file [' .. i .. ']' })
+end
+
+for i = 1, 9, 1 do
+  key('n', '<leader>t' .. i, function()
+    require("harpoon.term").gotoTerminal(i)
+  end, { desc = '[H]arpoon nav_file [' .. i .. ']' })
+end

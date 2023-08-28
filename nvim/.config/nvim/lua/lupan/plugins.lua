@@ -143,4 +143,8 @@ require('lazy').setup({
 
   'ggandor/lightspeed.nvim',
 
+  {
+    'ThePrimeagen/harpoon',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  }
 })
