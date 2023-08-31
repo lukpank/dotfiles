@@ -75,7 +75,7 @@ vim.keymap.set("n", "<leader>ss", "<cmd>source ~/.config/nvim/after/plugin/luasn
 
 -- terminal
 
-key('t', '<C-g>', '<C-\\><C-n>')
+key('t', '<C-_>', '<C-\\><C-n>')
 
 -- harpoon
 

@@ -137,7 +137,7 @@ require('lazy').setup({
     version = "*",
     opts = {
       direction = "float",
-      open_mapping = [[<C-\>]],
+      open_mapping = [[<C-_>]],
     }
   },
 
