@@ -2,13 +2,12 @@ local org = require('orgmode')
 org.setup_ts_grammar()
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'c', 'cpp', 'go', 'haskell', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'haskell', 'lua', 'org', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
   auto_install = false,
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = { 'org' },
   },
-  ensure_installed = { 'org' }, -- Or run :TSUpdate org
   indent = { enable = true },
   incremental_selection = {
     enable = true,

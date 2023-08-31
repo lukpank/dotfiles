@@ -17,6 +17,26 @@ key("n", "<leader>dt", ":Lexplore 30<cr>", { desc = "[D]isplay directory [t]oggl
 key("n", "<leader>ct", ":ColorizerToggle<cr>", { desc = "[C]olorizer [t]oggle" })
 key("n", "<leader>ut", ":UndotreeToggle<cr>", { desc = "[U]undotree [t]oggle" })
 
+-- telescope
+
+key('n', '<leader><space>', '<cmd>Telescope buffers<cr>', { desc = '[ ] Find existing buffers' })
+key('n', '<leader>?', '<cmd>Telescope oldfiles<cr>', { desc = '[?] Find recently opened buffers' })
+key('n', '<leader>/', function()
+  require('telescope.builtin').current_buffer_fuzzy_find(require("telescope.themes").get_dropdown { previewer = false })
+end, { desc = '[/] Find in current buffer' })
+
+key('n', '<leader>gf', '<cmd>Telescope git_files<cr>', { desc = '[G]it [f]iles' })
+key('n', '<leader>gs', '<cmd>Telescope git_status<cr>', { desc = '[G]it [s]tatus' })
+key('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = '[F]ind [f]iles' })
+key('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = '[F]ind [g]rep' })
+key('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { desc = '[F]ind [w]ord' })
+key('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { desc = '[F]ind [h]elp (tags)' })
+key('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', { desc = '[F]ind [d]iagnostics' })
+
+key('n', '<leader>fF', function()
+  require('telescope.builtin').find_files { hidden = true }
+end, { desc = '[F]ind [F]iles (with hidden)' })
+
 -- Diagnostic keymaps
 key('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 key('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
