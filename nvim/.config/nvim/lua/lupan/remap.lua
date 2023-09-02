@@ -134,3 +134,13 @@ for i = 1, 9, 1 do
     require("harpoon.term").gotoTerminal(i)
   end, { desc = '[H]arpoon nav_file [' .. i .. ']' })
 end
+
+-- colors
+
+key('n', '<F6>', function()
+  if vim.o.background == "dark" then
+    vim.o.background = "light"
+  else
+    vim.o.background = "dark"
+  end
+end)
