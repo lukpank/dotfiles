@@ -37,6 +37,14 @@ key('n', '<leader>fF', function()
   require('telescope.builtin').find_files { hidden = true }
 end, { desc = '[F]ind [F]iles (with hidden)' })
 
+key('n', '<leader>td', function()
+  require('lupan.ui').tab_change_dir()
+end, { desc = '[T]ab change [d]irectory' })
+
+key('n', '<leader>tD', function()
+  require('lupan.ui').tab_change_dir_newtab()
+end, { desc = '[T]ab change [D]irectory (new tab)' })
+
 -- Diagnostic keymaps
 key('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 key('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
