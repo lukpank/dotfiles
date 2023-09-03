@@ -45,6 +45,14 @@ key('n', '<leader>tD', function()
   require('lupan.ui').tab_change_dir_newtab()
 end, { desc = '[T]ab change [D]irectory (new tab)' })
 
+key('n', '<leader>tm', function()
+  require('telescope-tabs').list_tabs(require 'telescope.themes'.get_dropdown())
+end, { desc = '[T]ab change [D]irectory (new tab)' })
+
+key('n', '<leader>tt', function()
+  require('telescope-tabs').go_to_previous()
+end, { desc = '[T]ab [t]oggle previous' })
+
 -- Diagnostic keymaps
 key('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 key('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
