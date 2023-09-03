@@ -32,6 +32,7 @@ key('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = '[F]ind [g]rep' 
 key('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { desc = '[F]ind [w]ord' })
 key('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { desc = '[F]ind [h]elp (tags)' })
 key('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', { desc = '[F]ind [d]iagnostics' })
+key('n', '<leader>fk', '<cmd>Telescope keymaps<cr>', { desc = '[F]ind [k]eymaps' })
 
 key('n', '<leader>fF', function()
   require('telescope.builtin').find_files { hidden = true }
