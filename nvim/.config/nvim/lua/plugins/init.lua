@@ -11,19 +11,6 @@ return {
     cmd = 'Telescope',
   },
 
-  -- Colorscheme
-  {
-    'neanias/everforest-nvim',
-    priority = 1000,
-    lazy = false,
-    config = function()
-      require("everforest").setup({
-        background = 'hard',
-      })
-      vim.cmd.colorscheme 'everforest'
-    end
-  },
-
   {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
@@ -33,48 +20,6 @@ return {
     build =
     ':TSUpdate'
   },
-
-  {
-    -- Statusline (see `:help lualine.txt`)
-    'nvim-lualine/lualine.nvim',
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'everforest',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
-
-  {
-    -- Indentation guides (see `:help indent_blankline.txt`)
-    'lukas-reineke/indent-blankline.nvim',
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
-  },
-
-  -- "gc" to comment visual regions/lines
-  {
-    'numToStr/Comment.nvim',
-    opts = {}
-  },
-
-  {
-    'norcalli/nvim-colorizer.lua',
-    cmd = 'ColorizerToggle'
-  },
-
-  -- Undo browsing
-  'mbbill/undotree',
-
-  -- Git
-  'tpope/vim-fugitive',
-
-  -- Tabstops autodetected
-  'tpope/vim-sleuth',
 
   {
     -- LSP Configuration & Plugins
@@ -112,40 +57,6 @@ return {
   { 'folke/which-key.nvim', opts = {} },
 
   {
-    -- Adds git releated signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-      on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
-          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-        vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk,
-          { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-        vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk,
-          { buffer = bufnr, desc = '[P]review [H]unk' })
-        vim.keymap.set('n', '<leader>sh', require('gitsigns').stage_hunk,
-          { buffer = bufnr, desc = '[S]tage [H]unk' })
-      end,
-    },
-  },
-
-  {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({})
-    end
-  },
-
-  {
     'akinsho/toggleterm.nvim',
     keys = { '<C-_>', '<cmd>ToggleTerm<cr>', desc = 'Toggle term' },
     version = "*",
@@ -154,8 +65,6 @@ return {
       open_mapping = [[<C-_>]],
     }
   },
-
-  'ggandor/lightspeed.nvim',
 
   {
     'ThePrimeagen/harpoon',

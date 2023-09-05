@@ -67,6 +67,8 @@ key('n', '<leader>tc', ':tabnew<cr>', { desc = '[T]ab [c]reate' })
 key('n', '<leader>ts', ':tab split<cr>', { desc = '[T]ab [s]plit' })
 key('n', '<leader>tn', ':tabnext<cr>', { desc = '[T]ab [n]ext' })
 key('n', '<leader>tp', ':tabprevious<cr>', { desc = '[T]ab [p]revious' })
+key('n', '<leader>tf', ':tabfirst<cr>', { desc = '[T]ab [f]irst' })
+key('n', '<leader>tl', ':tablast<cr>', { desc = '[T]tab [l]ast' })
 
 key('v', 'J', ":m '>+1<cr>gv=gv", { desc = "Move lines down" })
 key('v', 'K', ":m '<-2<cr>gv=gv", { desc = "Move lines up" })
@@ -139,7 +141,7 @@ for i = 1, 9, 1 do
 end
 
 for i = 1, 9, 1 do
-  key('n', '<leader>t' .. i, function()
+  key('n', '<leader>T' .. i, function()
     require("harpoon.term").gotoTerminal(i)
   end, { desc = '[H]arpoon nav_file [' .. i .. ']' })
 end
