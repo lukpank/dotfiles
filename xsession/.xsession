@@ -30,6 +30,10 @@ xsetroot -cursor_name left_ptr
 
 picom -b -I 1 -O 1 -i 1 -e 1 --no-fading-openclose || compton -b --no-fading-openclose
 
+if which awesome > /dev/null; then
+    exec awesome
+fi
+
 if which dwm > /dev/null; then
     lupan-clock &
     exec dwm
