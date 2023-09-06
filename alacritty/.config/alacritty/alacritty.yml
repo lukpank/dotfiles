@@ -3,122 +3,152 @@
 env:
   TERM: xterm-256color
 
-# (format t "~A" (cl-base16:apply-scheme (merge-pathnames "schemes/mexico-light/mexico-light.yaml" cl-base16:*source-dir*) "alacritty" "default"))
-# (format t "~A" (cl-base16:apply-scheme (merge-pathnames "schemes/mexico-light/mexico-light.yaml" cl-base16:*source-dir*) "alacritty" "default"))
-
-# Base16 Espresso - alacritty color config
-# Unknown. Maintained by Alex Mirrington (https://github.com/alexmirrington)
-colors-dark: &dark
-  # Default colors
-  primary:
-    background: '0x2d2d2d'
-    foreground: '0xcccccc'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x2d2d2d'
-    cursor: '0xcccccc'
-
-  # Normal colors
-  normal:
-    black:   '0x2d2d2d'
-    red:     '0xd25252'
-    green:   '0xa5c261'
-    yellow:  '0xffc66d'
-    blue:    '0x6c99bb'
-    magenta: '0xd197d9'
-    cyan:    '0xbed6ff'
-    white:   '0xcccccc'
-
-  # Bright colors
-  bright:
-    black:   '0x777777'
-    red:     '0xf9a959'
-    green:   '0x393939'
-    yellow:  '0x515151'
-    blue:    '0xb4b7b4'
-    magenta: '0xe0e0e0'
-    cyan:    '0xf97394'
-    white:   '0xffffff'
-
-colors1:
-  # Default colors
-  primary:
-    background: '0x3C4C55'
-    foreground: '0xC5D4DD'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x3C4C55'
-    cursor: '0xC5D4DD'
-
-  # Normal colors
-  normal:
-    black:   '0x3C4C55'
-    red:     '0x83AFE5'
-    green:   '0x7FC1CA'
-    yellow:  '0xA8CE93'
-    blue:    '0x83AFE5'
-    magenta: '0x9A93E1'
-    cyan:    '0xF2C38F'
-    white:   '0xC5D4DD'
-
-  # Bright colors
-  bright:
-    black:   '0x899BA6'
-    red:     '0x7FC1CA'
-    green:   '0x556873'
-    yellow:  '0x6A7D89'
-    blue:    '0x899BA6'
-    magenta: '0x899BA6'
-    cyan:    '0xF2C38F'
-    white:   '0x556873'
-
-# Base16 Mexico Light - alacritty color config
-# Sheldon Johnson
-colors-light: &light
-  # Default colors
-  primary:
-    background: '0xf8f8f8'
-    foreground: '0x383838'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0xf8f8f8'
-    cursor: '0x383838'
-
-  # Normal colors
-  normal:
-    black:   '0xf8f8f8'
-    red:     '0xab4642'
-    green:   '0x538947'
-    yellow:  '0xf79a0e'
-    blue:    '0x7cafc2'
-    magenta: '0x96609e'
-    cyan:    '0x4b8093'
-    white:   '0x383838'
-
-  # Bright colors
-  bright:
-    black:   '0xb8b8b8'
-    red:     '0xdc9656'
-    green:   '0xe8e8e8'
-    yellow:  '0xd8d8d8'
-    blue:    '0x585858'
-    magenta: '0x282828'
-    cyan:    '0xa16946'
-    white:   '0x181818'
+# From https://gist.github.com/sainnhe/6432f83181c4520ea87b5211fed27950
+# Changed only to &dark and YAML &light labels
+schemes:
+  everforest_dark_hard: &dark
+    primary:
+      background: '#272e33'
+      foreground: '#d3c6aa'
+    normal:
+      black:   '#414b50'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+    bright:
+      black:   '#475258'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+  everforest_dark_medium: &everforest_dark_medium
+    primary:
+      background: '#2d353b'
+      foreground: '#d3c6aa'
+    normal:
+      black:   '#475258'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+    bright:
+      black:   '#475258'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+  everforest_dark_soft: &everforest_dark_soft
+    primary:
+      background: '#333c43'
+      foreground: '#d3c6aa'
+    normal:
+      black:   '#4d5960'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+    bright:
+      black:   '#4d5960'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+  everforest_light_hard: &light
+    primary:
+      background: '#fffbef'
+      foreground: '#5c6a72'
+    normal:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#e8e5d5'
+    bright:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#e8e5d5'
+  everforest_light_medium: &everforest_light_medium
+    primary:
+      background: '#fdf6e3'
+      foreground: '#5c6a72'
+    normal:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#e0dcc7'
+    bright:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#e0dcc7'
+  everforest_light_soft: &everforest_light_soft
+    primary:
+      background: '#f3ead3'
+      foreground: '#5c6a72'
+    normal:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#d8d3ba'
+    bright:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#d8d3ba'
 
 draw_bold_text_with_bright_colors: false
 
 colors: *dark
 
 font:
-  size: 12
+  size: 10
   normal:
-    family: Iosevka Fixed Slab
+    family: FiraCode Nerd Font Ret
   bold:
-    family: Iosevka Fixed Slab heavy
+    family: FiraCode Nerd Font Ret
 
 key_bindings:
    - key: F6
