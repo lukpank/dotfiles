@@ -54,6 +54,10 @@ key('n', '<leader>tt', function()
   require('telescope-tabs').go_to_previous()
 end, { desc = '[T]ab [t]oggle previous' })
 
+for i = 1, 9, 1 do
+  key('n', '<leader>t' .. i, '<cmd>' .. i .. 'tabnext<cr>', { desc = '[T]ab nr [' .. i .. ']' })
+end
+
 -- Diagnostic keymaps
 key('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 key('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
@@ -85,6 +89,15 @@ key('v', '>', '>gv', opts)
 
 -- Keep old value of register
 key('v', 'P', '"_dP', opts)
+
+-- LightSpeed
+key('n', 'g/', '<Plug>Lightspeed_s', { desc = "Lightspeed forward search" })
+key('n', 'g?', '<Plug>Lightspeed_S', { desc = "Lightspeed backward search" })
+
+-- Clipboard and quickfix
+key({ 'n', 'v' }, '<leader>y', '"+y', { desc = "Yank to clipboard" })
+key('n', '<leader>j', ':cn<CR>', { desc = "Quickfix next" })
+key('n', '<leader>k', ':cp<CR>', { desc = "Quickfix previous" })
 
 -- luasnip
 
