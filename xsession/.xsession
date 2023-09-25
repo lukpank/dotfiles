@@ -9,7 +9,6 @@ xrandr --auto
 xrandr --output HDMI1 --right-of DP1
 xrdb -merge ~/.Xresources
 setxkbmap pl -option ctrl:nocaps
-xmodmap ~/.xmodmaprc
 
 if [ -x  ~/.fehbg ]; then
     ~/.fehbg &
