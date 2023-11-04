@@ -148,7 +148,7 @@ key('n', '<leader>hk', function()
 end, { desc = '[H]arpoon prev (k)' })
 
 for i = 1, 9, 1 do
-  key('n', '<leader>h' .. i, function()
+  key('n', '<M-' .. i .. '>', function()
     require("harpoon.ui").nav_file(i)
   end, { desc = '[H]arpoon nav_file [' .. i .. ']' })
 end

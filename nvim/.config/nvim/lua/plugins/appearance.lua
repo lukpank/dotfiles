@@ -28,9 +28,10 @@ return {
   {
     -- Indentation guides (see `:help indent_blankline.txt`)
     'lukas-reineke/indent-blankline.nvim',
+    main = "ibl",
     opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
+      -- char = '┊',
+      -- show_trailing_blankline_indent = false,
     },
   },
 

@@ -16,6 +16,7 @@ return {
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'nvim-orgmode/orgmode', -- as configured together
+      'vrischmann/tree-sitter-templ',
     },
     build =
     ':TSUpdate'
