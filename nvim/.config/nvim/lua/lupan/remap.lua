@@ -58,6 +58,8 @@ for i = 1, 9, 1 do
   key('n', '<leader>t' .. i, '<cmd>' .. i .. 'tabnext<cr>', { desc = '[T]ab nr [' .. i .. ']' })
 end
 
+key("n", "<leader>fl", '<cmd>Telescope whaler<cr>', { desc = '[F]ind with wha[l]er' })
+
 -- Diagnostic keymaps
 key('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 key('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })

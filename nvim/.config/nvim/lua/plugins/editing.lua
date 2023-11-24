@@ -22,4 +22,7 @@ return {
   },
 
   'ggandor/lightspeed.nvim',
+
+  -- change directory with telescope from a list of dierectories
+  "SalOrak/whaler",
 }
