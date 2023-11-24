@@ -1,3 +1,7 @@
+local function cwd()
+  return vim.fn.getcwd()
+end
+
 return {
   -- Colorscheme
   {
@@ -22,6 +26,9 @@ return {
         component_separators = '|',
         section_separators = '',
       },
+      sections = {
+        lualine_x = { cwd, 'encoding', 'fileformat', 'filetype' }
+      }
     },
   },
 
