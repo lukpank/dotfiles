@@ -5,16 +5,17 @@ end
 return {
   -- Colorscheme
   {
-    'neanias/everforest-nvim',
-    priority = 1000,
+    'rmehri01/onenord.nvim',
     lazy = false,
+    priority = 1000,
     config = function()
-      require("everforest").setup({
-        background = 'hard',
-      })
-      vim.cmd.colorscheme 'everforest'
-    end
+      vim.cmd [[colorscheme onenord]]
+    end,
   },
+  'neanias/everforest-nvim',
+  'bluz71/vim-nightfly-colors',
+  'bluz71/vim-moonfly-colors',
+  'Verf/deepwhite.nvim',
 
   {
     -- Statusline (see `:help lualine.txt`)
@@ -22,7 +23,7 @@ return {
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'everforest',
+        theme = 'auto',
         component_separators = '|',
         section_separators = '',
       },
@@ -36,10 +37,7 @@ return {
     -- Indentation guides (see `:help indent_blankline.txt`)
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl",
-    opts = {
-      -- char = '┊',
-      -- show_trailing_blankline_indent = false,
-    },
+    opts = {},
   },
 
   {
