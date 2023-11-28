@@ -144,11 +144,11 @@ draw_bold_text_with_bright_colors: false
 colors: *dark
 
 font:
-  size: 10
+  size: 10.5
   normal:
-    family: FiraCode Nerd Font Ret
+    family: GoMono Nerd Font
   bold:
-    family: FiraCode Nerd Font Ret
+    family: GoMono Nerd Font
 
 key_bindings:
    - key: F6

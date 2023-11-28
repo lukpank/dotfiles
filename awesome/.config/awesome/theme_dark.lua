@@ -5,7 +5,7 @@ local dpi                   = xresources.apply_dpi
 
 local theme                 = {}
 
-theme.font                  = "FiraCode Nerd Font Ret:size=10"
+theme.font                  = "GoMono Nerd Font 10.5"
 theme.tasklist_disable_icon = true
 theme.wibar_height          = 40
 
