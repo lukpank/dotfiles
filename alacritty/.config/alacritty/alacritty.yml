@@ -6,7 +6,51 @@ env:
 # From https://gist.github.com/sainnhe/6432f83181c4520ea87b5211fed27950
 # Changed only to &dark and YAML &light labels
 schemes:
-  everforest_dark_hard: &dark
+  dark: &dark
+    primary:
+      background: '#2b2d3b'
+      foreground: '#cdcfe4'
+    normal:
+      black:   '#0b0b0f'
+      red:     '#df9f9f'
+      green:   '#9fdfaa'
+      yellow:  '#dfd59f'
+      blue:    '#9fa5df'
+      magenta: '#df9fc5'
+      cyan:    '#9fcfdf'
+      white:   '#eeeff6'
+    bright:
+      black:   '#4c4e67'
+      red:     '#e6b3b3'
+      green:   '#b3e6bb'
+      yellow:  '#e6ddb3'
+      blue:    '#b3b7e6'
+      magenta: '#e6b3d0'
+      cyan:    '#b3d9e6'
+      white:   '#fcfcfd'
+  light: &light
+    primary:
+      background: '#f5f6f9'
+      foreground: '#242642'
+    normal:
+      black:   '#0b0b0f'
+      red:     '#862d2d'
+      green:   '#2d863c'
+      yellow:  '#86772d'
+      blue:    '#2d3486'
+      magenta: '#862d61'
+      cyan:    '#2d7086'
+      white:   '#eeeff6'
+    bright:
+      black:   '#989bb3'
+      red:     '#df9f9f'
+      green:   '#9fdfaa'
+      yellow:  '#dfd59f'
+      blue:    '#9fa5df'
+      magenta: '#df9fc5'
+      cyan:    '#9fcfdf'
+      white:   '#fcfcfd'
+  everforest_dark_hard: &everforest_dark_hard
     primary:
       background: '#272e33'
       foreground: '#d3c6aa'
@@ -72,7 +116,7 @@ schemes:
       magenta: '#d699b6'
       cyan:    '#83c092'
       white:   '#d3c6aa'
-  everforest_light_hard: &light
+  everforest_light_hard: &everforest_light_hard
     primary:
       background: '#fffbef'
       foreground: '#5c6a72'
