@@ -9,18 +9,18 @@ theme.font                  = "GoMono Nerd Font 10.5"
 theme.tasklist_disable_icon = true
 theme.wibar_height          = 40
 
-theme.bg_normal             = "#1e293b"
-theme.bg_focus              = "#475569"
-theme.bg_urgent             = "#ff5555"
-theme.bg_minimize           = "#444444"
+theme.bg_normal             = "#292b3d"
+theme.bg_focus              = "#454654"
+theme.bg_urgent             = "#dfaa9f"
+theme.bg_minimize           = "#5c5e70"
 theme.bg_systray            = theme.bg_normal
-theme.tasklist_bg_focus     = "#334155"
+theme.tasklist_bg_focus     = "#3d405c"
 
-theme.fg_normal             = "#64748B"
-theme.fg_focus              = "#94A3B8"
-theme.fg_urgent             = "#111827"
-theme.fg_minimize           = "#ffffff"
-theme.taglist_fg_empty      = "#334155"
+theme.fg_normal             = "#7a7fb8"
+theme.fg_focus              = "#b3b6d6"
+theme.fg_urgent             = theme.bg_focus
+theme.fg_minimize           = "#b9bac6"
+theme.taglist_fg_empty      = "#535888"
 
 theme.useless_gap           = dpi(1)
 theme.border_width          = dpi(2)
@@ -28,7 +28,7 @@ theme.border_normal         = "#708090"
 theme.border_focus          = "#a0522d"
 theme.border_marked         = "#91231c"
 
-theme.bg_wallpaper          = "#4a4a4a"
+theme.bg_wallpaper          = "#505262"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh          = themes_path .. "default/layouts/fairhw.png"
