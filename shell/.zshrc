@@ -6,7 +6,6 @@ export FZF_DEFAULT_OPTS='--color=bw,hl:green,hl+:green'
 zstyle ':fzf-tab:*' fzf-flags $FZF_DEFAULT_OPTS
 
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-plug "zap-zsh/supercharge"
 plug "zap-zsh/vim"
 
 autoload -Uz compinit
@@ -44,6 +43,12 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt inc_append_history
 setopt share_history
+
+# Convenience.
+
+setopt autocd
+bindkey -M vicmd '^[h' run-help
+bindkey -M viins '^[h' run-help
 
 # Aliases.
 
