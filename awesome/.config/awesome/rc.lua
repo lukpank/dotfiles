@@ -18,6 +18,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+---@diagnostic disable: undefined-global
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -52,6 +54,10 @@ end
 local theme = "theme_dark.lua"
 beautiful.init(gears.filesystem.get_configuration_dir() .. theme)
 
+local function set_wallpaper(s)
+  gears.wallpaper.set(beautiful.bg_wallpaper)
+end
+
 local function switch_theme()
   if theme == "theme_dark.lua" then
     theme = "theme_light.lua"
@@ -61,6 +67,11 @@ local function switch_theme()
     awful.spawn("lupan-set-theme dark")
   end
   beautiful.init(gears.filesystem.get_configuration_dir() .. theme)
+  set_wallpaper()
+  for s in screen do
+    awful.tag.viewtoggle(s.tags[1])
+    awful.tag.viewtoggle(s.tags[1])
+  end
 end
 
 -- This is used later as the default terminal and editor to run.
@@ -141,10 +152,6 @@ local tasklist_buttons = gears.table.join(
     awful.client.focus.byidx(-1)
   end))
 
-local function set_wallpaper(s)
-  gears.wallpaper.set(beautiful.bg_wallpaper)
-end
-
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
@@ -202,7 +209,7 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
-function layout_menu()
+local function layout_menu()
   local layouts = {}
   for i, layout in pairs(awful.layout.layouts) do
     layouts[i] =
@@ -217,7 +224,7 @@ function layout_menu()
 end
 
 -- {{{ Key bindings
-globalkeys = gears.table.join(
+local globalkeys = gears.table.join(
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "show help", group = "awesome" }),
   awful.key({ modkey, }, "Left", awful.tag.viewprev,
@@ -322,7 +329,7 @@ globalkeys = gears.table.join(
     { description = "show the menubar", group = "launcher" })
 )
 
-clientkeys = gears.table.join(
+local clientkeys = gears.table.join(
   awful.key({ modkey, }, "f",
     function(c)
       c.fullscreen = not c.fullscreen
@@ -416,7 +423,7 @@ for i = 1, 9 do
   )
 end
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
   awful.button({}, 1, function(c)
     c:emit_signal("request::activate", "mouse_click", { raise = true })
   end),
@@ -512,21 +519,6 @@ client.connect_signal("manage", function(c)
     -- Prevent clients from being unreachable after screen count changes.
     awful.placement.no_offscreen(c)
   end
-end)
-
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-  -- buttons for the titlebar
-  local buttons = gears.table.join(
-    awful.button({}, 1, function()
-      c:emit_signal("request::activate", "titlebar", { raise = true })
-      awful.mouse.client.move(c)
-    end),
-    awful.button({}, 3, function()
-      c:emit_signal("request::activate", "titlebar", { raise = true })
-      awful.mouse.client.resize(c)
-    end)
-  )
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
