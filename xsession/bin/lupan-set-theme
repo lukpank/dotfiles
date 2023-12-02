@@ -11,19 +11,12 @@ if [ "$THEME" = "toggle" ]; then
 fi
 
 if [ "$THEME" = dark ]; then
-    BGCOLOR=#4a4a4a
     GTK_THEME=Materia-dark
 elif [ "$THEME" = light ]; then
-    BGCOLOR=#cacaca
     GTK_THEME=Materia-light
 else
     echo "error: unknown theme: should be either dark, light or toggle" >&2
     exit 1
-fi
-
-# Background color
-if [ ! -x ~/.fehbg ]; then
-    hsetroot -solid "$BGCOLOR"
 fi
 
 # Alacritty
@@ -35,9 +28,4 @@ fi
 if [ -f ~/.config/xsettingsd/xsettingsd.conf ]; then
     sed -i -E "s#(Net/ThemeName) .*#\\1 \"${GTK_THEME}\"#" ~/.config/xsettingsd/xsettingsd.conf
     pkill -HUP -x xsettingsd
-fi
-
-# Emacs
-if which emacsclient > /dev/null; then
-    emacsclient --eval "(my-select-theme '$THEME)"
 fi
