@@ -7,7 +7,6 @@ zstyle ':fzf-tab:*' fzf-flags $FZF_DEFAULT_OPTS
 
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zap-zsh/supercharge"
-plug "zap-zsh/exa"
 plug "zap-zsh/vim"
 
 autoload -Uz compinit
@@ -30,3 +29,7 @@ zstyle ':vcs_info:*' nvcsformats '%F{green}%~%f%b '
 zstyle ':vcs_info:*' enable git
 PS1='%B%F{blue}%n@%m%f ${vcs_info_msg_0_}%B%#%f%b '
 RPROMPT='%(?..%B%F{red}%?%f%b)'
+
+# Aliases.
+
+for f in ~/.config/shellconfig/*.sh(N) ~/.config/shellconfig/*.zsh(N); do source "$f"; done
