@@ -30,6 +30,21 @@ zstyle ':vcs_info:*' enable git
 PS1='%B%F{blue}%n@%m%f ${vcs_info_msg_0_}%B%#%f%b '
 RPROMPT='%(?..%B%F{red}%?%f%b)'
 
+# History.
+
+HISTFILE=${ZDOTDIR:-~}/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt inc_append_history
+setopt share_history
+
 # Aliases.
 
 for f in ~/.config/shellconfig/*.sh(N) ~/.config/shellconfig/*.zsh(N); do source "$f"; done
