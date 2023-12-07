@@ -33,23 +33,23 @@ schemes:
       background: '#e9f2f5'
       foreground: '#6d797c'
     normal:
-      black:   '#c1dce3'
+      black:   '#1b1c1c'
       red:     '#d0426a'
       green:   '#52833e'
       yellow:  '#8e733f'
       blue:    '#44808b'
       magenta: '#b14cc1'
       cyan:    '#42827a'
-      white:   '#616c6f'
+      white:   '#c2c7c9'
     bright:
-      black:   '#a3c1c8'
+      black:   '#454748'
       red:     '#e34d76'
       green:   '#5b9146'
       yellow:  '#9d8046'
       blue:    '#4c8d99'
       magenta: '#c455d5'
       cyan:    '#4a8f87'
-      white:   '#798689'
+      white:   '#eff1f1'
   everforest_dark_hard: &everforest_dark_hard
     primary:
       background: '#272e33'
@@ -185,7 +185,7 @@ schemes:
 
 draw_bold_text_with_bright_colors: false
 
-colors: *dark
+colors: *light
 
 font:
   size: 10.5
