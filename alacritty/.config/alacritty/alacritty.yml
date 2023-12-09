@@ -185,7 +185,7 @@ schemes:
 
 draw_bold_text_with_bright_colors: false
 
-colors: *light
+colors: *dark
 
 font:
   size: 10.5
