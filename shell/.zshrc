@@ -50,6 +50,9 @@ setopt autocd
 bindkey -M vicmd '^[h' run-help
 bindkey -M viins '^[h' run-help
 
+setopt glob_complete
+setopt interactive_comments
+
 # Aliases.
 
 for f in ~/.config/shellconfig/*.sh(N) ~/.config/shellconfig/*.zsh(N); do source "$f"; done
