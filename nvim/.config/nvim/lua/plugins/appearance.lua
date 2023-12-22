@@ -6,11 +6,9 @@ return {
   -- Colorscheme
   {
     'rmehri01/onenord.nvim',
-    lazy = false,
-    priority = 1000,
     config = function()
-      vim.cmd [[colorscheme onenord]]
-    end,
+      vim.cmd.colorscheme("onenord")
+    end
   },
   'neanias/everforest-nvim',
   'bluz71/vim-nightfly-colors',
