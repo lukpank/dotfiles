@@ -1,0 +1,16 @@
+import = ["~/.config/alacritty/dark.toml"]
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 10.5
+
+[font.bold]
+family = "GoMono Nerd Font"
+
+[font.normal]
+family = "GoMono Nerd Font"

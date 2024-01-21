@@ -23,6 +23,9 @@ fi
 if [ -f ~/.config/alacritty/alacritty.yml ]; then
     sed -i "s/^colors: [*].*/colors: *$THEME/" ~/.config/alacritty/alacritty.yml
 fi
+if [ -f ~/.config/alacritty/alacritty.toml ]; then
+    sed -i "s#^import =.*#import = [\"~/.config/alacritty/$THEME.toml\"]#" ~/.config/alacritty/alacritty.toml
+fi
 
 # GTK
 if [ -f ~/.config/xsettingsd/xsettingsd.conf ]; then
