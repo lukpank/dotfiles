@@ -51,6 +51,22 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+
+  html = {},
+  htmx = {},
+  unocss = {},
+}
+
+require 'lspconfig'.html.setup {
+  filetypes = { "html", "templ" },
+}
+
+require 'lspconfig'.htmx.setup {
+  filetypes = { "html", "templ" },
+}
+
+require 'lspconfig'.unocss.setup {
+  filetypes = { "html", "templ" },
 }
 
 -- Setup neovim lua configuration
