@@ -10,10 +10,6 @@ return {
       vim.cmd.colorscheme("onenord")
     end
   },
-  'neanias/everforest-nvim',
-  'bluz71/vim-nightfly-colors',
-  'bluz71/vim-moonfly-colors',
-  'Verf/deepwhite.nvim',
 
   {
     -- Statusline (see `:help lualine.txt`)

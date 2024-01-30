@@ -58,16 +58,6 @@ return {
   { 'folke/which-key.nvim', opts = {} },
 
   {
-    'akinsho/toggleterm.nvim',
-    keys = { '<C-_>', '<cmd>ToggleTerm<cr>', desc = 'Toggle term' },
-    version = "*",
-    opts = {
-      direction = "float",
-      open_mapping = [[<C-_>]],
-    }
-  },
-
-  {
     'ThePrimeagen/harpoon',
     dependencies = { 'nvim-lua/plenary.nvim' },
     lazy = true,

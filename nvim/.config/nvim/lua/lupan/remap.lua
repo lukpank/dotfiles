@@ -27,6 +27,7 @@ end, { desc = '[/] Find in current buffer' })
 
 key('n', '<leader>gf', '<cmd>Telescope git_files<cr>', { desc = '[G]it [f]iles' })
 key('n', '<leader>gs', '<cmd>Telescope git_status<cr>', { desc = '[G]it [s]tatus' })
+key('n', '<leader>gg', ':Git grep ', { desc = '[G]it [g]rep' })
 key('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = '[F]ind [f]iles' })
 key('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = '[F]ind [g]rep' })
 key('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { desc = '[F]ind [w]ord' })
