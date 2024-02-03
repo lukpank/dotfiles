@@ -1,5 +1,8 @@
 alias v=nvim
 alias ll='ls -l'
+alias ta='tmux attach -t'
+alias tl='tmux list-sessions'
+alias tn='tmux new -s'
 
 if which exa > /dev/null; then
     alias ls='exa --icons'

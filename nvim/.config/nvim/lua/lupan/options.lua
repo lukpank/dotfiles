@@ -44,3 +44,5 @@ vim.o.expandtab = true
 vim.g.lightspeed_no_default_keymaps = true
 
 vim.o.cursorline = true
+
+vim.opt.foldcolumn = '1'
