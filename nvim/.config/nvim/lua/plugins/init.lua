@@ -15,8 +15,9 @@ return {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
-      'nvim-orgmode/orgmode', -- as configured together
+      'nvim-orgmode/orgmode',   -- as configured together
       'vrischmann/tree-sitter-templ',
+      "nushell/tree-sitter-nu", -- additional parser
     },
     build =
     ':TSUpdate'
@@ -61,5 +62,10 @@ return {
     'ThePrimeagen/harpoon',
     dependencies = { 'nvim-lua/plenary.nvim' },
     lazy = true,
+  },
+
+  {
+    'crusj/hierarchy-tree-go.nvim',
+    dependencies = 'neovim/nvim-lspconfig',
   },
 }

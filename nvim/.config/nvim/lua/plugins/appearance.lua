@@ -11,6 +11,8 @@ return {
     end
   },
 
+  'EdenEast/nightfox.nvim',
+
   {
     -- Statusline (see `:help lualine.txt`)
     'nvim-lualine/lualine.nvim',
