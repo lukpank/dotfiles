@@ -2,16 +2,27 @@ local function cwd()
   return vim.fn.getcwd()
 end
 
+local function set_bg()
+  if vim.o.background == 'dark' then
+    vim.cmd.colorscheme("nightfox")
+  else
+    vim.cmd.colorscheme("dayfox")
+  end
+end
+
+vim.api.nvim_create_autocmd('OptionSet', {
+  callback = set_bg,
+  pattern = { 'background' },
+})
+
 return {
   -- Colorscheme
   {
-    'rmehri01/onenord.nvim',
+    'EdenEast/nightfox.nvim',
     config = function()
-      vim.cmd.colorscheme("onenord")
+      set_bg()
     end
   },
-
-  'EdenEast/nightfox.nvim',
 
   {
     -- Statusline (see `:help lualine.txt`)
