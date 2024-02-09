@@ -825,3 +825,7 @@ def gst [] {
 def glog [] {
     git log --pretty=%h»¦«%aN»¦«%s»¦«%aD | lines | split column "»¦«" sha1 committer desc merged_at
 }
+
+def l [pattern? = '.'] {
+    ls  $pattern | grid -c
+}
