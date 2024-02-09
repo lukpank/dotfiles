@@ -762,7 +762,7 @@ $env.config = {
         }
         {
             name: move_up
-            modifier: alt
+            modifier: control
             keycode: char_k
             mode: [vi_normal, vi_insert]
             event: {
@@ -774,7 +774,7 @@ $env.config = {
         }
         {
             name: move_down
-            modifier: alt
+            modifier: control
             keycode: char_j
             mode: [vi_normal, vi_insert]
             event: {
@@ -786,7 +786,7 @@ $env.config = {
         }
         {
             name: move_left
-            modifier: alt
+            modifier: control
             keycode: char_h
             mode: [vi_normal, vi_insert]
             event: {
@@ -798,7 +798,7 @@ $env.config = {
         }
         {
             name: move_right_or_take_history_hint
-            modifier: alt
+            modifier: control
             keycode: char_l
             mode: [vi_normal, vi_insert]
             event: {
