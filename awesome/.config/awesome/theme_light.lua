@@ -10,11 +10,11 @@ theme.tasklist_disable_icon = true
 theme.wibar_height          = 40
 
 theme.bg_normal             = "#283538"
-theme.bg_focus              = "#badde6"
+theme.bg_focus              = "#82a0c9" -- hsl(215deg 40% 65%)
 theme.bg_urgent             = "#d0426a"
-theme.bg_minimize           = "#627b81"
+theme.bg_minimize           = "#7b899d" -- hsl(215deg 15% 55%)
 theme.bg_systray            = theme.bg_normal
-theme.tasklist_bg_focus     = "#9cc2cb"
+theme.tasklist_bg_focus     = "#5e85ba" -- hsl(215deg 40% 55%)
 
 theme.fg_normal             = "#616c6f"
 theme.fg_focus              = "#363d3e"
