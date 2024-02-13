@@ -1,0 +1,22 @@
+* {
+    font-family: GoMono Nerd Font;
+    font-size: 14;
+    background-color: #263c59;
+    color: #7b899d;
+}
+
+#workspaces {
+    padding: 0 1rem;
+}
+
+#workspaces button {
+    padding: 0 3px;
+}
+
+#workspaces button.active {
+    background-color: #7b899d;
+}
+
+#clock {
+    padding: 0 1rem;
+}
