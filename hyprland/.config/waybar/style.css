@@ -11,12 +11,23 @@
 
 #workspaces button {
     padding: 0 3px;
+    border-radius: 0;
+    border-bottom: 3px solid transparent;
 }
 
 #workspaces button.active {
-    background-color: #7b899d;
+    border-bottom: 3px solid #7b899d;
+}
+
+#workspaces button.urgent {
+    border-bottom: 3px solid #a65959;
+}
+
+#window {
+    border-bottom: 3px solid transparent;
 }
 
 #clock {
     padding: 0 1rem;
+    border-bottom: 3px solid transparent;
 }
