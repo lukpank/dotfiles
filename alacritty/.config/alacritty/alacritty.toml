@@ -14,3 +14,8 @@ family = "GoMono Nerd Font"
 
 [font.normal]
 family = "GoMono Nerd Font"
+
+[keyboard]
+bindings = [
+    { key = ";", mods = "Control", chars = "\u001bOR" }
+]
