@@ -31,4 +31,5 @@ fi
 if [ -f ~/.config/xsettingsd/xsettingsd.conf ]; then
     sed -i -E "s#(Net/ThemeName) .*#\\1 \"${GTK_THEME}\"#" ~/.config/xsettingsd/xsettingsd.conf
     pkill -HUP -x xsettingsd
+    gsettings set org.gnome.desktop.interface gtk-theme "${GTK_THEME}"
 fi
