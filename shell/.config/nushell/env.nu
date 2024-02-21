@@ -25,12 +25,13 @@ def create_left_prompt [] {
     let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
     let path_segment = $"($path_color)($dir)"
 
+    let userhost = $'(ansi blue_bold)(id -un)@(hostname)(ansi reset)'
     let base = $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
     let branch = do { git rev-parse --abbrev-ref HEAD } | complete
     if $branch.exit_code == 0 {
-        $"($base) ($separator_color)\((ansi magenta)($branch.stdout | str trim)($separator_color)) "
+        $"($userhost) ($base) ($separator_color)\((ansi magenta)($branch.stdout | str trim)($separator_color)) "
     } else {
-        $base
+        $'($userhost) ($base) '
     }
 }
 
