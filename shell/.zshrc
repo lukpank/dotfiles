@@ -6,7 +6,7 @@ export FZF_DEFAULT_OPTS='--color=bw,hl:green,hl+:green'
 zstyle ':fzf-tab:*' fzf-flags $FZF_DEFAULT_OPTS
 
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-plug "zap-zsh/vim"
+plug "jeffreytse/zsh-vi-mode"
 
 autoload -Uz compinit
 compinit

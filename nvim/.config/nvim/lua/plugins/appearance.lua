@@ -4,7 +4,7 @@ end
 
 local function set_bg()
   if vim.o.background == 'dark' then
-    vim.cmd.colorscheme("nightfox")
+    vim.cmd.colorscheme("nordfox")
   else
     vim.cmd.colorscheme("dayfox")
   end
