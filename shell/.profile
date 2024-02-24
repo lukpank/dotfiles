@@ -27,5 +27,11 @@ done
 
 export PATH
 
-# start X at login
-[[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && which /bin/sx > /dev/null && exec sx ~/.xsession
+# start X or Hyprland at login
+if [[ -z "$DISPLAY" && -z "$WAYLAND_DISPLAY" && "$XDG_VTNR" -eq 1 ]]; then
+    if which /usr/bin/Hyprland > /dev/null; then
+        exec /usr/bin/Hyprland
+    elif which /usr/bin/sx > /dev/null; then
+        exec /usr/bin/sx ~/.xsession
+    fi
+fi
