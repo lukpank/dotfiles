@@ -2,25 +2,12 @@ local function cwd()
   return vim.fn.getcwd()
 end
 
-local function set_bg()
-  if vim.o.background == 'dark' then
-    vim.cmd.colorscheme("nordfox")
-  else
-    vim.cmd.colorscheme("dayfox")
-  end
-end
-
-vim.api.nvim_create_autocmd('OptionSet', {
-  callback = set_bg,
-  pattern = { 'background' },
-})
-
 return {
   -- Colorscheme
   {
-    'EdenEast/nightfox.nvim',
+    'rmehri01/onenord.nvim',
     config = function()
-      set_bg()
+      vim.cmd.colorscheme("onenord")
     end
   },
 
