@@ -16,6 +16,8 @@ plug "zap-zsh/fzf"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 
+ZSH_HIGHLIGHT_STYLES[comment]=fg=blue
+
 # Prompt.
 
 autoload -Uz vcs_info
