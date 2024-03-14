@@ -8,7 +8,6 @@ return {
   -- Undo browsing
   'mbbill/undotree',
 
-
   -- Tabstops autodetected
   'tpope/vim-sleuth',
 
@@ -20,7 +19,4 @@ return {
       require("nvim-surround").setup({})
     end
   },
-
-  -- change directory with telescope from a list of dierectories
-  "SalOrak/whaler",
 }

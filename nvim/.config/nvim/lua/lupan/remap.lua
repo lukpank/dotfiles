@@ -19,25 +19,7 @@ key("n", "<leader>ut", ":UndotreeToggle<cr>", { desc = "[U]undotree [t]oggle" })
 
 -- telescope
 
-key('n', '<leader><space>', '<cmd>Telescope buffers<cr>', { desc = '[ ] Find existing buffers' })
-key('n', '<leader>?', '<cmd>Telescope oldfiles<cr>', { desc = '[?] Find recently opened buffers' })
-key('n', '<leader>/', function()
-  require('telescope.builtin').current_buffer_fuzzy_find(require("telescope.themes").get_dropdown { previewer = false })
-end, { desc = '[/] Find in current buffer' })
-
-key('n', '<leader>gf', '<cmd>Telescope git_files<cr>', { desc = '[G]it [f]iles' })
-key('n', '<leader>gs', '<cmd>Telescope git_status<cr>', { desc = '[G]it [s]tatus' })
 key('n', '<leader>gg', ':Git grep ', { desc = '[G]it [g]rep' })
-key('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = '[F]ind [f]iles' })
-key('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = '[F]ind [g]rep' })
-key('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { desc = '[F]ind [w]ord' })
-key('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { desc = '[F]ind [h]elp (tags)' })
-key('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', { desc = '[F]ind [d]iagnostics' })
-key('n', '<leader>fk', '<cmd>Telescope keymaps<cr>', { desc = '[F]ind [k]eymaps' })
-
-key('n', '<leader>fF', function()
-  require('telescope.builtin').find_files { hidden = true }
-end, { desc = '[F]ind [F]iles (with hidden)' })
 
 key('n', '<leader>td', function()
   require('lupan.ui').tab_change_dir()
@@ -59,13 +41,11 @@ for i = 1, 9, 1 do
   key('n', '<leader>t' .. i, '<cmd>' .. i .. 'tabnext<cr>', { desc = '[T]ab nr [' .. i .. ']' })
 end
 
-key("n", "<leader>fl", '<cmd>Telescope whaler<cr>', { desc = '[F]ind with wha[l]er' })
-
 -- Diagnostic keymaps
-key('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-key('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-key('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-key('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 key('n', '<leader>N', ':bn<cr>', { desc = '[N]ext buffer' })
 key('n', '<leader>P', ':bp<cr>', { desc = '[P]revious buffer' })
