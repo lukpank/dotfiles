@@ -1,5 +1,8 @@
 -- See `:help vim.o`
 
+-- Disable intro message
+vim.opt.shortmess = vim.opt.shortmess + 'I'
+
 vim.opt.showmode = false
 
 -- Set highlight on search
