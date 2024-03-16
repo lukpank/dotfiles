@@ -112,36 +112,6 @@ vim.keymap.set("n", "<leader>ss", "<cmd>source ~/.config/nvim/after/plugin/luasn
 
 key('t', '<C-_>', '<C-\\><C-n>')
 
--- harpoon
-
-key('n', '<leader>ha', function()
-  require("harpoon.mark").add_file()
-end, { desc = '[H]arpoon [a]dd' })
-
-key('n', '<leader>hm', function()
-  require("harpoon.ui").toggle_quick_menu()
-end, { desc = '[H]arpoon toggle quick [m]enu' })
-
-key('n', '<leader>hj', function()
-  require("harpoon.ui").nav_next()
-end, { desc = '[H]arpoon next (j)' })
-
-key('n', '<leader>hk', function()
-  require("harpoon.ui").nav_prev()
-end, { desc = '[H]arpoon prev (k)' })
-
-for i = 1, 9, 1 do
-  key('n', '<M-' .. i .. '>', function()
-    require("harpoon.ui").nav_file(i)
-  end, { desc = '[H]arpoon nav_file [' .. i .. ']' })
-end
-
-for i = 1, 9, 1 do
-  key('n', '<leader>T' .. i, function()
-    require("harpoon.term").gotoTerminal(i)
-  end, { desc = '[H]arpoon nav_file [' .. i .. ']' })
-end
-
 -- colors
 
 key('n', '<F6>', function()
