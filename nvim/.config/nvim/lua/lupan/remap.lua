@@ -81,6 +81,9 @@ key('n', 'g?', '<Plug>Lightspeed_S', { desc = "Lightspeed backward search" })
 key({ 'n', 'v' }, '<leader>y', '"+y', { desc = "Yank to clipboard" })
 key('n', '<leader>j', ':cn<CR>', { desc = "Quickfix next" })
 key('n', '<leader>k', ':cp<CR>', { desc = "Quickfix previous" })
+key('n', '<leader>co', ':copen<CR>', { desc = "Quickfix [O]pen" })
+key('n', '<leader>cc', ':cclose<CR>', { desc = "Quickfix [C]lose" })
+key('n', '<leader>ct', ':TroubleToggle<CR>', { desc = "Toggle [T]rouble" })
 
 -- luasnip
 
