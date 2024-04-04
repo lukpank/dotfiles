@@ -7,8 +7,12 @@ return {
 
   {
     'ggandor/leap.nvim',
+    opts = {
+      safe_labels = {},
+    },
     config = function()
-      require('leap').add_default_mappings()
+      vim.keymap.set({ 'n', 'x', 'o' }, 'gs', '<Plug>(leap)')
+      vim.keymap.set({ 'n', 'x', 'o' }, 'gS', '<Plug>(leap-from-window)')
     end,
     dependencies = {
       "tpope/vim-repeat",
