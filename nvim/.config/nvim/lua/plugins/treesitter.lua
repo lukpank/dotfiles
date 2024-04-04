@@ -12,7 +12,6 @@ return {
     config = function()
       -- See `:help nvim-treesitter`
       local org = require('orgmode')
-      org.setup_ts_grammar()
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
