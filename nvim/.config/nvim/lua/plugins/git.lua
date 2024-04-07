@@ -1,6 +1,14 @@
 return {
   -- Git
-  'tpope/vim-fugitive',
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = true
+  },
 
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
