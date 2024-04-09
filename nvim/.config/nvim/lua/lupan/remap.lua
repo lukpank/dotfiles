@@ -10,12 +10,12 @@ key('v', '<Space>', '<Nop>', { silent = true })
 key('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 key('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-key("n", "<leader>dd", ":Explore<cr>", { desc = "[D]isplay [d]irectory" })
-key("n", "<leader>dv", ":Vexplore<cr>", { desc = "[D]isplay directory ([v]ertical split)" })
-key("n", "<leader>dh", ":Sexplore<cr>", { desc = "[D]isplay [d]irectory ([h]orizontal split)" })
-key("n", "<leader>dt", ":Lexplore 30<cr>", { desc = "[D]isplay directory [t]oggle" })
-key("n", "<leader>ct", ":ColorizerToggle<cr>", { desc = "[C]olorizer [t]oggle" })
-key("n", "<leader>ut", ":UndotreeToggle<cr>", { desc = "[U]undotree [t]oggle" })
+key("n", "<leader>dd", "<cmd>Explore<CR>", { desc = "[D]isplay [d]irectory" })
+key("n", "<leader>dv", "<cmd>Vexplore<CR>", { desc = "[D]isplay directory ([v]ertical split)" })
+key("n", "<leader>dh", "<cmd>Sexplore<CR>", { desc = "[D]isplay [d]irectory ([h]orizontal split)" })
+key("n", "<leader>dt", "<cmd>Lexplore 30<CR>", { desc = "[D]isplay directory [t]oggle" })
+key("n", "<leader>ct", "<cmd>ColorizerToggle<CR>", { desc = "[C]olorizer [t]oggle" })
+key("n", "<leader>ut", "<cmd>UndotreeToggle<CR>", { desc = "[U]undotree [t]oggle" })
 
 -- telescope
 
@@ -38,7 +38,7 @@ key('n', '<leader>tt', function()
 end, { desc = '[T]ab [t]oggle previous' })
 
 for i = 1, 9, 1 do
-  key('n', '<leader>t' .. i, '<cmd>' .. i .. 'tabnext<cr>', { desc = '[T]ab nr [' .. i .. ']' })
+  key('n', '<leader>t' .. i, '<cmd>' .. i .. 'tabnext<CR>', { desc = '[T]ab nr [' .. i .. ']' })
 end
 
 -- Diagnostic keymaps
@@ -47,18 +47,19 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagn
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
-key('n', '<leader>N', ':bn<cr>', { desc = '[N]ext buffer' })
-key('n', '<leader>P', ':bp<cr>', { desc = '[P]revious buffer' })
+key('n', '<leader>N', '<cmd>bn<CR>', { desc = '[N]ext buffer' })
+key('n', '<leader>P', '<cmd>bp<CR>', { desc = '[P]revious buffer' })
 
-key('n', '<leader>tc', ':tabnew<cr>', { desc = '[T]ab [c]reate' })
-key('n', '<leader>ts', ':tab split<cr>', { desc = '[T]ab [s]plit' })
-key('n', '<leader>tn', ':tabnext<cr>', { desc = '[T]ab [n]ext' })
-key('n', '<leader>tp', ':tabprevious<cr>', { desc = '[T]ab [p]revious' })
-key('n', '<leader>tf', ':tabfirst<cr>', { desc = '[T]ab [f]irst' })
-key('n', '<leader>tl', ':tablast<cr>', { desc = '[T]tab [l]ast' })
+key('n', '<leader>tc', '<cmd>tabnew<CR>', { desc = '[T]ab [c]reate' })
+key('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = '[T]ab close' })
+key('n', '<leader>ts', '<cmd>tab split<CR>', { desc = '[T]ab [s]plit' })
+key('n', '<leader>tn', '<cmd>tabnext<CR>', { desc = '[T]ab [n]ext' })
+key('n', '<leader>tp', '<cmd>tabprevious<CR>', { desc = '[T]ab [p]revious' })
+key('n', '<leader>tf', '<cmd>tabfirst<CR>', { desc = '[T]ab [f]irst' })
+key('n', '<leader>tl', '<cmd>tablast<CR>', { desc = '[T]tab [l]ast' })
 
-key('v', 'J', ":m '>+1<cr>gv=gv", { desc = "Move lines down" })
-key('v', 'K', ":m '<-2<cr>gv=gv", { desc = "Move lines up" })
+key('v', 'J', ":m '>+1<CR>gv=gv", { desc = "Move lines down" })
+key('v', 'K', ":m '<-2<CR>gv=gv", { desc = "Move lines up" })
 
 -- Change window
 key('n', '<C-j>', '<C-w>j', opts)
@@ -79,11 +80,11 @@ key('n', 'g?', '<Plug>Lightspeed_S', { desc = "Lightspeed backward search" })
 
 -- Clipboard and quickfix
 key({ 'n', 'v' }, '<leader>y', '"+y', { desc = "Yank to clipboard" })
-key('n', '<leader>j', ':cn<CR>', { desc = "Quickfix next" })
-key('n', '<leader>k', ':cp<CR>', { desc = "Quickfix previous" })
-key('n', '<leader>co', ':copen<CR>', { desc = "Quickfix [O]pen" })
-key('n', '<leader>cc', ':cclose<CR>', { desc = "Quickfix [C]lose" })
-key('n', '<leader>ct', ':TroubleToggle<CR>', { desc = "Toggle [T]rouble" })
+key('n', '<leader>j', '<cmd>cn<CR>', { desc = "Quickfix next" })
+key('n', '<leader>k', '<cmd>cp<CR>', { desc = "Quickfix previous" })
+key('n', '<leader>co', '<cmd>copen<CR>', { desc = "Quickfix [O]pen" })
+key('n', '<leader>cc', '<cmd>cclose<CR>', { desc = "Quickfix [C]lose" })
+key('n', '<leader>ct', '<cmd>TroubleToggle<CR>', { desc = "Toggle [T]rouble" })
 
 -- luasnip
 
