@@ -28,6 +28,8 @@ return {
 
       -- Icons, requires Nerd font.
       { 'nvim-tree/nvim-web-devicons' },
+
+      'davvid/telescope-git-grep.nvim',
     },
     config = function()
       local telescope = require 'telescope'
@@ -51,6 +53,7 @@ return {
       pcall(telescope.load_extension, 'fzf')
       pcall(telescope.load_extension, 'ui-select')
       pcall(telescope.load_extension, 'whaler')
+      pcall(telescope.load_extension, 'git_grep')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -70,6 +73,10 @@ return {
         { desc = '[S]earch with wha[L]er' })
       vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = '[G]it [F]iles' })
       vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = '[G]it [S]tatus' })
+      vim.keymap.set('n', '<leader>gg', function() telescope.extensions.git_grep.live_grep() end,
+        { desc = '[G]it [g]rep' })
+      vim.keymap.set('n', '<leader>gw', function() telescope.extensions.git_grep.grep() end,
+        { desc = '[G]it grep current [W]ord' })
 
       vim.keymap.set('n', '<leader>/', function()
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {

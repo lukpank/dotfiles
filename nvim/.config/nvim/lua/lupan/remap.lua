@@ -17,9 +17,7 @@ key("n", "<leader>dt", "<cmd>Lexplore 30<CR>", { desc = "[D]isplay directory [t]
 key("n", "<leader>ct", "<cmd>ColorizerToggle<CR>", { desc = "[C]olorizer [t]oggle" })
 key("n", "<leader>ut", "<cmd>UndotreeToggle<CR>", { desc = "[U]undotree [t]oggle" })
 
--- telescope
-
-key('n', '<leader>gg', ':Git grep ', { desc = '[G]it [g]rep' })
+-- tabs
 
 key('n', '<leader>td', function()
   require('lupan.ui').tab_change_dir()
