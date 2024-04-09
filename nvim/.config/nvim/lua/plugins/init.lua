@@ -31,8 +31,11 @@ return {
     config = function()
       local tsj = require('treesj')
       tsj.setup({
-        vim.keymap.set('n', '<leader>T', tsj.toggle, { desc = "[T]oggle one-line" }),
+        use_default_keymaps = false,
       })
+      vim.keymap.set('n', '<leader>tg', tsj.toggle, { desc = "[T]ree to[g]gle one-line" })
+      vim.keymap.set('n', '<leader>tj', tsj.join, { desc = "[T]ree [J]oin one-line" })
+      vim.keymap.set('n', '<leader>ts', tsj.split, { desc = "[T]ree [S]plit one-line" })
     end,
   },
 }

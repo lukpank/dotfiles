@@ -1,13 +1,23 @@
 return {
   -- Git
   {
-    "NeogitOrg/neogit",
+    'NeogitOrg/neogit',
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
-      "nvim-telescope/telescope.nvim",
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+      'nvim-telescope/telescope.nvim',
     },
-    config = true
+    config = function()
+      local neogit = require('neogit')
+      neogit.setup()
+      vim.keymap.set('n', '<leader>go', neogit.open, { desc = 'Neo[g]it [O]pen' })
+      vim.keymap.set('n', '<leader>g.', function() neogit.open({ cwd = '%:p:h' }) end,
+        { desc = 'Neo[g]it open in current file repository' })
+      local diffview = require('diffview')
+      vim.keymap.set('n', '<leader>gh', diffview.file_history, { desc = '[G]it [H]istory' })
+      vim.keymap.set('n', '<leader>g%', function() diffview.file_history(nil, { '%' }) end,
+        { desc = '[G]it history for [%] current file' })
+    end
   },
 
   {
