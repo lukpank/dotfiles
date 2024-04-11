@@ -21,6 +21,14 @@ return {
   },
 
   {
+    'FabijanZulj/blame.nvim',
+    config = function()
+      local blame = require('blame')
+      vim.keymap.set('n', '<leader>gb', function() blame.toggle({ args = 'window' }) end)
+    end
+  },
+
+  {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
