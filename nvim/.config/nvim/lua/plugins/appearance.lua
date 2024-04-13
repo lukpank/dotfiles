@@ -7,7 +7,24 @@ return {
   {
     'rmehri01/onenord.nvim',
     config = function()
-      vim.cmd.colorscheme("onenord")
+      -- vim.cmd.colorscheme("onenord")
+    end
+  },
+  {
+    "neanias/everforest-nvim",
+    version = false,
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("everforest")
+    end,
+  },
+  {
+    "Tsuzat/NeoSolarized.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme("NeoSolarized")
     end
   },
 
