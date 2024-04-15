@@ -26,6 +26,18 @@ return {
   },
 
   {
+    'stevearc/oil.nvim',
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function(opts)
+      require("oil").setup({
+        default_file_explorer = true,
+        delete_to_trash = true,
+      })
+      vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
+    end
+  },
+
+  {
     'Wansmer/treesj',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
