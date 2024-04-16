@@ -36,7 +36,15 @@ return {
           if client and client.server_capabilities.documentHighlightProvider then
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
-              callback = vim.lsp.buf.document_highlight,
+              callback = function()
+                local clients = vim.lsp.get_clients({ bufnr = event.buf })
+                for _i, cl in ipairs(clients) do
+                  if cl.name == 'unocss' then
+                    return -- skip highlight if unocss is attached (workaround)
+                  end
+                end
+                vim.lsp.buf.document_highlight()
+              end
             })
 
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
