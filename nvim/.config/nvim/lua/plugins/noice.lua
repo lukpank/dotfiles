@@ -6,7 +6,8 @@ return {
     'rcarriga/nvim-notify',
   },
   config = function()
-    require('noice').setup({
+    local noice = require('noice')
+    noice.setup({
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
@@ -24,5 +25,12 @@ return {
         lsp_doc_border = false,       -- add a border to hover docs and signature help
       },
     })
+    vim.keymap.set("n", "<leader>nl", function()
+      noice.cmd("last")
+    end)
+
+    vim.keymap.set("n", "<leader>nh", function()
+      noice.cmd("history")
+    end)
   end
 }
