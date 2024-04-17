@@ -16,7 +16,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("everforest")
+      -- vim.cmd.colorscheme("everforest")
     end,
   },
   {
@@ -25,6 +25,12 @@ return {
     priority = 1000,
     config = function()
       -- vim.cmd.colorscheme("NeoSolarized")
+    end
+  },
+  {
+    "EdenEast/nightfox.nvim",
+    config = function()
+      vim.cmd.colorscheme("duskfox")
     end
   },
 

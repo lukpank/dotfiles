@@ -118,8 +118,10 @@ key('t', '<C-_>', '<C-\\><C-n>')
 
 key('n', '<F6>', function()
   if vim.o.background == "dark" then
-    vim.o.background = "light"
+    vim.cmd.colorscheme("dayfox")
+    -- vim.o.background = "light"
   else
-    vim.o.background = "dark"
+    vim.cmd.colorscheme("duskfox")
+    -- vim.o.background = "dark"
   end
 end)
