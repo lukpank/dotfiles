@@ -25,11 +25,14 @@ return {
           map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
           map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
           map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('<leader>rn', '<cmd>Lspsaga rename<CR>', '[R]e[n]ame')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-          map('K', vim.lsp.buf.hover, 'Hover Documentation')
+          map('K', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
           map('<leader>K', vim.lsp.buf.signature_help, 'Signature Documentation')
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          vim.keymap.set('n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>',
+            { desc = 'Go to previous [D]iagnostic message' })
+          vim.keymap.set('n', ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>', { desc = 'Go to next [D]iagnostic message' })
 
           -- Highlight references under cursor (clear highlight when cursor moves).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -118,6 +121,39 @@ return {
           end,
         },
       }
+    end,
+  },
+  {
+    'nvimdev/lspsaga.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('lspsaga').setup({
+        lightbulb = { enable = false }
+      })
+      vim.keymap.set('n', '<leader>la', '<cmd>Lspsaga code_action<CR>', { desc = "[L]spsaga code [A]ction" })
+      vim.keymap.set('n', '<leader>lb', '<cmd>Lspsaga show_buf_diagnostics<CR>',
+        { desc = "[L]spsaga [B]uffer diagnostics" })
+      vim.keymap.set('n', '<leader>lc', '<cmd>Lspsaga show_cursor_diagnostics<CR>',
+        { desc = "[L]spsaga [C]ursor diagnostics" })
+      vim.keymap.set('n', '<leader>ld', '<cmd>Lspsaga goto_definition<CR>', { desc = "[L]spsaga goto [D]efinition" })
+      vim.keymap.set('n', '<leader>lD', '<cmd>Lspsaga goto_type_definition<CR>',
+        { desc = "[L]spsaga goto type [D]efinition" })
+      vim.keymap.set('n', '<leader>lf', '<cmd>Lspsaga finder<CR>', { desc = "[L]spsaga [F]inder" })
+      vim.keymap.set('n', '<leader>lI', '<cmd>Lspsaga finder imp<CR>', { desc = "[L]spsaga finder [I]mplementations" })
+      vim.keymap.set('n', '<leader>li', '<cmd>Lspsaga incoming_calls<CR>', { desc = "[L]spsaga [I]ncomping calls" })
+      vim.keymap.set('n', '<leader>ll', '<cmd>Lspsaga show_line_diagnostics<CR>',
+        { desc = "[L]spsaga [L]ine diagnostics" })
+      vim.keymap.set('n', '<leader>lo', '<cmd>Lspsaga outgoing_calls<CR>', { desc = "[L]spsaga [O]utgoing calls" })
+      vim.keymap.set('n', '<leader>lO', '<cmd>Lspsaga outline<CR>', { desc = "[L]spsaga [O]utline" })
+      vim.keymap.set('n', '<leader>lp', '<cmd>Lspsaga peek_definition<CR>', { desc = "[L]spsaga [P]eek definition" })
+      vim.keymap.set('n', '<leader>lP', '<cmd>Lspsaga peek_type_definition<CR>',
+        { desc = "[L]spsaga [P]eek type definition" })
+      vim.keymap.set('n', '<leader>lw', '<cmd>Lspsaga show_workspace_diagnostics<CR>',
+        { desc = "[L]spsaga [W]orkspace diagnostics" })
+      vim.keymap.set({ 'n', 't' }, '<C-_>', '<cmd>Lspsaga term_toggle<CR>', { desc = "[L]spsaga [T]erm toggle" })
     end,
   },
 }

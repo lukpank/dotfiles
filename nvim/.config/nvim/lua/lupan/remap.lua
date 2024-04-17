@@ -110,10 +110,6 @@ end, { silent = true })
 vim.keymap.set("n", "<leader>ss", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>",
   { desc = "[S]nippets [s]ource" })
 
--- terminal
-
-key('t', '<C-_>', '<C-\\><C-n>')
-
 -- colors
 
 key('n', '<F6>', function()
