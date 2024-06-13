@@ -15,6 +15,7 @@ plug "Aloxaf/fzf-tab"
 plug "zap-zsh/fzf"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
+plug "MichaelAquilina/zsh-you-should-use"
 
 ZSH_HIGHLIGHT_STYLES[comment]=fg=blue
 
