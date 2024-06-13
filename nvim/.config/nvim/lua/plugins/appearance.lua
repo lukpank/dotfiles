@@ -35,19 +35,9 @@ return {
   },
 
   {
-    -- Statusline (see `:help lualine.txt`)
-    'nvim-lualine/lualine.nvim',
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'auto',
-        component_separators = '|',
-        section_separators = '',
-      },
-      sections = {
-        lualine_x = { cwd, 'encoding', 'fileformat', 'filetype' }
-      }
-    },
+    -- Statusline
+    'freddiehaddad/feline.nvim',
+    opts = {},
   },
 
   {
