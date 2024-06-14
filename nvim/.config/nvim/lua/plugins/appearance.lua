@@ -5,32 +5,12 @@ end
 return {
   -- Colorscheme
   {
-    'rmehri01/onenord.nvim',
+    "mcchrish/zenbones.nvim",
+    dependencies = {
+      "rktjmp/lush.nvim",
+    },
     config = function()
-      -- vim.cmd.colorscheme("onenord")
-    end
-  },
-  {
-    "neanias/everforest-nvim",
-    version = false,
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- vim.cmd.colorscheme("everforest")
-    end,
-  },
-  {
-    "Tsuzat/NeoSolarized.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- vim.cmd.colorscheme("NeoSolarized")
-    end
-  },
-  {
-    "EdenEast/nightfox.nvim",
-    config = function()
-      vim.cmd.colorscheme("duskfox")
+      vim.cmd.colorscheme("nordbones")
     end
   },
 

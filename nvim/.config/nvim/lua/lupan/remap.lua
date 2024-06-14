@@ -112,10 +112,10 @@ vim.keymap.set("n", "<leader>ss", "<cmd>source ~/.config/nvim/after/plugin/luasn
 
 key('n', '<F6>', function()
   if vim.o.background == "dark" then
-    vim.cmd.colorscheme("dayfox")
+    vim.cmd.colorscheme("vimbones")
     -- vim.o.background = "light"
   else
-    vim.cmd.colorscheme("duskfox")
+    vim.cmd.colorscheme("nordbones")
     -- vim.o.background = "dark"
   end
 end)

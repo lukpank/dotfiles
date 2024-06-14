@@ -296,9 +296,9 @@ colors: *dark
 font:
   size: 10.5
   normal:
-    family: GoMono Nerd Font
+    family: Fira Code Nerd Font
   bold:
-    family: GoMono Nerd Font
+    family: Fira Code Nerd Font
 
 key_bindings:
    - key: F6
