@@ -30,9 +30,6 @@ return {
           map('K', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
           map('<leader>K', vim.lsp.buf.signature_help, 'Signature Documentation')
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-          vim.keymap.set('n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>',
-            { desc = 'Go to previous [D]iagnostic message' })
-          vim.keymap.set('n', ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>', { desc = 'Go to next [D]iagnostic message' })
 
           -- Highlight references under cursor (clear highlight when cursor moves).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
