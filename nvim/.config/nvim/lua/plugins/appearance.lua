@@ -5,15 +5,17 @@ end
 return {
   -- Colorscheme
   {
-    "mcchrish/zenbones.nvim",
-    dependencies = {
-      "rktjmp/lush.nvim",
-    },
+    'ribru17/bamboo.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      vim.cmd.colorscheme("nordbones")
-    end
+      require('bamboo').setup {
+        -- optional configuration here
+      }
+      require('bamboo').load()
+      vim.cmd.colorscheme("bamboo-vulgaris")
+    end,
   },
-
   {
     -- Statusline
     'freddiehaddad/feline.nvim',
