@@ -1,4 +1,4 @@
-local function termnalbg()
+local function terminalbg()
   local ok, lines = pcall(io.lines, os.getenv('HOME') .. '/.config/alacritty/alacritty.toml')
   if ok then
     for line in lines do
@@ -11,8 +11,8 @@ local function termnalbg()
 end
 
 return {
-  -- Colorscheme
   {
+    -- Colorscheme
     'ribru17/bamboo.nvim',
     lazy = false,
     priority = 1000,
@@ -21,7 +21,7 @@ return {
         -- optional configuration here
       }
       require('bamboo').load()
-      vim.o.background = termnalbg()
+      vim.o.background = terminalbg()
     end,
   },
   {
