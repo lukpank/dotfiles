@@ -1,5 +1,13 @@
-local function cwd()
-  return vim.fn.getcwd()
+local function termnalbg()
+  local ok, lines = pcall(io.lines, os.getenv('HOME') .. '/.config/alacritty/alacritty.toml')
+  if ok then
+    for line in lines do
+      if string.find(line, 'light.toml') then
+        return "light"
+      end
+    end
+  end
+  return "dark"
 end
 
 return {
@@ -13,7 +21,7 @@ return {
         -- optional configuration here
       }
       require('bamboo').load()
-      vim.cmd.colorscheme("bamboo-vulgaris")
+      vim.o.background = termnalbg()
     end,
   },
   {
