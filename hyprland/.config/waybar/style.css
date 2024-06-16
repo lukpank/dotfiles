@@ -1,8 +1,8 @@
+@import url("file:///home/lupan/.config/waybar/dark.css");
+
 * {
     font-family: Fira Code Nerd Font;
-    font-size: 14;
-    background-color: #263c59;
-    color: #7b899d;
+    font-size: 14px;
 }
 
 #workspaces {
@@ -13,14 +13,6 @@
     padding: 0 3px;
     border-radius: 0;
     border-bottom: 3px solid transparent;
-}
-
-#workspaces button.active {
-    border-bottom: 3px solid #7b899d;
-}
-
-#workspaces button.urgent {
-    border-bottom: 3px solid #a65959;
 }
 
 #window {
