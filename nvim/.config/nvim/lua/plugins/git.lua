@@ -23,9 +23,12 @@ return {
   {
     'FabijanZulj/blame.nvim',
     config = function()
-      local blame = require('blame')
-      vim.keymap.set('n', '<leader>gb', function() blame.toggle({ args = 'window' }) end)
-    end
+      require('blame').setup()
+    end,
+    cmd = 'BlameToggle',
+    keys = {
+      { '<leader>gb', '<cmd>BlameToggle<cr>', desc = '[G]it [B]lame toggle' },
+    },
   },
 
   {
