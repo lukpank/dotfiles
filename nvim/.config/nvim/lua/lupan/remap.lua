@@ -12,7 +12,6 @@ key('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 key("n", "<leader>dd", "<cmd>Oil<CR>", { desc = "[D]isplay [d]irectory" })
 key("n", "<leader>df", "<cmd>Oil --float<CR>", { desc = "[D]isplay directory [f]loat" })
-key("n", "<leader>ct", "<cmd>ColorizerToggle<CR>", { desc = "[C]olorizer [t]oggle" })
 key("n", "<leader>ut", "<cmd>UndotreeToggle<CR>", { desc = "[U]undotree [t]oggle" })
 
 -- tabs

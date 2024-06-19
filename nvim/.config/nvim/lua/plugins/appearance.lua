@@ -29,7 +29,15 @@ return {
   },
 
   {
-    'norcalli/nvim-colorizer.lua',
-    cmd = 'ColorizerToggle'
+    --- Create Color Code
+    'uga-rosa/ccc.nvim',
+    config = function(_, opts)
+      require('ccc').setup(opts)
+    end,
+    cmd = { 'CccPick', 'CccHighlighterToggle' },
+    keys = {
+      { "<leader>ct", "<cmd>CccHighlighterToggle<cr>", desc = "[C]olorizer [T]oggle" },
+      { "<leader>cp", "<cmd>CccPick<cr>",              desc = "[C]olor [P]ick" },
+    },
   },
 }
