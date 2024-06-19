@@ -22,12 +22,6 @@ return {
     end,
   },
   {
-    -- Statusline
-    'freddiehaddad/feline.nvim',
-    opts = {},
-  },
-
-  {
     -- Indentation guides (see `:help indent_blankline.txt`)
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl",
