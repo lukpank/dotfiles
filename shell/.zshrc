@@ -16,21 +16,36 @@ plug "zap-zsh/fzf"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "MichaelAquilina/zsh-you-should-use"
+plug "zsh-users/zsh-history-substring-search"
+plug "agkozak/zsh-z"
 
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
 ZSH_HIGHLIGHT_STYLES[comment]=fg=blue
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=bg=magenta,fg=black,bold
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=bg=red,fg=black,bold
+ZSHZ_ECHO=1
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 # Prompt.
 
-autoload -Uz vcs_info
-precmd () { vcs_info }
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats '%F{green}%r%f/%F{yellow}%S%f %F{magenta}(%b)%u%c%f '
-zstyle ':vcs_info:git:*' actionformats '%F{green}%r%f/%F{yellow}%S%f %F{magenta}(%b|%a)%u%c%f '
-zstyle ':vcs_info:*' nvcsformats '%F{green}%~%f%b '
-zstyle ':vcs_info:*' enable git
-PS1='%B%F{blue}%n@%m%f ${vcs_info_msg_0_}%B%#%f%b '
-RPROMPT='%(?..%B%F{red}%?%f%b)'
+if which starship > /dev/null; then
+    eval "$(starship init zsh)"
+else
+    autoload -Uz vcs_info
+    precmd () { vcs_info }
+    setopt prompt_subst
+    zstyle ':vcs_info:git:*' check-for-changes true
+    zstyle ':vcs_info:git:*' formats '%F{green}%r%f/%F{yellow}%S%f %F{magenta}(%b)%u%c%f '
+    zstyle ':vcs_info:git:*' actionformats '%F{green}%r%f/%F{yellow}%S%f %F{magenta}(%b|%a)%u%c%f '
+    zstyle ':vcs_info:*' nvcsformats '%F{green}%~%f%b '
+    zstyle ':vcs_info:*' enable git
+    PS1='%B%F{blue}%n@%m%f ${vcs_info_msg_0_}%B%#%f%b '
+    RPROMPT='%(?..%B%F{red}%?%f%b)'
+fi
 
 # History.
 
