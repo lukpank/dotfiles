@@ -1,0 +1,13 @@
+[opener]
+imv = [
+    { run = 'imv "$@"', orphan = true },
+]
+nvim_cd = [
+    { run = 'nvim -c "cd $@"', block = true }
+]
+
+[open]
+prepend_rules = [
+    { mime = "image/*", use = "imv" },
+    { mime = "inode/directory", use = "nvim_cd" }
+]
