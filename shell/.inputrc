@@ -1,5 +1,11 @@
 set editing-mode vi
 set show-mode-in-prompt on
-set vi-ins-mode-string \1\e[6 q\2
-set vi-cmd-mode-string \1\e[2 q\2
+set vi-ins-mode-string \1\e[6 q\2\e[31m[+]\e[0m \2
+set vi-cmd-mode-string \1\e[2 q\2\e[32m[:]\e[0m \2
 
+set keymap vi-command
+"k": history-substring-search-backward
+"j": history-substring-search-forward
+
+set keymap vi-insert
+"\C-l": clear-screen
