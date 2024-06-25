@@ -2,11 +2,11 @@
 
 * {
     font-family: Fira Code Nerd Font;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 #workspaces {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
 }
 
 #workspaces button {
@@ -20,6 +20,6 @@
 }
 
 #clock {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
     border-bottom: 3px solid transparent;
 }
