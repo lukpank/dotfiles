@@ -2,6 +2,9 @@
 imv = [
     { run = 'imv "$@"', orphan = true },
 ]
+zathura = [
+    { run = 'zathura "$@"', orphan = true },
+]
 nvim_cd = [
     { run = 'nvim -c "cd $@"', block = true }
 ]
@@ -9,5 +12,6 @@ nvim_cd = [
 [open]
 prepend_rules = [
     { mime = "image/*", use = "imv" },
+    { mime = "application/pdf", use = "zathura" },
     { mime = "inode/directory", use = "nvim_cd" }
 ]
