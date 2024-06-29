@@ -54,6 +54,7 @@ return {
       pcall(telescope.load_extension, 'ui-select')
       pcall(telescope.load_extension, 'whaler')
       pcall(telescope.load_extension, 'git_grep')
+      pcall(telescope.load_extension, 'persisted')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'

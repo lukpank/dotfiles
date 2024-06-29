@@ -10,10 +10,6 @@ return {
       { "/", exact = true },
     },
   },
-  config = function(_, opts)
-    require("persisted").setup(opts)
-    require("telescope").load_extension("persisted")
-  end,
   keys = {
     { "<leader>sp", "<cmd>:Telescope persisted<cr>", desc = "Search [P]ersisted" },
   },
