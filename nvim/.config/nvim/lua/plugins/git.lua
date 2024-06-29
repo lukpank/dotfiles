@@ -11,24 +11,33 @@ return {
       graph_style = 'unicode',
       use_per_project_settings = false,
     },
-    config = function(_, opts)
-      local neogit = require('neogit')
-      neogit.setup(opts)
-      vim.keymap.set('n', '<leader>go', neogit.open, { desc = 'Neo[g]it [O]pen' })
-      vim.keymap.set('n', '<leader>g.', function() neogit.open({ cwd = '%:p:h' }) end,
-        { desc = 'Neo[g]it open in current file repository' })
-      local diffview = require('diffview')
-      vim.keymap.set('n', '<leader>gh', diffview.file_history, { desc = '[G]it [H]istory' })
-      vim.keymap.set('n', '<leader>g%', function() diffview.file_history(nil, { '%' }) end,
-        { desc = '[G]it history for [%] current file' })
-    end
+    keys = {
+      {
+        '<leader>go',
+        function() require('neogit').open() end,
+        desc = 'Neo[g]it [O]pen'
+      },
+      {
+        '<leader>g.',
+        function() require('neogit').open({ cwd = '%:p:h' }) end,
+        desc = 'Neo[g]it open in current file repository'
+      },
+      {
+        '<leader>gh',
+        function() require('diffview').file_history() end,
+        desc = '[G]it [H]istory',
+      },
+      {
+        '<leader>g%',
+        function() require('diffview').file_history(nil, { '%' }) end,
+        desc = '[G]it history for [%] current file'
+      },
+    },
   },
 
   {
     'FabijanZulj/blame.nvim',
-    config = function(_, opts)
-      require('blame').setup(opts)
-    end,
+    config = true,
     cmd = 'BlameToggle',
     keys = {
       { '<leader>gb', '<cmd>BlameToggle<cr>', desc = '[G]it [B]lame toggle' },
