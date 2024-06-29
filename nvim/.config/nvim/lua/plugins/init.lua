@@ -28,11 +28,12 @@ return {
   {
     'stevearc/oil.nvim',
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function(opts)
-      require("oil").setup({
-        default_file_explorer = true,
-        delete_to_trash = true,
-      })
+    opts = {
+      default_file_explorer = true,
+      delete_to_trash = true,
+    },
+    config = function(_, opts)
+      require("oil").setup(opts)
       vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
     end
   },
@@ -40,11 +41,12 @@ return {
   {
     'Wansmer/treesj',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
+    opts = {
+      use_default_keymaps = false,
+    },
+    config = function(_, opts)
       local tsj = require('treesj')
-      tsj.setup({
-        use_default_keymaps = false,
-      })
+      tsj.setup(opts)
       vim.keymap.set('n', '<leader>tg', tsj.toggle, { desc = "[T]ree to[g]gle one-line" })
       vim.keymap.set('n', '<leader>tj', tsj.join, { desc = "[T]ree [J]oin one-line" })
       vim.keymap.set('n', '<leader>ts', tsj.split, { desc = "[T]ree [S]plit one-line" })

@@ -126,10 +126,11 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons',
     },
-    config = function()
-      require('lspsaga').setup({
-        lightbulb = { enable = false }
-      })
+    opts = {
+      lightbulb = { enable = false }
+    },
+    config = function(_, opts)
+      require('lspsaga').setup(opts)
       vim.keymap.set('n', '<leader>la', '<cmd>Lspsaga code_action<CR>', { desc = "[L]spsaga code [A]ction" })
       vim.keymap.set('n', '<leader>lb', '<cmd>Lspsaga show_buf_diagnostics<CR>',
         { desc = "[L]spsaga [B]uffer diagnostics" })

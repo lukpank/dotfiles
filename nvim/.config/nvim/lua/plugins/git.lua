@@ -7,9 +7,13 @@ return {
       'sindrets/diffview.nvim',
       'nvim-telescope/telescope.nvim',
     },
-    config = function()
+    opts = {
+      graph_style = 'unicode',
+      use_per_project_settings = false,
+    },
+    config = function(_, opts)
       local neogit = require('neogit')
-      neogit.setup()
+      neogit.setup(opts)
       vim.keymap.set('n', '<leader>go', neogit.open, { desc = 'Neo[g]it [O]pen' })
       vim.keymap.set('n', '<leader>g.', function() neogit.open({ cwd = '%:p:h' }) end,
         { desc = 'Neo[g]it open in current file repository' })
@@ -22,8 +26,8 @@ return {
 
   {
     'FabijanZulj/blame.nvim',
-    config = function()
-      require('blame').setup()
+    config = function(_, opts)
+      require('blame').setup(opts)
     end,
     cmd = 'BlameToggle',
     keys = {

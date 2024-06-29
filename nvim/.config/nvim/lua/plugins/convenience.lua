@@ -2,8 +2,8 @@ return {
   {
     'folke/which-key.nvim',
     event = 'VimEnter',
-    config = function()
-      require('which-key').setup()
+    config = function(_, opts)
+      require('which-key').setup(opts)
 
       -- Document existing key chains
       require('which-key').register {
@@ -18,8 +18,8 @@ return {
   },
   {
     "max397574/better-escape.nvim",
-    config = function()
-      require("better_escape").setup()
+    config = function(_, opts)
+      require("better_escape").setup(opts)
     end,
   },
 }
