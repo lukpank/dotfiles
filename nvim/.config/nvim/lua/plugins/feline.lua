@@ -1,19 +1,41 @@
 local function feline_config(_, opts)
-  local theme = {
-    bg = '#394b70',
-    black = '#1d202f',
-    skyblue = '#7aa2f7',
-    cyan = '#0db9d7',
-    fg = '#c0caf5',
-    green = '#1abc9c',
-    oceanblue = '#3d59a1',
-    magenta = '#bb9af7',
-    orange = '#ff9e64',
-    red = '#f7768e',
-    violet = '#9d7cd8',
-    white = '#a9b1d6',
-    yellow = '#e0af68',
+  local feline = require('feline')
+
+  local dark_theme = {
+    bg = '#615853',
+    bg2 = '#352f2d',
+    black = '#403833',
+    skyblue = '#61abda',
+    cyan = '#65b8c1',
+    fg = '#b4bdc3',
+    green = '#8bae68',
+    oceanblue = '#6099c0',
+    magenta = '#cf86c1',
+    orange = '#d68c67',
+    red = '#e8838f',
+    violet = '#b279a7',
+    white = '#b4bdc3',
+    yellow = '#b77e64',
   }
+  feline.add_theme('dark', dark_theme)
+
+  local light_theme = {
+    bg = '#e1dcd9',
+    bg2 = '#d6cdc9',
+    black = '#c4b6af',
+    skyblue = '#1d5573',
+    cyan = '#2b747c',
+    fg = '#2c363c',
+    green = '#3f5a22',
+    oceanblue = '#286486',
+    magenta = '#7b3b70',
+    orange = '#803d1c',
+    red = '#94253e',
+    violet = '#88507d',
+    white = '#4f5e68',
+    yellow = '#944927',
+  }
+  feline.add_theme('light', light_theme)
 
   local statusline = require('arrow.statusline')
   local vimode = require('feline.providers.vi_mode')
@@ -24,7 +46,7 @@ local function feline_config(_, opts)
         return {
           name = vimode.get_mode_highlight_name(),
           fg = vimode.get_mode_color(),
-          bg = theme.fg,
+          bg = 'bg2',
           style = 'bold',
         }
       end,
@@ -32,21 +54,21 @@ local function feline_config(_, opts)
         str = ' █',
         always_visible = true,
         hl = {
-          fg = theme.fg,
+          fg = 'bg2',
         },
       },
       right_sep = {
         str = '',
         always_visible = true,
         hl = {
-          fg = theme.fg,
+          fg = 'bg2',
         },
       }
     },
     file_info = {
       provider = 'file_info',
       hl = {
-        fg = theme.fg,
+        fg = 'fg',
       },
       left_sep = {
         str = '  ',
@@ -58,122 +80,123 @@ local function feline_config(_, opts)
     arrow = {
       provider = function() return statusline.text_for_statusline_with_icons() end,
       hl = {
-        fg = theme.red,
+        fg = 'red',
         style = 'bold',
       },
     },
     file_size = {
       provider = 'file_size',
       hl = {
-        fg = theme.bg,
-        bg = theme.fg,
+        fg = 'fg',
+        bg = 'bg2',
         style = 'bold',
       },
       left_sep = {
         str = '  █',
         always_visible = true,
         hl = {
-          fg = theme.fg,
+          fg = 'bg2',
         },
       },
     },
     line_percentage = {
       provider = 'line_percentage',
       hl = {
-        fg = theme.bg,
-        bg = theme.fg,
+        fg = 'fg',
+        bg = 'bg2',
         style = 'bold',
       },
       left_sep = {
         str = ' │ ',
         hl = {
-          fg = theme.bg,
-          bg = theme.fg,
+          fg = 'fg',
+          bg = 'bg2',
         },
       },
       right_sep = {
         str = ' │ ',
         hl = {
-          fg = theme.bg,
-          bg = theme.fg,
+          fg = 'fg',
+          bg = 'bg2',
         },
       },
     },
     position = {
       provider = 'position',
       hl = {
-        fg = theme.bg,
-        bg = theme.fg,
+        fg = 'fg',
+        bg = 'bg2',
         style = 'bold',
       },
       right_sep = {
         str = '█ ',
         always_visible = true,
         hl = {
-          fg = theme.fg,
+          fg = 'bg2',
         },
       }
     },
+
     diagnostic_errors = {
       provider = 'diagnostic_errors',
       hl = {
-        fg = theme.red,
+        fg = 'red',
       },
     },
     diagnostic_warnings = {
       provider = 'diagnostic_warnings',
       hl = {
-        fg = theme.yellow,
-      },
-    },
-    diagnostic_info = {
-      provider = 'diagnostic_info',
-      hl = {
-        fg = theme.green,
+        fg = 'yellow',
       },
     },
     diagnostic_hints = {
       provider = 'diagnostic_hints',
       hl = {
-        fg = theme.blue,
+        fg = 'cyan',
+      },
+    },
+    diagnostic_info = {
+      provider = 'diagnostic_info',
+      hl = {
+        fg = 'skyblue',
       },
     },
 
     git_diff_added = {
       provider = 'git_diff_added',
       hl = {
-        fg = theme.green,
+        fg = 'green',
       },
     },
     git_diff_removed = {
       provider = 'git_diff_removed',
       hl = {
-        fg = theme.red,
+        fg = 'red',
       },
     },
     git_diff_changed = {
       provider = 'git_diff_changed',
       hl = {
-        fg = theme.yellow,
+        fg = 'yellow',
       },
     },
     git_branch = {
       provider = 'git_branch',
       hl = {
-        fg = theme.bg,
-        bg = theme.fg,
+        fg = 'fg',
+        bg = 'bg2',
         style = 'bold',
       },
       left_sep = {
         str = '  █',
         hl = {
-          fg = theme.fg,
+          fg = 'bg2',
         },
       },
       right_sep = {
         str = ' ',
         hl = {
-          fg = theme.fg,
+          fg = 'bg2',
         },
       }
     },
@@ -208,9 +231,8 @@ local function feline_config(_, opts)
   }
 
   opts.components = { active = active, inactive = inactive }
-  local feline = require('feline')
   feline.setup(opts)
-  feline.use_theme(theme)
+  feline.use_theme(require('lupan.utils').terminalbg())
 end
 
 return {

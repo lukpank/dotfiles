@@ -1,10 +1,10 @@
 * {
-    background-color: #8fa0a3;
-    color: #394446;
+    background-color: #e1dcd9;
+    color: #2c363c;
 }
 
 #workspaces button.active {
-    border-bottom: 3px solid #5c6d70;
+    border-bottom: 3px solid #2c363c;
 }
 
 #workspaces button.urgent {

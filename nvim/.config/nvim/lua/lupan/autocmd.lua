@@ -16,3 +16,11 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = vim.api.nvim_create_augroup('BufWriteFormat', { clear = true }),
   pattern = { '*.go', '*.lua', '*.rs' },
 })
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  desc = 'Change feline theme',
+  group = vim.api.nvim_create_augroup('ChangeFelineTheme', { clear = true }),
+  callback = function()
+    require('feline').use_theme(vim.o.background)
+  end,
+})

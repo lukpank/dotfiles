@@ -1,26 +1,15 @@
-local function terminalbg()
-  local ok, lines = pcall(io.lines, os.getenv('HOME') .. '/.config/alacritty/alacritty.toml')
-  if ok then
-    for line in lines do
-      if string.find(line, 'light.toml') then
-        return "light"
-      end
-    end
-  end
-  return "dark"
-end
-
 return {
   {
     -- Colorscheme
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
+    'zenbones-theme/zenbones.nvim',
+    dependencies = { 'rktjmp/lush.nvim' },
     config = function()
-      vim.o.background = terminalbg()
-      vim.cmd.colorscheme('tokyonight')
+      vim.o.background = require('lupan.utils').terminalbg()
+      vim.cmd.colorscheme('zenbones')
     end,
   },
+  "slugbyte/lackluster.nvim",
+  "folke/tokyonight.nvim",
   {
     -- Indentation guides (see `:help indent_blankline.txt`)
     'lukas-reineke/indent-blankline.nvim',
