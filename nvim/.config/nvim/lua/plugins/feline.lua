@@ -2,12 +2,12 @@ local function feline_config(_, opts)
   local feline = require('feline')
 
   local dark_theme = {
-    bg = '#615853',
-    bg2 = '#352f2d',
+    bg = '#5a605f',
+    bg2 = '#2b3231',
     black = '#403833',
     skyblue = '#61abda',
     cyan = '#65b8c1',
-    fg = '#b4bdc3',
+    fg = '#9bafac',
     green = '#8bae68',
     oceanblue = '#6099c0',
     magenta = '#cf86c1',
@@ -20,12 +20,12 @@ local function feline_config(_, opts)
   feline.add_theme('dark', dark_theme)
 
   local light_theme = {
-    bg = '#e1dcd9',
-    bg2 = '#d6cdc9',
+    bg = '#dde4e3',
+    bg2 = '#b3cbc8',
     black = '#c4b6af',
     skyblue = '#1d5573',
     cyan = '#2b747c',
-    fg = '#2c363c',
+    fg = '#2c3131',
     green = '#3f5a22',
     oceanblue = '#286486',
     magenta = '#7b3b70',
