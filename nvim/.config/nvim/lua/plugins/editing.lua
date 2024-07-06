@@ -28,4 +28,9 @@ return {
       { '<leader>r',  '<Plug>ReplaceWithRegisterVisual',  mode = 'x' },
     },
   },
+  {
+    "chrisgrieser/nvim-various-textobjs",
+    lazy = false,
+    opts = { useDefaultKeymaps = true },
+  },
 }
