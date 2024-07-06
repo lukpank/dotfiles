@@ -3,6 +3,7 @@ alias ll='ls -l'
 alias ta='tmux attach -t'
 alias tl='tmux list-sessions'
 alias tn='tmux new -s'
+alias fv='fzf --preview="bat --color=always {}" --bind="enter:become(nvim {})"'
 
 if which exa > /dev/null; then
     alias ls='exa --icons'

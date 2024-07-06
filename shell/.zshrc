@@ -2,8 +2,10 @@
 # % cd ~/.local/share
 # % git clone https://github.com/zap-zsh/zap.git --branch=release-v1
 
-export FZF_DEFAULT_OPTS='--color=bw,hl:green,hl+:green'
+export FZF_DEFAULT_OPTS='--color=hl:green,hl+:green'
 zstyle ':fzf-tab:*' fzf-flags $FZF_DEFAULT_OPTS
+
+export BAT_THEME=ansi
 
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "jeffreytse/zsh-vi-mode"
