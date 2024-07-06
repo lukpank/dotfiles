@@ -46,6 +46,8 @@ return {
               ['il'] = '@call.inner',
               ['ao'] = '@loop.outer',
               ['io'] = '@loop.inner',
+              ['ad'] = '@conditional.outer',
+              ['id'] = '@conditional.inner',
               ['ar'] = '@return.outer',
               ['ir'] = '@return.inner',
               ['as'] = '@statement.outer',
