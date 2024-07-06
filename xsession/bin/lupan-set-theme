@@ -27,6 +27,12 @@ if [ -f ~/.config/alacritty/alacritty.toml ]; then
     sed -i "s#^import =.*#import = [\"~/.config/alacritty/$THEME.toml\"]#" ~/.config/alacritty/alacritty.toml
 fi
 
+if [ "$THEME" = dark ]; then
+    kitten themes --reload-in=all Afterglow
+elif [ "$THEME" = light ]; then
+    kitten themes --reload-in=all One Half Light
+fi
+
 # GTK
 if [ -f ~/.config/xsettingsd/xsettingsd.conf ]; then
     sed -i -E "s#(Net/ThemeName) .*#\\1 \"${GTK_THEME}\"#" ~/.config/xsettingsd/xsettingsd.conf
