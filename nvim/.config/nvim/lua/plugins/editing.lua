@@ -19,4 +19,13 @@ return {
       require("nvim-surround").setup(opts)
     end
   },
+
+  {
+    'inkarkat/vim-ReplaceWithRegister',
+    keys = {
+      { '<leader>r',  '<Plug>ReplaceWithRegisterOperator' },
+      { '<leader>rr', '<Plug>ReplaceWithRegisterLine' },
+      { '<leader>r',  '<Plug>ReplaceWithRegisterVisual',  mode = 'x' },
+    },
+  },
 }
