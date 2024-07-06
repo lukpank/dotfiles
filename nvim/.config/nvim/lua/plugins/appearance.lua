@@ -1,15 +1,11 @@
 return {
   {
-    -- Colorscheme
-    'zenbones-theme/zenbones.nvim',
-    dependencies = { 'rktjmp/lush.nvim' },
+    'rmehri01/onenord.nvim',
     config = function()
       vim.o.background = require('lupan.utils').terminalbg()
-      vim.cmd.colorscheme('zenbones')
-    end,
+      vim.cmd.colorscheme('onenord')
+    end
   },
-  "slugbyte/lackluster.nvim",
-  "folke/tokyonight.nvim",
   {
     -- Indentation guides (see `:help indent_blankline.txt`)
     'lukas-reineke/indent-blankline.nvim',
