@@ -49,3 +49,5 @@ check_dependency sx dwm
 check_dependency picom dwm
 check_dependency compton dwm
 check_dependency xbacklight dwm
+check_dependency wl-copy hypr
+check_dependency wl-paste hypr
