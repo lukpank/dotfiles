@@ -2,7 +2,7 @@
 # % cd ~/.local/share
 # % git clone https://github.com/zap-zsh/zap.git --branch=release-v1
 
-export FZF_DEFAULT_OPTS='--color=hl:green,hl+:green'
+export FZF_DEFAULT_OPTS='--color=fg:#afb6b6,fg+:#afb6b6,bg:#264040,bg+:#58414e,hl:#9e532e,hl+:#d94426'
 zstyle ':fzf-tab:*' fzf-flags $FZF_DEFAULT_OPTS
 
 export BAT_THEME=ansi
