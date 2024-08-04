@@ -36,6 +36,12 @@ for i = 1, 9, 1 do
   key('n', '<leader>t' .. i, '<cmd>' .. i .. 'tabnext<CR>', { desc = '[T]ab nr [' .. i .. ']' })
 end
 
+-- translations
+
+key('n', '<leader>tr', function()
+  require('lupan.ui').find_translation_key()
+end, { desc = '[T][r]anlation key find' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
