@@ -1,0 +1,18 @@
+#!/bin/sh
+
+"${HOME}/.config/river/keymap"
+
+LOCK_COMMAND='swaylock -f -c 1f7693'
+RANDR_COMMAND='wlr-randr --output DP-1 --scale 2 --pos 0,0; wlr-randr --output DP-2 --scale 2 --pos 1920,0'
+
+riverctl spawn "${RANDR_COMMAND}"
+
+# Set the default layout generator to be rivertile and start it.
+# River will send the process group of the init executable SIGTERM on exit.
+riverctl default-layout rivertile
+rivertile -view-padding 1 -outer-padding 0 &
+
+riverctl spawn "${HOME}/.config/river/status" 
+riverctl spawn "${HOME}/.config/river/bar" 
+
+riverctl spawn "swayidle -w timeout 300 '${LOCK_COMMAND}' before-sleep '${LOCK_COMMAND}' after-resume '${RANDR_COMMAND}'"

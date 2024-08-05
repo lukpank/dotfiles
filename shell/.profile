@@ -29,7 +29,9 @@ export PATH
 
 # start X or Hyprland at login
 if [[ -z "$DISPLAY" && -z "$WAYLAND_DISPLAY" && "$XDG_VTNR" -eq 1 ]]; then
-    if which Hyprland > /dev/null; then
+    if which river > /dev/null && [ -d ~/.config/river ]; then
+        exec river
+    elif which Hyprland > /dev/null && [ -d ~/.config/hypr ]; then
         exec Hyprland
     elif which /usr/bin/sx > /dev/null; then
         exec /usr/bin/sx ~/.xsession
