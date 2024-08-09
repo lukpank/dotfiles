@@ -3,7 +3,7 @@
 "${HOME}/.config/river/keymap"
 
 LOCK_COMMAND='swaylock -f -c 1f7693'
-RANDR_COMMAND='wlr-randr --output DP-1 --scale 2 --pos 0,0; wlr-randr --output DP-2 --scale 2 --pos 1920,0'
+RANDR_COMMAND='sh -c "wlr-randr --output DP-1 --scale 2 --pos 0,0; wlr-randr --output DP-2 --scale 2 --pos 1920,0"'
 
 riverctl spawn "${RANDR_COMMAND}"
 

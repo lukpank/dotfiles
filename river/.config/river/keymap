@@ -6,6 +6,7 @@ LOCK_COMMAND='swaylock -f -c 1f7693'
 
 # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
 riverctl map normal Super+Shift Return spawn alacritty
+riverctl map normal Super+Alt Return spawn alacritty
 
 riverctl map normal Super P spawn "wofi -S run"
 
