@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+repeat() {
+    for x in {0..10}; do
+        echo "$@"
+        "$@"
+        sleep 1
+    done
+}
+
+case "$1" in
+    --on)
+        repeat wlr-randr --output DP-1 --on --scale 2 --pos 0,0 &
+        repeat wlr-randr --output DP-2 --on --scale 2 --pos 1920,0 &
+        sleep 10
+        ;;
+    --off)
+        wlr-randr --output DP-1 --off
+        wlr-randr --output DP-2 --off
+        ;;
+esac

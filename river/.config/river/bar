@@ -1,16 +1,33 @@
 #!/usr/bin/env sh
 
 FIFO="$XDG_RUNTIME_DIR/sandbar"
-[ -e "$FIFO" ] && rm -f "$FIFO"
-mkfifo "$FIFO"
 
-while cat "$FIFO"; do :; done | sandbar \
-	-font "FiraCode Nerd Font Ret:size=10" \
-	-active-fg-color "#000000" \
-	-active-bg-color "#e8c47d" \
-	-inactive-fg-color "#e8c47d" \
-	-inactive-bg-color "#000000" \
-	-urgent-fg-color "#000000" \
-	-urgent-bg-color "#cc241d" \
-	-title-fg-color "#000000" \
-	-title-bg-color "#e8c47d"
+run() {
+	echo run
+	[ -e "$FIFO" ] && rm -f "$FIFO"
+	mkfifo "$FIFO"
+
+	"$HOME/.config/river/status" &
+
+	while cat "$FIFO"; do :; done | sandbar \
+		-font "FiraCode Nerd Font Ret:size=10" \
+		-active-fg-color "#000000" \
+		-active-bg-color "#e8c47d" \
+		-inactive-fg-color "#e8c47d" \
+		-inactive-bg-color "#000000" \
+		-urgent-fg-color "#000000" \
+		-urgent-bg-color "#cc241d" \
+		-title-fg-color "#000000" \
+		-title-bg-color "#e8c47d"
+}
+
+while true; do
+	run
+	CODE=$?
+	if [ $CODE -ne 139 && $CODE -ne 134 ]; then
+		echo exit because $CODE
+		exit
+	fi
+	echo sleep and continue
+	sleep 1
+done
