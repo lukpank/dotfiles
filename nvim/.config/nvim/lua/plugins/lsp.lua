@@ -38,7 +38,7 @@ return {
               buffer = event.buf,
               callback = function()
                 local clients = vim.lsp.get_clients({ bufnr = event.buf })
-                for _i, cl in ipairs(clients) do
+                for _, cl in ipairs(clients) do
                   if cl.name == 'unocss' then
                     return -- skip highlight if unocss is attached (workaround)
                   end
@@ -63,7 +63,7 @@ return {
         gopls = {},
         -- pyright = {},
         rust_analyzer = {},
-        tsserver = {},
+        ts_ls = {},
 
         lua_ls = {
           settings = {

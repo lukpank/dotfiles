@@ -7,6 +7,7 @@ return {
       "~/.config",
       "~/tmp",
       "/tmp",
+      { "~", exact = true },
       { "/", exact = true },
     },
   },
