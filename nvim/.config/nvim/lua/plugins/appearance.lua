@@ -1,10 +1,14 @@
 return {
   {
-    'rmehri01/onenord.nvim',
+    "ramojus/mellifluous.nvim",
+    branch = "v1",
     config = function()
       vim.o.background = require('lupan.utils').terminalbg()
-      vim.cmd.colorscheme('onenord')
+      vim.cmd.colorscheme('mellifluous')
     end
+  },
+  {
+    'rmehri01/onenord.nvim',
   },
   {
     -- Indentation guides (see `:help indent_blankline.txt`)
