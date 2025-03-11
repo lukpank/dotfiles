@@ -33,4 +33,18 @@ return {
     lazy = false,
     opts = { keymaps = { useDefaults = true } },
   },
+
+  {
+    'ggandor/leap.nvim',
+    opts = {
+      safe_labels = {},
+    },
+    dependencies = {
+      "tpope/vim-repeat",
+    },
+    keys = {
+      { '\\', '<Plug>(leap)',             mode = { 'n', 'x', 'o' } },
+      { 'gs', '<Plug>(leap-from-window)', mode = { 'n', 'x', 'o' } },
+    }
+  },
 }

@@ -6,20 +6,6 @@ return {
   },
 
   {
-    'ggandor/leap.nvim',
-    opts = {
-      safe_labels = {},
-    },
-    dependencies = {
-      "tpope/vim-repeat",
-    },
-    keys = {
-      { 'gs', '<Plug>(leap)',             mode = { 'n', 'x', 'o' } },
-      { 'gS', '<Plug>(leap-from-window)', mode = { 'n', 'x', 'o' } },
-    }
-  },
-
-  {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
@@ -32,7 +18,7 @@ return {
       delete_to_trash = true,
     },
     keys = {
-      { "-", "<cmd>Oil<CR>", desc = "Open parent directory" },
+      { "<leader>-", "<cmd>Oil --float<CR>", desc = "Open parent directory" },
     },
   },
 
