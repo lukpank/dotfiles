@@ -47,4 +47,17 @@ return {
       { 'gs', '<Plug>(leap-from-window)', mode = { 'n', 'x', 'o' } },
     }
   },
+
+  {
+    'Wansmer/treesj',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {
+      use_default_keymaps = false,
+    },
+    keys = {
+      { '<leader>tg', function() require('treesj').toggle() end, desc = "[T]ree to[g]gle one-line" },
+      { '<leader>tj', function() require('treesj').join() end,   desc = "[T]ree [J]oin one-line" },
+      { '<leader>ts', function() require('treesj').split() end,  desc = "[T]ree [S]plit one-line" },
+    },
+  },
 }

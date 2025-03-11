@@ -120,6 +120,7 @@ return {
       }
     end,
   },
+
   {
     'nvimdev/lspsaga.nvim',
     dependencies = {
@@ -153,5 +154,12 @@ return {
         { desc = "[L]spsaga [W]orkspace diagnostics" })
       vim.keymap.set({ 'n', 't' }, '<C-_>', '<cmd>Lspsaga term_toggle<CR>', { desc = "[L]spsaga [T]erm toggle" })
     end,
+  },
+
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {},
+    cmd = 'Trouble'
   },
 }
