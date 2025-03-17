@@ -58,4 +58,11 @@ return {
       { '<leader>ts', function() require('treesj').split() end,  desc = "[T]ree [S]plit one-line" },
     },
   },
+
+  -- rehighlight search on n or N
+  {
+    'nvimdev/hlsearch.nvim',
+    event = 'BufRead',
+    config = true,
+  },
 }
