@@ -65,4 +65,27 @@ return {
     event = 'BufRead',
     config = true,
   },
+
+  {
+    'mizlan/iswap.nvim',
+    event = 'VeryLazy',
+    keys = {
+      { '<leader>cs', '<cmd>ISwapWith<CR>',     desc = 'I[S]wap' },
+      { '<leader>cS', '<cmd>ISwap<CR>',         desc = 'I[S]wapWith' },
+      { '<leader>cn', '<cmd>ISwapNodeWith<CR>', desc = 'ISwap[N]ode' },
+      { '<leader>cN', '<cmd>ISwapNode<CR>',     desc = 'ISwap[N]ode' },
+    },
+  },
+
+  {
+    'aaronik/treewalker.nvim',
+    keys = {
+      { '<leader>ch', '<cmd>Treewalker Left<CR>',     desc = 'Tree Left' },
+      { '<leader>cj', '<cmd>Treewalker Down<CR>',     desc = 'Tree Down' },
+      { '<leader>ck', '<cmd>Treewalker Up<CR>',       desc = 'Tree Up' },
+      { '<leader>cl', '<cmd>Treewalker Right<CR>',    desc = 'Tree Right' },
+      { '<leader>cJ', '<cmd>Treewalker SwapDown<CR>', desc = 'Tree Swap Down' },
+      { '<leader>cK', '<cmd>Treewalker SwapUp<CR>',   desc = 'Tree Swap Up' },
+    },
+  },
 }
