@@ -1,7 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "LuaSnip": { "branch": "master", "commit": "c9b9a22904c97d0eb69ccb9bab76037838326817" },
-  "arrow.nvim": { "branch": "master", "commit": "5438c977e729a29d96bd54c8da3103154e80dbd1" },
   "better-escape.nvim": { "branch": "master", "commit": "199dcc2643dec5d8dbdab4ec672cf405224dcb3b" },
   "blame.nvim": { "branch": "main", "commit": "39bb4cda9e658d053a43919b10ca52c0a4d738e1" },
   "bookmarks.nvim": { "branch": "main", "commit": "42371a76cdd786452b537490926b1b6a041672e5" },
@@ -44,6 +43,7 @@
   "persisted.nvim": { "branch": "main", "commit": "b4b7a281307f8b52d47b0fd5b6798a453681d44e" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "quicker.nvim": { "branch": "master", "commit": "1798be71cdcb15fb84fa8054148a56e17fd391dc" },
+  "rabbit.nvim": { "branch": "master", "commit": "3a4ce048b8ecc48811d061220d0e86111adda20d" },
   "sqlite.lua": { "branch": "master", "commit": "50092d60feb242602d7578398c6eb53b4a8ffe7b" },
   "tardis.nvim": { "branch": "main", "commit": "a6ee00a217529490e79d349b1f1a9cf5831180d3" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "2a5ceff981501cff8f46871d5402cd3378a8ab6a" },

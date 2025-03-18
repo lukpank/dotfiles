@@ -37,7 +37,6 @@ local function feline_config(_, opts)
   }
   feline.add_theme('light', light_theme)
 
-  local statusline = require('arrow.statusline')
   local vimode = require('feline.providers.vi_mode')
   local c = {
     vi_mode = {
@@ -75,13 +74,6 @@ local function feline_config(_, opts)
       },
       right_sep = {
         str = '  ',
-      },
-    },
-    arrow = {
-      provider = function() return statusline.text_for_statusline_with_icons() end,
-      hl = {
-        fg = 'red',
-        style = 'bold',
       },
     },
     file_size = {
