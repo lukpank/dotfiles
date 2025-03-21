@@ -88,4 +88,12 @@ return {
       { '<leader>cK', '<cmd>Treewalker SwapUp<CR>',   desc = 'Tree Swap Up' },
     },
   },
+
+  {
+    'echasnovski/mini.nvim',
+    version = '*',
+    config = function()
+      require('mini.ai').setup()
+    end
+  },
 }
