@@ -7,7 +7,7 @@ return {
       delete_to_trash = true,
     },
     keys = {
-      { "<leader>-", "<cmd>Oil --float<CR>", desc = "Open parent directory" },
+      { "<leader>-", "<cmd>Oil<CR>", desc = "Open parent directory" },
     },
   },
 }
