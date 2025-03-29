@@ -1,7 +1,17 @@
+vim.opt.fillchars = {
+  stl = "─",
+}
+
 return {
   {
     "sschleemilch/slimline.nvim",
-    opts = {}
+    opts = {
+      spaces = {
+        components = "─",
+        left = "─",
+        right = "─",
+      },
+    },
   },
 
   {
