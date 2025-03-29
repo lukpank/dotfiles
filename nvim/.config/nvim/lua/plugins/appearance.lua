@@ -2,13 +2,19 @@ return {
   {
     "ramojus/mellifluous.nvim",
     branch = "v1",
-    config = function()
-      vim.o.background = require('lupan.utils').terminalbg()
-      vim.cmd.colorscheme('mellifluous')
-    end
   },
   {
     'rmehri01/onenord.nvim',
+  },
+  {
+    'AlexvZyl/nordic.nvim',
+  },
+  {
+    "savq/melange-nvim",
+    config = function()
+      vim.o.background = require('lupan.utils').terminalbg()
+      vim.cmd.colorscheme('melange')
+    end
   },
   {
     -- Indentation guides (see `:help indent_blankline.txt`)
