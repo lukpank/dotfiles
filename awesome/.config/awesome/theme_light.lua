@@ -5,22 +5,22 @@ local dpi                      = xresources.apply_dpi
 
 local theme                    = {}
 
-theme.font                     = "Fira Code Nerd Font 10.5"
+theme.font                     = "Fira Code Nerd Font 10"
 theme.tasklist_disable_icon    = true
 theme.wibar_height             = 40
 
-theme.bg_normal                = "#283538"
-theme.bg_focus                 = "#82a0c9" -- hsl(215deg 40% 65%)
-theme.bg_urgent                = "#d0426a"
-theme.bg_minimize              = "#7b899d" -- hsl(215deg 15% 55%)
+theme.bg_normal                = "#293d38" -- hsl(165deg 20% 20%)
+theme.bg_focus                 = "#a9d6ca" -- hsl(165deg 35% 75%)
+theme.bg_urgent                = "#bc8f9b" -- hsl(345deg 25% 65%)
+theme.bg_minimize              = "#62847b" -- hsl(165deg 15% 45%)
 theme.bg_systray               = theme.bg_normal
-theme.tasklist_bg_focus        = "#5e85ba" -- hsl(215deg 40% 55%)
+theme.tasklist_bg_focus        = "#8fbcb1" -- hsl(165deg 25% 65%)
 
-theme.fg_normal                = "#616c6f"
+theme.fg_normal                = "#a9d6ca" -- hsl(165deg 35% 75%)"
 theme.fg_focus                 = "#363d3e"
 theme.fg_urgent                = "#e9f2f5"
 theme.fg_minimize              = "#4b5456"
-theme.taglist_fg_empty         = "#566063"
+theme.taglist_fg_empty         = "#62847b" -- hsl(165deg 15% 45%)"
 
 theme.useless_gap              = dpi(1)
 theme.border_width             = dpi(2)
