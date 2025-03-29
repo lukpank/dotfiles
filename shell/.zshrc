@@ -19,13 +19,19 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "MichaelAquilina/zsh-you-should-use"
 plug "zsh-users/zsh-history-substring-search"
-plug "agkozak/zsh-z"
+
+if which zoxide > /dev/null; then
+    eval "$(zoxide init zsh)"
+else
+    plug "agkozak/zsh-z"
+    ZSHZ_ECHO=1
+    setopt autocd
+fi
 
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
 ZSH_HIGHLIGHT_STYLES[comment]=fg=blue
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=bg=magenta,fg=black,bold
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=bg=red,fg=black,bold
-ZSHZ_ECHO=1
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -66,7 +72,6 @@ setopt share_history
 
 # Convenience.
 
-setopt autocd
 bindkey -M vicmd '^[h' run-help
 bindkey -M viins '^[h' run-help
 
