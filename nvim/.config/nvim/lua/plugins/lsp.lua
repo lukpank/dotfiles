@@ -162,4 +162,12 @@ return {
     opts = {},
     cmd = 'Trouble'
   },
+
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "InsertEnter",
+    opts = {
+      -- cfg options
+    },
+  }
 }
