@@ -2,6 +2,10 @@ return {
   {
     'folke/which-key.nvim',
     event = 'VimEnter',
+    opts = {
+      preset = 'helix',
+      delay = 1000,
+    },
     config = function(_, opts)
       require('which-key').setup(opts)
 
