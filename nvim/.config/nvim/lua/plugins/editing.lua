@@ -21,11 +21,12 @@ return {
   {
     'inkarkat/vim-ReplaceWithRegister',
     keys = {
-      { '<leader>r',  '<Plug>ReplaceWithRegisterOperator' },
-      { '<leader>rr', '<Plug>ReplaceWithRegisterLine' },
-      { '<leader>r',  '<Plug>ReplaceWithRegisterVisual',  mode = 'x' },
+      { 'gp',  '<Plug>ReplaceWithRegisterOperator' },
+      { 'gpp', '<Plug>ReplaceWithRegisterLine' },
+      { 'gp',  '<Plug>ReplaceWithRegisterVisual',  mode = 'x' },
     },
   },
+
   {
     "chrisgrieser/nvim-various-textobjs",
     lazy = false,
