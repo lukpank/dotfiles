@@ -51,7 +51,20 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-local theme = "theme_dark.lua"
+
+local function read_theme()
+  local theme = "theme_dark.lua"
+  local f = io.open(os.getenv('HOME') .. '/.config/alacritty/alacritty.toml')
+  if f then
+    if string.find(f:read('*all'), 'light') then
+      theme = 'theme_light.lua'
+    end
+    f:close()
+    return theme
+  end
+end
+
+local theme = read_theme()
 beautiful.init(gears.filesystem.get_configuration_dir() .. theme)
 
 local function set_wallpaper(s)
