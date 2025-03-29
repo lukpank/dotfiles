@@ -72,5 +72,6 @@
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
   "whaler": { "branch": "main", "commit": "9e0b67e36250cb80e679563adcd4b7451eae26b2" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
-  "yankbank-nvim": { "branch": "main", "commit": "ded8f01bd6a7887310e14d463c8aa55eb79ec281" }
+  "yankbank-nvim": { "branch": "main", "commit": "ded8f01bd6a7887310e14d463c8aa55eb79ec281" },
+  "zen-mode.nvim": { "branch": "main", "commit": "863f150ca321b3dd8aa1a2b69b5f411a220e144f" }
 }
