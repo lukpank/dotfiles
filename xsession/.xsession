@@ -7,6 +7,7 @@ fi
 xset b off
 xrandr --auto
 xrandr --output HDMI1 --right-of DP1
+xrandr --output DP-0 --left-of DP-2
 xrdb -merge ~/.Xresources
 setxkbmap pl -option ctrl:nocaps
 
