@@ -17,6 +17,9 @@ return {
       history = { switch = ';' },
       harpoon = { switch = 'f' },
     },
+    colors = {
+      file = '#5a418a',
+    },
   },
   keys = {
     { '<leader>1', function() rabbit_select(1) end },
