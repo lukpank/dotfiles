@@ -28,12 +28,6 @@ return {
   },
 
   {
-    "chrisgrieser/nvim-various-textobjs",
-    lazy = false,
-    opts = { keymaps = { useDefaults = true } },
-  },
-
-  {
     'ggandor/leap.nvim',
     opts = {
       safe_labels = {},
