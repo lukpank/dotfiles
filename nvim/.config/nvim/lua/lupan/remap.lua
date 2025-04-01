@@ -113,10 +113,4 @@ vim.keymap.set("n", "<leader>ss", "<cmd>source ~/.config/nvim/after/plugin/luasn
 
 -- colors
 
-key('n', '<F6>', function()
-  if vim.o.background == "dark" then
-    vim.o.background = "light"
-  else
-    vim.o.background = "dark"
-  end
-end)
+key('n', '<F6>', function() require('lupan.utils').toggle_color_scheme() end, { desc = 'Toggle background' })

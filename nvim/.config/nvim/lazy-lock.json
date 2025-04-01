@@ -32,6 +32,7 @@
   "melange-nvim": { "branch": "master", "commit": "2db5407f2f6d6d6286f50f2f7365728d66f6f3ae" },
   "mellifluous.nvim": { "branch": "v1", "commit": "1637e46585435ebda7963248e0e65422effad8d9" },
   "mini.nvim": { "branch": "main", "commit": "0420076298c4457f200c2de468f65d080597a347" },
+  "nano-theme.nvim": { "branch": "main", "commit": "0b1158c4911f4bd9d5a1e2e7669ebff893435b64" },
   "neodev.nvim": { "branch": "main", "commit": "46aa467dca16cf3dfe27098042402066d2ae242d" },
   "neogit": { "branch": "master", "commit": "6d1bd94f7fca92a50a892f494920696b5defa8c8" },
   "nordic.nvim": { "branch": "main", "commit": "8627750ece357e9670f9e69853091f7fbb8d6523" },

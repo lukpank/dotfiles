@@ -18,7 +18,7 @@ return {
       harpoon = { switch = 'f' },
     },
     colors = {
-      file = '#5a418a',
+      file = '#EBCB8B',
     },
   },
   keys = {
